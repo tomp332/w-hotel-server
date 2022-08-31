@@ -1,8 +1,8 @@
-const {webCookieValidator, loginValidator} = require("../middlewears/auth");
+const {webCookieValidator, loginValidator} = require("../../middlewears/auth");
 const router = require('express').Router()
 const userRouter = require("./user")
 const jwt = require('jsonwebtoken')
-const Users = require("../database/models/users");
+const Users = require("../../database/models/users");
 
 
 // Home page route.

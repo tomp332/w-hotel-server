@@ -1,19 +1,16 @@
 const router = require('express').Router()
-const moment = require("moment")
 const uuid4 = require("uuid4")
 
 
-
 // Home page route.
-const {webCookieValidator} = require("../middlewears/auth");
-const Users = require("../database/models/users");
+const {webCookieValidator} = require("../../middlewears/auth");
+const Users = require("../../database/models/users");
 const jwt = require("jsonwebtoken");
 
 // Get user information
-router.get('/:userId?', webCookieValidator, async function (req, res) {
+router.get('/', webCookieValidator, async function (req, res) {
     try {
-        let userId = req.params.userId
-        const users = await Users.findOne({userId: userId}).exec()
+        const users = await Users.findOne({userId: res.userId}).exec()
         if (Object.keys(users).length > 0) {
             res.send(users)
         } else {
@@ -27,14 +24,9 @@ router.get('/:userId?', webCookieValidator, async function (req, res) {
 })
 
 // Delete user data
-router.delete('/:userId?', webCookieValidator, async function (req, res) {
+router.delete('/', webCookieValidator, async function (req, res) {
     await Users.findOneAndDelete({userId: res.userId})
     console.log(`[+] Successfully deleted user with ID: ${res.userId}`)
-    res.send();
-})
-
-// Update user data
-router.put('/', webCookieValidator, function (req, res) {
     res.send();
 })
 
@@ -49,7 +41,7 @@ router.post('/', async function (req, res) {
             if (err) {
                 console.log(`[-] Error adding new user or user already exists: ${err}`)
                 res.status(500).send("Error adding new user or user already exists")
-            } else{
+            } else {
 
                 let payload = {
                     username: username

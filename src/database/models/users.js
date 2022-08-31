@@ -5,21 +5,24 @@ let Schema = mongoose.Schema;
 let UsersSchema = new Schema({
     userId: {
         type: String,
-        unique: true
+        unique: true,
+        immutable: true
     },
     username: {
         type: String,
-        unique: true
+        unique: true,
+        immutable: true
     },
-    password: String,
-    sessionKey: String,
-    userReservations: [{
-        hotelId: Number,
-        name: String,
-        checkIn: Date,
-        checkOut: Date,
-        numberOfGuests: Number
-    }]
+    password: {
+        type: String,
+        immutable: true
+    },
+    sessionKey: {
+        type: String
+    },
+    userReservations: {
+        type: Array
+    }
 }, {versionKey: false, timestamps: true})
 
 const Users = mongoose.model('Users', UsersSchema);

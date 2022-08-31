@@ -9,7 +9,7 @@ app.use(express.json());
 dotenv.config()
 
 // Routes
-const apiRouter = require("./routes/api")
+const apiRouter = require("./routes/api/api")
 app.use('/api', apiRouter)
 
 connectToDB().then(() => {

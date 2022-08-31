@@ -3,6 +3,10 @@ let Schema = mongoose.Schema;
 
 // Defines schemas
 let HotelSchema = new Schema({
+    hotelId: {
+        unique: true,
+        type: String
+    },
     address: {
         country:String,
         city: String,
@@ -11,9 +15,13 @@ let HotelSchema = new Schema({
     },
     rating: {
         title: String,
-        startsRating: Number
+        numStars: {
+            type: Number,
+            min: 1,
+            max: 5
+        }
     },
-    price: Number,
+    pricePerNight: Number,
     name: String,
     location:  {
         latitude: Number,
@@ -21,10 +29,9 @@ let HotelSchema = new Schema({
     },
     guestReviews:{
         avgRating: Number,
-        total: Number
-    },
-    dateAdded: Date
-}, {versionKey: false})
+        totalNumRatings: Number
+    }
+}, {versionKey: false, timestamps: true})
 
 const Users = mongoose.model('Hotels', HotelSchema);
 module.exports = Users;
