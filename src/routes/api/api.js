@@ -3,8 +3,9 @@ const router = require('express').Router()
 const userRouter = require("./user")
 const jwt = require('jsonwebtoken')
 const Users = require("../../database/models/users");
-
-
+const reservationsRouter = require("./reservations")
+const hotelsRouter = require("./hotels")
+const notificationsRouter = require("./notifications")
 // Home page route.
 router.post('/login', loginValidator, async function (req, res) {
     try {
@@ -32,5 +33,15 @@ router.get('/logout', webCookieValidator, async function (req, res) {
 
 // Nested route
 router.use('/user', userRouter)
+
+// Nested route
+router.use('/reservations', reservationsRouter)
+
+// Nested route
+router.use('/hotels', hotelsRouter)
+
+// Neseted route
+router.use('/notifications', notificationsRouter)
+
 
 module.exports = router;

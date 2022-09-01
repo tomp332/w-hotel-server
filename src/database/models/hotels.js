@@ -2,36 +2,36 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 // Defines schemas
-let HotelSchema = new Schema({
+const HotelSchema = new Schema({
+    hotelName: {
+        unique: true,
+        type: String,
+        required: true,
+        dropDups: true
+    },
     hotelId: {
         unique: true,
-        type: String
+        type: String,
+        required: true,
+        dropDups: true
     },
     address: {
-        country:String,
-        city: String,
-        postCode: String,
-        fullAddress: String,
+        required: true,
+        type: Object,
+        dropDups: true
     },
     rating: {
-        title: String,
-        numStars: {
-            type: Number,
-            min: 1,
-            max: 5
-        }
+        required: true,
+        type: Object
     },
     pricePerNight: Number,
-    name: String,
-    location:  {
-        latitude: Number,
-        longitude: Number
+    location: {
+        required: true,
+        type: Object,
+        dropDups: true
     },
-    guestReviews:{
-        avgRating: Number,
-        totalNumRatings: Number
-    }
+    guestReviews: Object
 }, {versionKey: false, timestamps: true})
 
-const Users = mongoose.model('Hotels', HotelSchema);
-module.exports = Users;
+const Hotels = mongoose.model('Hotels', HotelSchema);
+module.exports = Hotels;

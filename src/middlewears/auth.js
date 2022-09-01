@@ -14,7 +14,7 @@ const loginValidator = async (req, res, next) => {
                 console.log(`[-] No user was found for this login information`)
                 res.sendStatus(401)
             }
-        } else{
+        } else {
             console.log(`[-] No proper login information was provided for login`)
             res.sendStatus(401)
         }

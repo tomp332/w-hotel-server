@@ -6,16 +6,15 @@ let UsersSchema = new Schema({
     userId: {
         type: String,
         unique: true,
-        immutable: true
+        required: true
     },
     username: {
         type: String,
         unique: true,
-        immutable: true
     },
     password: {
         type: String,
-        immutable: true
+        required: true
     },
     sessionKey: {
         type: String

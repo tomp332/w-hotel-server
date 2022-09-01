@@ -36,17 +36,18 @@ router.post('/', async function (req, res) {
         const userId = uuid4()
         const username = req.body.username
         const password = req.body.password
-        const newUser = new Users({userId: userId, username: username, password: password})
+        let payload = {
+            username: username
+        }
+        let token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'})
+        const newUser = new Users({userId: userId, username: username, password: password, sessionKey: token})
         await newUser.save(function (err) {
             if (err) {
                 console.log(`[-] Error adding new user or user already exists: ${err}`)
                 res.status(500).send("Error adding new user or user already exists")
             } else {
-
-                let payload = {
-                    username: username
-                }
-                let token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'})
+                console.log(`[+] Created new web user, ${newUser.username}`)
+                res.cookie('authorization', token);
                 res.send({
                     userId: userId,
                     token: token

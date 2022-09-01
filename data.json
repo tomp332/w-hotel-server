@@ -1,22 +1,95 @@
-{"country":"Brazil","postCode":"61700-000","fullAddress":"8399 Division Place","city":"Aquiraz"}
-{"country":"China","fullAddress":"0 Arkansas Park","city":"Gyangqai"}
-{"country":"China","fullAddress":"89230 Troy Drive","city":"Gaojingzhuang"}
-{"country":"Poland","postCode":"08-322","fullAddress":"47 Express Court","city":"Ceranów"}
-{"country":"Bhutan","fullAddress":"5 Oak Valley Court","city":"Sarpang"}
-{"country":"Philippines","postCode":"2708","fullAddress":"3908 Chive Point","city":"Sindon"}
-{"country":"Ukraine","fullAddress":"82387 6th Avenue","city":"Kolomak"}
-{"country":"Syria","fullAddress":"30 Magdeline Avenue","city":"Khān Shaykhūn"}
-{"country":"Ukraine","fullAddress":"957 Lillian Crossing","city":"Sarata"}
-{"country":"China","fullAddress":"0 Moland Circle","city":"Yichun"}
+{
+  "country": "Brazil",
+  "postCode": "61700-000",
+  "fullAddress": "8399 Division Place",
+  "city": "Aquiraz"
+}
+{
+  "country": "China",
+  "fullAddress": "0 Arkansas Park",
+  "city": "Gyangqai"
+}
+{
+  "country": "China",
+  "fullAddress": "89230 Troy Drive",
+  "city": "Gaojingzhuang"
+}
+{
+  "country": "Poland",
+  "postCode": "08-322",
+  "fullAddress": "47 Express Court",
+  "city": "Ceranów"
+}
+{
+  "country": "Bhutan",
+  "fullAddress": "5 Oak Valley Court",
+  "city": "Sarpang"
+}
+{
+  "country": "Philippines",
+  "postCode": "2708",
+  "fullAddress": "3908 Chive Point",
+  "city": "Sindon"
+}
+{
+  "country": "Ukraine",
+  "fullAddress": "82387 6th Avenue",
+  "city": "Kolomak"
+}
+{
+  "country": "Syria",
+  "fullAddress": "30 Magdeline Avenue",
+  "city": "Khān Shaykhūn"
+}
+{
+  "country": "Ukraine",
+  "fullAddress": "957 Lillian Crossing",
+  "city": "Sarata"
+}
+{
+  "country": "China",
+  "fullAddress": "0 Moland Circle",
+  "city": "Yichun"
+}
 
 
-{"latitude":-34.058086,"longitude":18.6133549}
-{"latitude":-17.3058881,"longitude":31.5655424}
-{"latitude":48.9486344,"longitude":17.2848785}
-{"latitude":-6.107046,"longitude":-78.5970229}
-{"latitude":-6.7120714,"longitude":108.495859}
-{"latitude":50.444953,"longitude":-104.3624353}
-{"latitude":43.372464,"longitude":128.2323169}
-{"latitude":48.873935,"longitude":38.1047909}
-{"latitude":-5.0077012,"longitude":122.5019655}
-{"latitude":46.013979,"longitude":83.663731}
+{
+  "latitude": -34.058086,
+  "longitude": 18.6133549
+}
+{
+  "latitude": -17.3058881,
+  "longitude": 31.5655424
+}
+{
+  "latitude": 48.9486344,
+  "longitude": 17.2848785
+}
+{
+  "latitude": -6.107046,
+  "longitude": -78.5970229
+}
+{
+  "latitude": -6.7120714,
+  "longitude": 108.495859
+}
+{
+  "latitude": 50.444953,
+  "longitude": -104.3624353
+}
+{
+  "latitude": 43.372464,
+  "longitude": 128.2323169
+}
+{
+  "latitude": 48.873935,
+  "longitude": 38.1047909
+}
+{
+  "latitude": -5.0077012,
+  "longitude": 122.5019655
+}
+{
+  "latitude": 46.013979,
+  "longitude": 83.663731
+}
