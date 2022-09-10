@@ -6,13 +6,13 @@ const loginValidator = async (req, res, next) => {
         let username = req.body.username;
         let password = req.body.password;
         if (username && password) {
-            const user = await Users.findOne({username: username}).exec()
+            const user = await Users.findOne({username: username, password: password}).exec()
             if (user !== null) {
                 console.log(`[+] Authentication login credentials for user: ${username}`)
                 next();
             } else {
                 console.log(`[-] No user was found for this login information`)
-                res.sendStatus(401)
+                res.status(401).json("No user was found for this login information")
             }
         } else {
             console.log(`[-] No proper login information was provided for login`)
@@ -20,7 +20,7 @@ const loginValidator = async (req, res, next) => {
         }
     } catch (err) {
         console.log(`[-] Error parsing login request for authentication purpose ${err}`);
-        res.status(401)
+        res.sendStatus(400)
     }
 }
 
