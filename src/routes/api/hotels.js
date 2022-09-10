@@ -16,11 +16,11 @@ router.post('/', webCookieValidator, async function (req, res) {
             guestReviews: req.body.guestReviews,
         })
         await newHotel.save()
-        console.log("[+] Added new hotel successfully")
-        res.send()
+        console.log(`[+] Added new hotel successfully, hotel ID: ${newHotel.hotelId}`)
+        res.json("Added new hotel successfully")
     } catch (err) {
         console.log(`[-] Failed to add new hotel. ${err}`)
-        res.sendStatus(400)
+        res.status(400).json("Received incorrect new hotel format")
     }
 })
 
@@ -42,6 +42,18 @@ router.put('/', webCookieValidator, async function (req, res) {
         console.log(`[-] Failed to change hotel information, ${err}`)
         res.sendStatus(400)
     }
+})
+
+// Get all hotels in DB
+router.get('/', webCookieValidator, async function(req, res) {
+  try{
+      const hotels = await Hotels.find().select('-_id -updatedAt').exec()
+      res.json(hotels)
+      console.log(`[+] Fetched ${Object.keys(hotels).length} hotels`)
+  }catch (err){
+      console.log(`Error fetching current hotels in DB, ${err}`)
+      res.json('Error fetching current hotels in DB').status(500)
+  }
 })
 
 module.exports = router;

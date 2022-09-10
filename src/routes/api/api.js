@@ -40,7 +40,7 @@ router.use('/reservations', reservationsRouter)
 // Nested route
 router.use('/hotels', hotelsRouter)
 
-// Neseted route
+// Nested route
 router.use('/notifications', notificationsRouter)
 
 

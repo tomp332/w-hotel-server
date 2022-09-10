@@ -19,7 +19,7 @@ const wss = new WebSocket.Server({port: process.env.WEBSOCKET_PORT});
 const clients = new Map();
 
 connectToDB().then(() => {
-    console.log("[+] Successfully connected to data base")
+    console.log("[+] Successfully connected to MongoDB Cloud")
     app.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, null, () => {
         console.log(`[+] Started HTTP server ${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`)
         console.log(`[+] Started WEB SOCKET server ${process.env.SERVER_HOST}:${process.env.WEBSOCKET_PORT}`)
