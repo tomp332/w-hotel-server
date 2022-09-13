@@ -6,6 +6,7 @@ const Users = require("../../database/models/users");
 const reservationsRouter = require("./reservations")
 const hotelsRouter = require("./hotels")
 const notificationsRouter = require("./notifications")
+
 // Home page route.
 router.post('/login', loginValidator, async function (req, res) {
     try {

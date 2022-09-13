@@ -5,6 +5,7 @@ const {webCookieValidator} = require("../../middlewears/auth")
 const Reservations = require("../../database/models/reservations")
 const uuid4 = require("uuid4");
 
+// Update reservation info
 router.put('/', webCookieValidator, async function (req, res) {
     try {
         const reservationId = req.body.reservationId
@@ -22,11 +23,12 @@ router.put('/', webCookieValidator, async function (req, res) {
     }
 })
 
+// Add new reservation
 router.post('/', webCookieValidator, async function (req, res) {
     try {
         const newReservation = new Reservations({
             hotelId: req.body.hotelId,
-            userId: req.body.userId,
+            userId: res.userId,
             reservationId: uuid4(),
             checkIn: req.body.checkIn,
             checkOut: req.body.checkOut
