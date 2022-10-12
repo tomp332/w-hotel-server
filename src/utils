@@ -5,15 +5,11 @@ const addNewUser = async function(email, username, password = "default", token =
     const userId = uuid4()
     console.log(`[+] Adding user with the following information: ${email}, ${username}, ${password}`)
     const newUser = new Users({ userId: userId, email: email, username: username, password: password, sessionKey: token })
-    const user = await newUser.save(function(err) {
+    newUser.save(async function(err) {
         if (err) {
             console.log(`[-] Error adding new user or user already exists: ${err}`)
             throw new Error("Failed to add new user to DB")
-        } else {
-            console.log(`[+] Created new web user, ${newUser.username}`)
-            return result
         }
     })
-    return user
 }
 module.exports.addNewUser = addNewUser;
