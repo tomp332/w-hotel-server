@@ -12,9 +12,13 @@ let UsersSchema = new Schema({
         type: String,
         unique: true,
     },
-    password: {
+    email: {
         type: String,
+        unique: true,
         required: true
+    },
+    password: {
+        type: String
     },
     sessionKey: {
         type: String
@@ -22,7 +26,7 @@ let UsersSchema = new Schema({
     userReservations: {
         type: Array
     }
-}, {versionKey: false, timestamps: true})
+}, { versionKey: false, timestamps: true })
 
 const Users = mongoose.model('Users', UsersSchema);
 module.exports = Users;

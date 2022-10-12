@@ -1,14 +1,15 @@
 const jwt = require("jsonwebtoken");
 const Users = require("../database/models/users");
 
-const loginValidator = async (req, res, next) => {
+const loginValidator = async(req, res, next) => {
     try {
-        let username = req.body.username;
-        let password = req.body.password;
-        if (username && password) {
-            const user = await Users.findOne({username: username, password: password}).exec()
+        let username = req.body.username
+        let password = req.body.password
+        let email = req.body.email
+        if ((username || email) && password) {
+            const user = await Users.findOne({ $or: [{ username: username, password: password }, { email: email, password: password }] }).exec()
             if (user !== null) {
-                console.log(`[+] Authentication login credentials for user: ${username}`)
+                console.log(`[+] Authenticating login credentials for user: ${username || email}`)
                 next();
             } else {
                 console.log(`[-] No user was found for this login information`)
@@ -24,7 +25,7 @@ const loginValidator = async (req, res, next) => {
     }
 }
 
-const webCookieValidator = async (req, res, next) => {
+const webCookieValidator = async(req, res, next) => {
     try {
         let token = req.cookies.authorization
         if (token == null) return res.sendStatus(401);
@@ -33,7 +34,7 @@ const webCookieValidator = async (req, res, next) => {
                 console.log(`[-] Token err , ${err.message}`)
                 return res.sendStatus(403);
             }
-            Users.findOne({sessionKey: req.cookies.authorization}, function (err, user) {
+            Users.findOne({ sessionKey: req.cookies.authorization }, function(err, user) {
                 if (err) {
                     console.log(`[-] Error finding user in database, ${err}`)
                     res.sendStatus(401)
@@ -55,4 +56,4 @@ const webCookieValidator = async (req, res, next) => {
     }
 };
 
-module.exports = {webCookieValidator, loginValidator}
+module.exports = { webCookieValidator, loginValidator }

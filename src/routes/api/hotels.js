@@ -1,10 +1,10 @@
-const {webCookieValidator} = require("../../middlewears/auth");
+const { webCookieValidator } = require("../../middlewears/auth");
 const uuid4 = require("uuid4");
 const Hotels = require("../../database/models/hotels");
 const router = require('express').Router()
 
 // Create new hotel
-router.post('/', webCookieValidator, async function (req, res) {
+router.post('/', webCookieValidator, async function(req, res) {
     try {
         const newHotel = new Hotels({
             hotelName: req.body.hotelName,
@@ -25,10 +25,10 @@ router.post('/', webCookieValidator, async function (req, res) {
 })
 
 // Update hotel information
-router.put('/', webCookieValidator, async function (req, res) {
+router.put('/', webCookieValidator, async function(req, res) {
     try {
         const hotelId = req.body.hotelId
-        let hotel = await Hotels.findOne({hotelId: hotelId}).exec()
+        let hotel = await Hotels.findOne({ hotelId: hotelId }).exec()
         hotel.hotelName = req.body.hotelName && req.body.hotelName || hotel.hotelName
         hotel.rating = req.body.rating && req.body.rating || hotel.rating
         hotel.address = req.body.address && req.body.address || hotel.address
@@ -46,14 +46,14 @@ router.put('/', webCookieValidator, async function (req, res) {
 
 // Get all hotels in DB
 router.get('/', webCookieValidator, async function(req, res) {
-  try{
-      const hotels = await Hotels.find().select('-_id -updatedAt').exec()
-      res.json(hotels)
-      console.log(`[+] Fetched ${Object.keys(hotels).length} hotels`)
-  }catch (err){
-      console.log(`Error fetching current hotels in DB, ${err}`)
-      res.json('Error fetching current hotels in DB').status(500)
-  }
+    try {
+        const hotels = await Hotels.find().select('-_id -updatedAt').exec()
+        res.json(hotels)
+        console.log(`[+] Fetched ${Object.keys(hotels).length} hotels`)
+    } catch (err) {
+        console.log(`Error fetching current hotels in DB, ${err}`)
+        res.json('Error fetching current hotels in DB').status(500)
+    }
 })
 
-module.exports = router;
+module.exports = router
