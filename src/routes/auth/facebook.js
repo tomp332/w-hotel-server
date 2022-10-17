@@ -24,7 +24,7 @@ passport.use(
         },
         async function(accessToken, refreshToken, profile, done) {
             const displayName = profile.displayName
-            const { email, first_name, last_name, username } = profile._json;
+            const { email, first_name, last_name } = profile._json;
             const userData = {
                 email: email,
                 displayName: displayName,
@@ -42,9 +42,15 @@ router.get("/", passport.authenticate("facebook", { scope: ['email'] }));
 
 router.get("/callback", passport.authenticate("facebook", {
     scope: ['email'],
-    failureRedirect: "/fail"
+    failureRedirect: "/403"
 }), async function(req, res) {
-    req.user = req.user._json
+    let userJson = req.user._json
+    req.user = {
+        username: `${userJson.first_name}_${userJson.last_name}`,
+        firstName: userJson.first_name,
+        lastName: userJson.last_name,
+        email: userJson.email
+    }
     const payload = {
         username: req.user.email,
     }
@@ -52,15 +58,15 @@ router.get("/callback", passport.authenticate("facebook", {
     const user = await Users.findOne({ email: req.user.email }).select('-_id -updatedAt').exec()
     if (user === null) {
         // Add new user by his facebook email
-        await utils.addNewUser(req.user.email, `${req.user.first_name}_${req.user.last_name}`, "default", token)
+        await utils.addNewUser(req.user, token)
     } else {
         // Search by user email
         const user = await Users.findOneAndUpdate({ email: req.user.email }, { sessionKey: token }, {})
         console.log(`[+] Updated new session key for user, ${ user.userId }`)
     }
-    console.log(`[+] Successfully initialized user: ${ req.user.name }`)
+    console.log(`[+] Successfully initialized user authenticated from facebook`)
     res.cookie('authorization', token)
-    res.redirect('/home')
+    res.render('home', { user: req.user })
 })
 
 module.exports = router

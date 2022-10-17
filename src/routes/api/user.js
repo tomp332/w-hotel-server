@@ -1,11 +1,16 @@
 const router = require('express').Router()
 const uuid4 = require("uuid4")
-
-
-// Home page route.
 const { webCookieValidator } = require("../../middlewears/auth");
 const Users = require("../../database/models/users");
 const jwt = require("jsonwebtoken");
+
+
+// About page route.
+router.get('/logout', webCookieValidator, async function(req, res) {
+    await Users.findOneAndUpdate({ userId: res.userId }, { sessionKey: '' }, {})
+    console.log(`Signed user out, userID:  ${res.userId}`)
+    res.send();
+})
 
 // Get user information
 router.get('/', webCookieValidator, async function(req, res) {
@@ -35,13 +40,11 @@ router.post('/', async function(req, res) {
     try {
         const userId = uuid4()
         const username = req.body.username
-        const password = req.body.password
-        const email = req.body.email
         let payload = {
             username: username
         }
         let token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
-        const newUser = new Users({ email: email, userId: userId, username: username, password: password, sessionKey: token })
+        const newUser = new Users({...req.body, userId: userId, sessionKey: token })
         await newUser.save(function(err) {
             if (err) {
                 console.log(`[-] Error adding new user or user already exists: ${err}`)
@@ -49,11 +52,7 @@ router.post('/', async function(req, res) {
             } else {
                 console.log(`[+] Created new web user, ${newUser.username}`)
                 res.cookie('authorization', token);
-                res.send({
-                    userId: userId,
-                    token: token,
-                    auth: true
-                })
+                res.render('home', { user: newUser })
             }
         })
     } catch (e) {

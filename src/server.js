@@ -11,6 +11,11 @@ const uuid4 = require("uuid4")
 const session = require('express-session')
 
 dotenv.config()
+
+app.set('views', 'src\\views');
+app.set('view engine', 'pug');
+
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -23,23 +28,28 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(express.static(__dirname + "/src/public", {
+    index: false,
+    immutable: true,
+    cacheControl: true,
+    maxAge: "30d"
+}));
 
 
 // Routes
 const apiRouter = require("./routes/api/api")
-const pagesRouter = require("./routes/pages/pages")
 const authRouter = require("./routes/auth/auth")
+const publicPagesRouter = require('./routes/pages')
 
+// Public pages router
+app.use('/', publicPagesRouter)
 
-// Main pages router
-app.use('/', pagesRouter)
-
-//Third party auth
+//Authentication router
 app.use('/auth', authRouter)
 
 // main API routes
 app.use('/api', apiRouter)
+
 
 // Web socket server
 const wss = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT });
