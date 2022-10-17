@@ -41,7 +41,11 @@ const webCookieValidator = async(req, res, next) => {
                 } else {
                     if (user) {
                         res.auth = true
-                        res.userId = user.userId
+                        console.log(user.isAdmin ? "[+] Authenticating an admin" : "[+] Authenticating regular user")
+
+                        // If this was made by an admin then it can have permissions to act as the specified user
+                        res.userId = (user.isAdmin) ? req.body.userId : user.userId
+
                         next();
                     } else {
                         console.log(`[-] Found no user with the token: ${token}`)
@@ -56,4 +60,41 @@ const webCookieValidator = async(req, res, next) => {
     }
 };
 
+const adminWebCookieValidate = async(req, res, next) => {
+    try {
+        let token = req.cookies.authorization
+        if (token == null) return res.sendStatus(401);
+        jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
+            if (err) {
+                console.log(`[-] Token err , ${err.message}`)
+                return res.sendStatus(403);
+            }
+            Users.findOne({ username: process.env.ADMIN_USERNAME }, function(err, admin) {
+                if (err) {
+                    console.log(`[-] Error finding and validating admin from database, ${err}`)
+                    res.sendStatus(401)
+                } else {
+                    if (admin) {
+                        if (admin.sessionKey === token) {
+                            // The request was made by an admin user
+                            res.auth = true
+                            res.userId = admin.userId
+                            next();
+                        } else {
+                            // The request was not made by an admin
+                            console.log(`[-] Unauthorized request made by user withuot admin permissions`)
+                            res.sendStatus(401)
+                        }
+                    } else {
+                        console.log(`[-] Found no user with the token: ${token}`)
+                        res.sendStatus(401)
+                    }
+                }
+            })
+        });
+    } catch (err) {
+        console.log(`[-] Client error authenticating, ${err}`)
+        res.sendStatus(401)
+    }
+}
 module.exports = { webCookieValidator, loginValidator }

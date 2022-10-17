@@ -33,6 +33,10 @@ let UsersSchema = new Schema({
     },
     userReservations: {
         type: Array
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 }, { versionKey: false, timestamps: true })
 UsersSchema.pre('save', function(next) {
@@ -44,4 +48,4 @@ UsersSchema.pre('save', function(next) {
 
 
 const Users = mongoose.model('Users', UsersSchema);
-module.exports = Users;
+module.exports = Users

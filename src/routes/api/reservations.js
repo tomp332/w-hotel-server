@@ -1,15 +1,20 @@
 const router = require('express').Router()
 
 // Update user reservation
-const {webCookieValidator} = require("../../middlewears/auth")
+const { webCookieValidator } = require("../../middlewears/auth")
 const Reservations = require("../../database/models/reservations")
 const uuid4 = require("uuid4");
 
 // Update reservation info
-router.put('/', webCookieValidator, async function (req, res) {
+router.put('/', webCookieValidator, async function(req, res) {
     try {
         const reservationId = req.body.reservationId
-        let reservation = await Reservations.findOne({reservationId: reservationId, userId: res.userId}).exec()
+        let reservation = await Reservations.findOne({ reservationId: reservationId, userId: res.userId }).exec()
+        if (!reservation) {
+            res.json("No reservation found by that id").status(404)
+            return
+        }
+        console.log(`[+] Found reservation ${reservation.reservationId} for modifying`)
         reservation.hotelId = req.body.hotelId && req.body.hotelId || reservation.hotelId
         reservation.userId = req.body.userId && req.body.userId || reservation.userId
         reservation.checkIn = req.body.checkIn && req.body.checkIn || reservation.checkIn
@@ -24,7 +29,7 @@ router.put('/', webCookieValidator, async function (req, res) {
 })
 
 // Add new reservation
-router.post('/', webCookieValidator, async function (req, res) {
+router.post('/', webCookieValidator, async function(req, res) {
     try {
         const newReservation = new Reservations({
             hotelId: req.body.hotelId,
@@ -44,11 +49,11 @@ router.post('/', webCookieValidator, async function (req, res) {
 
 // Get all reservations in DB that are associated with the current userId
 router.get('/', webCookieValidator, async function(req, res) {
-    try{
-        const reservations = await Reservations.find({userId: res.userId}).select('-_id -updatedAt').exec()
+    try {
+        const reservations = await Reservations.find({ userId: res.userId }).select('-_id -updatedAt').exec()
         res.json(reservations)
         console.log(`[+] Fetched ${Object.keys(reservations).length} reservations, for user ID: ${res.userId}`)
-    }catch (err){
+    } catch (err) {
         console.log(`Error fetching current reservations in DB, ${err}`)
         res.json('Error fetching current reservations in DB').status(500)
     }
