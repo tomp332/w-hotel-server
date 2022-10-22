@@ -1,6 +1,6 @@
-const { webCookieValidator } = require("../../middlewears/auth");
+const { webCookieValidator } = require("../middlewears/auth");
 const uuid4 = require("uuid4");
-const Hotels = require("../../database/models/hotels");
+const Hotels = require("../database/models/hotels");
 const router = require('express').Router()
 
 // Create new hotel

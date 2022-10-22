@@ -26,8 +26,8 @@ app.use(session({
 }));
 app.use(cookieParser());
 app.use(express.json());
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize({}));
+app.use(passport.session({}));
 app.use(express.static(__dirname + "/src/public", {
     index: false,
     immutable: true,
@@ -37,9 +37,9 @@ app.use(express.static(__dirname + "/src/public", {
 
 
 // Routes
-const apiRouter = require("./routes/api/api")
-const authRouter = require("./routes/auth/auth")
-const publicPagesRouter = require('./routes/pages')
+const apiRouter = require("./controller/api")
+const authRouter = require("./controller/auth/auth")
+const publicPagesRouter = require('./controller/pages')
 
 // Public pages router
 app.use('/', publicPagesRouter)
@@ -48,7 +48,7 @@ app.use('/', publicPagesRouter)
 app.use('/auth', authRouter)
 
 // main API routes
-app.use('/api', apiRouter)
+app.use('/controller', apiRouter)
 
 
 // Web socket server

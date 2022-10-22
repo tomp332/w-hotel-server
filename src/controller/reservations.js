@@ -1,8 +1,8 @@
 const router = require('express').Router()
 
 // Update user reservation
-const { webCookieValidator } = require("../../middlewears/auth")
-const Reservations = require("../../database/models/reservations")
+const { webCookieValidator } = require("../middlewears/auth")
+const Reservations = require("../database/models/reservations")
 const uuid4 = require("uuid4");
 
 // Update reservation info

@@ -1,11 +1,11 @@
 const router = require('express').Router()
 const uuid4 = require("uuid4")
-const { webCookieValidator } = require("../../middlewears/auth");
-const Users = require("../../database/models/users");
+const { webCookieValidator } = require("../middlewears/auth");
+const Users = require("../database/models/users");
 const jwt = require("jsonwebtoken");
 
 
-// About page route.
+// Logout
 router.get('/logout', webCookieValidator, async function(req, res) {
     await Users.findOneAndUpdate({ userId: res.userId }, { sessionKey: '' }, {})
     console.log(`Signed user out, userID:  ${res.userId}`)
