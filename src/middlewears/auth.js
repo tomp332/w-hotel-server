@@ -28,16 +28,20 @@ const loginValidator = async(req, res, next) => {
 const webCookieValidator = async(req, res, next) => {
     try {
         let token = req.cookies.authorization
-        if (token == null) return res.sendStatus(401);
+        if (token == null) return res.redirect('/login');
         jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
             if (err) {
                 console.log(`[-] Token err , ${err.message}`)
-                return res.sendStatus(403);
+                res.redirect('/login')
+
+                //return res.sendStatus(403);
             }
             Users.findOne({ sessionKey: req.cookies.authorization }, function(err, user) {
                 if (err) {
-                    console.log(`[-] Error finding user in database, ${err}`)
-                    res.sendStatus(401)
+                    console.log(`[-] Eror finding user in database, ${err}`)
+                    res.redirect('/login')
+
+                    //res.sendStatus(401)
                 } else {
                     if (user) {
                         res.auth = true
@@ -49,14 +53,14 @@ const webCookieValidator = async(req, res, next) => {
                         next();
                     } else {
                         console.log(`[-] Found no user with the token: ${token}`)
-                        res.sendStatus(401)
+                        res.redirect('/login')
                     }
                 }
             })
         });
     } catch (err) {
         console.log(`[-] Client error authenticating, ${err}`)
-        res.sendStatus(401)
+        res.redirect('/login')
     }
 };
 
