@@ -9,11 +9,12 @@ const fs = require("fs")
 const passport = require("passport")
 const uuid4 = require("uuid4")
 const session = require('express-session')
-
+const path = require('path')
 dotenv.config()
 
-app.set('views', 'src\\views');
-app.set('view engine', 'ejs');
+
+app.set('views', path.resolve(__dirname,'views'));
+app.set('view engine', 'pug');
 
 
 app.use(session({
