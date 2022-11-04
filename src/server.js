@@ -13,7 +13,7 @@ const path = require('path')
 dotenv.config()
 
 
-app.set('views', path.resolve(__dirname,'views'));
+app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 
@@ -57,9 +57,10 @@ const wss = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT });
 const clients = new Map()
 
 httpsServer = https.createServer({
-    key: fs.readFileSync('./certs/privateKey.key'),
-    cert: fs.readFileSync('./certs/csr.cert'),
-}, app);
+        key: fs.readFileSync(path.resolve(__dirname, '..', 'certs', 'privateKey.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, '..', 'certs', 'csr.cert')),
+    },
+    app);
 
 connectToDB().then(() => {
     console.log("[+] Successfully connected to MongoDB Cloud")
