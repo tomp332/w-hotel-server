@@ -13,7 +13,7 @@ const session = require('express-session')
 dotenv.config()
 
 app.set('views', 'src\\views');
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 
 app.use(session({
@@ -48,7 +48,7 @@ app.use('/', publicPagesRouter)
 app.use('/auth', authRouter)
 
 // main API routes
-app.use('/controller', apiRouter)
+app.use('/api', apiRouter)
 
 
 // Web socket server
