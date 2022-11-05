@@ -29,7 +29,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(passport.initialize({}));
 app.use(passport.session({}));
-app.use(express.static(__dirname + "/src/public", {
+app.use(express.static(__dirname + "/src/public/index.html", {
     index: false,
     immutable: true,
     cacheControl: true,
@@ -77,3 +77,8 @@ connectToDB().then(() => {
     console.log("[-] Failed to connect to data base", err)
     throw new Error(`[-] Failed to connect to database, ${err}`)
 })
+
+
+// app.get('/', (req,res)=>{
+//     res.render('home')
+// })

@@ -8,4 +8,8 @@ router.get("/403", function(_, res) {
     res.sendFile('403.html', options)
 })
 
+router.get("/", (req, res)=>{
+    res.render('login.pug');
+});
+
 module.exports = router;

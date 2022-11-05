@@ -1,0 +1,72 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='loginStyle.css')
+  | &gt;
+  title Login/ Sign Up
+header.header
+  .container
+    nav.nav
+      a.logo(href='index.html')
+        img(src='/images/w_logo.png' alt='')
+      .hamburger-menu
+        i.fas.fa-bars
+        i.fas.fa-times
+      ul.nav-list
+        li.nav-item
+          a.nav-link(href='/index.html') Home
+        li.nav-item
+          a.nav-link(href='/about.html') About
+        li.nav-item
+          a.nav-link(href='/hotels.html') Hotels
+        li.nav-item
+          a.nav-link(href='#') News
+        li.nav-item
+          a.nav-link(href='/contact.html') Contact
+# content.login_container
+  form#login.form(action='https://localhost:443/auth/login' method='get')
+    h1.form__title Login
+    .form__message.form__message--error
+    .form__input-group
+      input#user-email.form__input(type='text' autofocus='' placeholder='Username or email')
+      .form__input-error-message
+    .form__input-group
+      input#user-password.form__input(type='password' autofocus='' placeholder='password')
+      .form__input-error-message
+    button#btn__login.form__button(type='' submit='') continue
+    .google-btn
+      .google-icon-wrapper
+        img.google-icon(src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg')
+      p.btn-text
+        b Sign in with google
+    p.form__text
+      a.form__link(href='#') Forgot your password?
+    p.form__text
+      a#linkCreateAccount.form__link(class='href=' .='') Dont have an account? Create Account
+  form#createAccount.form.form--hidden
+    h1.form__title Create Account
+    .form__message.form__message--error
+    .form__input-group
+      input#signupUsername.form__input(type='text' autofocus='' placeholder='Username')
+      .form__input-error-message
+    .form__input-group
+      input.form__input(type='text' autofocus='' placeholder='E-mail Address')
+      .form__input-error-message
+    .form__input-group
+      input.form__input(type='password' autofocus='' placeholder='password')
+      .form__input-error-message
+    .form__input-group
+      input.form__input(type='password' autofocus='' placeholder='Confirm password')
+      .form__input-error-message
+    button.form__button(type='' submit='') continue
+    .google-btn
+      .google-icon-wrapper
+        img.google-icon(src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg')
+      p.btn-text
+        b Sign up with google
+    p.form__text
+      a#linkLogin.form__link(class='href=' .='') Already have an account? Sign in
+script(src='login.js')
+script(src='https://apis.google.com/js/api:client.js')
