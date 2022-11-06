@@ -8,4 +8,10 @@ router.get("/403", function(_, res) {
     res.sendFile('403.html', options)
 })
 
+router.get("/", (req, res)=>{
+    console.log('__dirname')
+    res.render('index.ejs',{});
+
+});
+
 module.exports = router;
