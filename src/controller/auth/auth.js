@@ -18,8 +18,8 @@ router.post('/login', loginValidator, async function(req, res) {
             $or: [{ username: username }, { email: email }]
         }, { sessionKey: token }, {})
         console.log(`[+] Authenticated user: ${username || email}`)
-        res.cookie('authorization', token);
-        res.render('home', { user: updatedUser })
+        res.cookie('authorization', token)
+        updateUser.isAdmin ? res.render('adminHomePage', { user: updatedUser }) : res.render('home', { user: updatedUser })
     } catch (err) {
         console.log(`Error updating user session key: ${err}`)
         res.sendStatus(500)
