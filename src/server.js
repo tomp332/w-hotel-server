@@ -14,7 +14,7 @@ dotenv.config()
 
 
 app.set('views', path.resolve(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 
 app.use(session({
@@ -29,13 +29,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(passport.initialize({}));
 app.use(passport.session({}));
-app.use(express.static(__dirname + "/src/public/index.html", {
-    index: false,
-    immutable: true,
-    cacheControl: true,
-    maxAge: "30d"
-}));
-
+app.use('/', express.static(path.resolve(__dirname, 'public') ))
 
 // Routes
 const apiRouter = require("./controller/api")

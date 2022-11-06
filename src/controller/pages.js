@@ -9,7 +9,9 @@ router.get("/403", function(_, res) {
 })
 
 router.get("/", (req, res)=>{
-    res.render('login.pug');
+    console.log('__dirname')
+    res.render('index.ejs',{});
+
 });
 
 module.exports = router;
