@@ -29,7 +29,8 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(passport.initialize({}));
 app.use(passport.session({}));
-app.use('/', express.static(path.resolve(__dirname, 'public') ))
+
+app.use('/', express.static(path.resolve(__dirname, 'public') ));
 
 // Routes
 const apiRouter = require("./controller/api")

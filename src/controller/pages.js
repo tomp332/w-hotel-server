@@ -9,7 +9,7 @@ router.get("/403", function(_, res) {
 })
 
 router.get("/", (req, res) => {
-    res.render('index.ejs', {});
+    res.render('home.ejs', {});
 })
 
 module.exports = router;
