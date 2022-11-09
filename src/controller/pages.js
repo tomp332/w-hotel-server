@@ -12,4 +12,8 @@ router.get("/", (req, res) => {
     res.render('home.ejs', {});
 })
 
+// router.get("/home.ejs", (req, res) => {
+//     res.render('login/login.ejs', {});
+// })
+
 module.exports = router;
