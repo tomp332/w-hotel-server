@@ -7,12 +7,12 @@ const jwt = require('jsonwebtoken')
 const Users = require("../../database/models/users")
 const Hotels = require("../../database/models/hotels");
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser(function (obj, done) {
     done(null, obj);
 })
 
@@ -23,9 +23,9 @@ passport.use(
             callbackURL: process.env.FACEBOOK_CALLBACK_URL,
             profileFields: ['id', 'displayName', 'photos', 'email', 'name']
         },
-        async function(accessToken, refreshToken, profile, done) {
+        async function (accessToken, refreshToken, profile, done) {
             const displayName = profile.displayName
-            const { email, first_name, last_name } = profile._json;
+            const {email, first_name, last_name} = profile._json;
             const userData = {
                 email: email,
                 displayName: displayName,
@@ -38,13 +38,13 @@ passport.use(
     )
 );
 
-router.get("/", passport.authenticate("facebook", { scope: ['email'] }));
+router.get("/", passport.authenticate("facebook", {scope: ['email']}));
 
 
 router.get("/callback", passport.authenticate("facebook", {
     scope: ['email'],
     failureRedirect: "/403"
-}), async function(req, res) {
+}), async function (req, res) {
     let userJson = req.user._json
     req.user = {
         username: `${userJson.first_name}_${userJson.last_name}`,
@@ -53,21 +53,22 @@ router.get("/callback", passport.authenticate("facebook", {
         email: userJson.email
     }
     const payload = {
-        username: req.user.email,
+        username: req.user.email
     }
-    let token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
-    const user = await Users.findOne({ email: req.user.email }).select('-_id -updatedAt').exec()
+    let token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'})
+    const user = await Users.findOne({email: req.user.email}).select('-_id -updatedAt').exec()
     if (user === null) {
         // Add new user by his facebook email
         await utils.addNewUser(req.user, token)
     } else {
         // Search by user email
-        const user = await Users.findOneAndUpdate({ email: req.user.email }, { sessionKey: token }, {})
-        console.log(`[+] Updated new session key for user, ${ user.userId }`)
+        const user = await Users.findOneAndUpdate({email: req.user.email}, {sessionKey: token}, {})
+        console.log(`[+] Updated new session key for user, ${user.userId}`)
     }
     console.log(`[+] Successfully initialized user authenticated from facebook`)
+    const hotels = await Hotels.find().exec()
     res.cookie('authorization', token)
-    res.render('user.ejs', {user: req.user })
+    res.render('user.ejs', {hotels: hotels, user: req.user})
 })
 
 module.exports = router
