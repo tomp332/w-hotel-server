@@ -1,16 +1,17 @@
 const router = require('express').Router()
 const facebookRouter = require("./facebook")
-const {loginValidator} = require("../../middlewears/auth");
+const {loginValidator, webCookieValidator} = require("../../middlewears/auth");
 const jwt = require("jsonwebtoken");
 const Users = require('../../database/models/users')
 const Hotels = require("../../database/models/hotels");
 
 // Log user out
-router.get('/logout', loginValidator, async function (req, res) {
+router.get('/logout', webCookieValidator, async function (req, res) {
     const hotels = await Hotels.find().exec()
     try {
         const user = await Users.findOneAndUpdate({userId: res.user.userId}, {sessionKey: ""}).exec()
         console.log(`[+] Successfully logged user out, username: ${user.username}`)
+        res.send()
     } catch (err) {
         console.log(`Error logging user out: ${err}`)
         res.render("user.ejs", {hotels: hotels})
