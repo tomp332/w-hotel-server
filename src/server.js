@@ -10,6 +10,7 @@ const passport = require("passport")
 const uuid4 = require("uuid4")
 const session = require('express-session')
 const path = require('path')
+const bodyParser = require('body-parser')
 dotenv.config()
 
 
@@ -25,11 +26,11 @@ app.use(session({
         maxAge: 1000 * 60 * 60 * 24,
     }
 }));
-app.use(cookieParser());
-app.use(express.json());
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.json())
 app.use(passport.initialize({}));
 app.use(passport.session({}));
-
 app.use(express.static(__dirname + "/public"));
 
 // Routes
