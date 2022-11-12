@@ -56,7 +56,7 @@ router.get("/login", (req, res) => {
 
 router.get("/reservations", webCookieValidator, async (req, res) => {
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
-    res.render('hotels/reservations.ejs', {userReservations: userReservations, auth: res.auth});
+    res.render('hotels/reservations.ejs', {userReservations: userReservations});
 })
 
 router.get('/user', webCookieValidator, async (req, res) => {
