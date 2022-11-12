@@ -63,20 +63,52 @@ function sendEmail() {
     );
 }
 
+async function getHotels() {
+    const hotels = await fetch('/api/hotels', {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+    }).then((response) => response.json())
+        .then((data) => {
+            return data
+        })
+    return hotels
 
-function initMap() {
-    // The location of Uluru
-    const uluru = { lat: -25.344, lng: 131.031 };
-    // The map, centered at Uluru
+}
+
+
+// Generate google map
+async function initMap() {
+    const hotels = await getHotels()
+    // Init for map
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: uluru,
+        zoom: 8,
+        center: {lat: 32.0853, lng: 34.7818},
     });
-    // The marker, positioned at Uluru
-    const marker = new google.maps.Marker({
-        position: uluru,
-        map: map,
-    });
+
+    for (const hotel of hotels) {
+        const contentString = "<h3>" + hotel.hotelName + "</h3>"
+
+
+        let marker = new google.maps.Marker({
+            position: hotel.location,
+            map,
+            title: "Main marker",
+        })
+        let infoWindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        marker.addListener('click', function () {
+            infoWindow.open(map, marker);
+        });
+
+    }
 }
 
 window.initMap = initMap;
@@ -96,7 +128,7 @@ logout.addEventListener('click', async e => {
         referrerPolicy: 'no-referrer',
     }).then(function (response) {
         console.log(response)
-        if (response.status === 200 || response.status === 401 ) {
+        if (response.status === 200 || response.status === 401) {
             window.location.href = '/'
         }
     })

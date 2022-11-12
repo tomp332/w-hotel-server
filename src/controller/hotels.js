@@ -45,7 +45,7 @@ router.put('/', webCookieValidator, async function (req, res) {
 })
 
 // Get all hotels in DB
-router.get('/', webCookieValidator, async function (req, res) {
+router.get('/', async function (req, res) {
     try {
         const hotels = await Hotels.find().select('-_id -updatedAt').exec()
         res.json(hotels)
