@@ -190,6 +190,7 @@ section {
     .header {
         height: 6rem;
     }
+
     .header.active {
         height: 6rem;
     }
@@ -199,10 +200,12 @@ section {
     section:not(.booking) {
         padding: 10rem 0;
     }
+
     /*header styles*/
     z .hamburger-menu {
         display: none;
     }
+
     .nav-list {
         position: initial;
         width: initial;
@@ -213,15 +216,18 @@ section {
         opacity: 1;
         transform: scale(1);
     }
+
     .nav-item:not(:last-child) {
         margin-right: 3rem;
         margin-bottom: 0;
     }
+
     .nav-link {
         font-size: 1rem;
         font-weight: normal;
         transition: color .5s;
     }
+
     .nav-link:hover {
         color: var(--yellow-solid);
     }
@@ -241,11 +247,11 @@ section {
     display: none;
 }
 
-.form>*:first-child {
+.form > *:first-child {
     margin-top: 0;
 }
 
-.form>*:last-child {
+.form > *:last-child {
     margin-bottom: 0;
 }
 
@@ -346,7 +352,7 @@ a.fb {
     padding: 13px 30px 15px 44px;
     background: #3A5A97;
     color: #fff;
-    text-shadow: 0 -1px 0 rgba(0,0,20,.4);
+    text-shadow: 0 -1px 0 rgba(0, 0, 20, .4);
     text-decoration: none;
     line-height: 1;
     position: relative;

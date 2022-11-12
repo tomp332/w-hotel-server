@@ -54,7 +54,8 @@ router.get('/user', webCookieValidator, async (req, res) => {
     const user = await Users.find({sessionKey: req.cookies.authorization}).exec()
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
     const hotels = await Hotels.find().exec()
-    res.render('user.ejs', {hotels: hotels, user: user, userReservations: userReservations})
+    console.log("[+] Validated user, rendering user page")
+    res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
 

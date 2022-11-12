@@ -40,7 +40,7 @@
                 <li class="nav-item">
                     <a href="/" class="nav-link">Logout</a>
                 </li>
-       
+
             </ul>
         </nav>
     </div>
@@ -50,7 +50,13 @@
         <div class="container">
             <div class="main-heading">
                 <h1 class="title">W Hotels</h1>
-                <h2 class="subtitile">welcome <%=user.username %></h2>
+                <h2 class="subtitile">welcome
+                    <% if(user.firstName){ %>
+                        <%= user.firstName %>
+                    <% } else{ %>
+                        <%= user.username %>
+                    <% } %>
+                </h2>
             </div>
             <a href="/hotels/hotels.ejs" class="btn btn-gradient">Explore Now
                 <span>
