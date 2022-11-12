@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
-const { connectToDB } = require("./database/db");
+const {connectToDB} = require("./database/db");
 const cookieParser = require('cookie-parser');
 const WebSocket = require('ws')
 const https = require("https")
@@ -49,7 +49,7 @@ app.use('/api', apiRouter)
 
 
 // Web socket server
-const wss = new WebSocket.Server({ port: process.env.WEBSOCKET_PORT });
+const wss = new WebSocket.Server({port: process.env.WEBSOCKET_PORT});
 const clients = new Map()
 
 httpsServer = https.createServer({
@@ -60,7 +60,7 @@ httpsServer = https.createServer({
 
 connectToDB().then(() => {
     console.log("[+] Successfully connected to MongoDB Cloud")
-    httpsServer.listen(process.env.SERVER_PORT, async() => {
+    httpsServer.listen(process.env.SERVER_PORT, async () => {
         console.log(`[+] Started HTTPS server ${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`)
         console.log(`[+] Started WEB SOCKET server ${process.env.SERVER_HOST}:${process.env.WEBSOCKET_PORT}`)
         wss.on('connection', (ws) => {

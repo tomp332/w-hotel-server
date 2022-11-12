@@ -38,8 +38,8 @@ let UsersSchema = new Schema({
         type: Boolean,
         default: false
     }
-}, { versionKey: false, timestamps: true })
-UsersSchema.pre('save', function(next) {
+}, {versionKey: false, timestamps: true})
+UsersSchema.pre('save', function (next) {
     // capitalize first name and last name
     this.firstName = this.firstName.charAt(0).toUpperCase() + this.firstName.slice(1).toLowerCase()
     this.lastName = this.lastName.charAt(0).toUpperCase() + this.lastName.slice(1).toLowerCase()

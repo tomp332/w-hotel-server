@@ -1,15 +1,15 @@
 const router = require('express').Router()
 
 // Update user reservation
-const { webCookieValidator } = require("../middlewears/auth")
+const {webCookieValidator} = require("../middlewears/auth")
 const Reservations = require("../database/models/reservations")
 const uuid4 = require("uuid4");
 
 // Update reservation info
-router.put('/', webCookieValidator, async function(req, res) {
+router.put('/', webCookieValidator, async function (req, res) {
     try {
         const reservationId = req.body.reservationId
-        let reservation = await Reservations.findOne({ reservationId: reservationId, userId: res.userId }).exec()
+        let reservation = await Reservations.findOne({reservationId: reservationId, userId: res.userId}).exec()
         if (!reservation) {
             res.json("No reservation found by that id").status(404)
             return
@@ -29,7 +29,7 @@ router.put('/', webCookieValidator, async function(req, res) {
 })
 
 // Add new reservation
-router.post('/', webCookieValidator, async function(req, res) {
+router.post('/', webCookieValidator, async function (req, res) {
     try {
         const newReservation = new Reservations({
             hotelId: req.body.hotelId,
@@ -48,9 +48,9 @@ router.post('/', webCookieValidator, async function(req, res) {
 })
 
 // Get all reservations in DB that are associated with the current userId
-router.get('/', webCookieValidator, async function(req, res) {
+router.get('/', webCookieValidator, async function (req, res) {
     try {
-        const reservations = await Reservations.find({ userId: res.userId }).select('-_id -updatedAt').exec()
+        const reservations = await Reservations.find({userId: res.userId}).select('-_id -updatedAt').exec()
         res.json(reservations)
         console.log(`[+] Fetched ${Object.keys(reservations).length} reservations, for user ID: ${res.userId}`)
     } catch (err) {

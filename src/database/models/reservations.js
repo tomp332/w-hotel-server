@@ -25,7 +25,7 @@ let ReservationSchema = new Schema({
         required: true,
         type: Date
     }
-}, { versionKey: false, timestamps: true })
+}, {versionKey: false, timestamps: true})
 
 const Reservations = mongoose.model('Reservations', ReservationSchema);
 module.exports = Reservations;
