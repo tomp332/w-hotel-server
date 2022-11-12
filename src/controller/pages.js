@@ -20,7 +20,7 @@ router.get("/", webCookieValidator, async (req, res) => {
     res.render('user.ejs', {hotels: hotels, user: user, userReservations: userReservations})
 })
 
-router.post("/hotels", async (req, res) => {
+router.post("/hotels", validCookieExists, async (req, res) => {
     try {
         const hotelName = req.body.hotelName
         const checkIn = req.body.checkIn
@@ -35,12 +35,13 @@ router.post("/hotels", async (req, res) => {
         let hotelAvailable = Object.keys(reservation).length <= 0
         res.render(`hotels/${hotel.hotelId}.ejs`, {
             hotel: hotel,
-            available: hotelAvailable
+            available: hotelAvailable,
+            auth: res.auth
         });
     } catch (err) {
         console.log(`Error fetching reuqired hotel from DB, ${err}`)
         const hotels = await Hotels.find().exec()
-        res.render('home.ejs', {hotels: hotels});
+        res.render('home.ejs', {hotels: hotels, auth: res.auth});
     }
 })
 
@@ -50,7 +51,7 @@ router.get("/login", (req, res) => {
 
 router.get("/reservations", webCookieValidator, async (req, res) => {
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
-    res.render('hotels/reservations.ejs', {userReservations: userReservations, auth: req.auth});
+    res.render('hotels/reservations.ejs', {userReservations: userReservations, auth: res.auth});
 })
 
 router.get('/user', webCookieValidator, async (req, res) => {
@@ -61,12 +62,12 @@ router.get('/user', webCookieValidator, async (req, res) => {
 })
 
 router.get('/contact', validCookieExists, (req, res) => {
-    res.render("contact.ejs", {auth: req.auth})
+    res.render("contact.ejs", {auth: res.auth})
 })
 
 router.get('/hotels', validCookieExists, async (req, res) => {
     const hotels = await Hotels.find().exec()
-    res.render("hotels/hotels.ejs", {hotels: hotels, auth: req.auth})
+    res.render("hotels/hotels.ejs", {hotels: hotels, auth: res.auth})
 })
 
 module.exports = router;
