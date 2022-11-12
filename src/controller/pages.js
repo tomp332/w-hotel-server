@@ -23,14 +23,13 @@ router.get("/", webCookieValidator, async (req, res) => {
 router.post("/hotels", validCookieExists, async (req, res) => {
     try {
         const hotelName = req.body.hotelName
-        const checkIn = req.body.checkIn
-        const checkOut = req.body.checkOut
+        const checkIn = req.body.checkIn.split('-')
+        const checkOut = req.body.checkOut.split('-')
         const hotel = await Hotels.findOne({'hotelName': hotelName}).exec()
-        // TODO: Get the date of the check in and check out
         const reservation = await Reservations.findOne({
             'hotelId': hotel.hotelId,
-            'checkIn': new Date(2023, 5, 3),
-            'checkOut': new Date(2023, 5, 5)
+            'checkIn': new Date(checkIn[0], checkIn[1], checkIn[2]),
+            'checkOut': new Date(checkOut[0], checkOut[1], checkOut[2])
         }) || {}
         let hotelAvailable = Object.keys(reservation).length <= 0
         res.render(`hotels/${hotel.hotelId}.ejs`, {
@@ -39,9 +38,14 @@ router.post("/hotels", validCookieExists, async (req, res) => {
             auth: res.auth
         });
     } catch (err) {
-        console.log(`Error fetching reuqired hotel from DB, ${err}`)
+        console.log(`Error fetching required hotel from DB, ${err}`)
         const hotels = await Hotels.find().exec()
-        res.render('home.ejs', {hotels: hotels, auth: res.auth});
+        res.render('home.ejs', {
+            hotels: hotels,
+            auth: res.auth,
+            checkIn: req.body.checkIn,
+            checkOut: req.body.checkOut
+        });
     }
 })
 
