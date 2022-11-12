@@ -6,6 +6,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
     <title>W-Hotels</title>
     <link type="image/png" href="/css/images/black_logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -125,29 +127,13 @@
                         <option>5</option>
                     </select>
                 </div>
-                <div class="mapouter">
-                    <div class="gmap_canvas">
-                        <iframe width="194" height="216" id="gmap_canvas"
-                                src="https://maps.google.com/maps?q=tel%20aviv&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                        <a href="https://2piratebay.org"></a>
-                        <br>
-                        <style>.mapouter {
-                                position: relative;
-                                text-align: right;
-                                height: 216px;
-                                width: 194px;
-                            }</style>
-                        <a href="https://www.embedgooglemap.net">interactive google map for website</a>
-                        <style>.gmap_canvas {
-                                overflow: hidden;
-                                background: none !important;
-                                height: 216px;
-                                width: 194px;
-                            }
-                        </style>
-                    </div>
+                <div id="map">
+
                 </div>
+                <script
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+                        defer
+                ></script>
 
                 <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
                     Search

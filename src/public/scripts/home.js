@@ -64,30 +64,22 @@ function sendEmail() {
 }
 
 
-function sendData(event) {
-
-    const XHR = new XMLHttpRequest();
-
-    XHR.addEventListener('error', (event) => {
-        alert('Oops! Something went wrong.');
-
+function initMap() {
+    // The location of Uluru
+    const uluru = { lat: -25.344, lng: 131.031 };
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: uluru,
     });
-    var hotelName = document.getElementById("hotel-choice").value;
-    var checkIn = document.getElementById("check-in").value;
-    var checkOut = document.getElementById("check-out").value;
-
-    // Set up our request
-    XHR.open('POST', '/hotels');
-    XHR.setRequestHeader('Content-Type', 'application/json')
-    alert("Executed")
-
-    // Send our FormData object; HTTP headers are set automatically
-    XHR.send(JSON.stringify({
-        "hotelName": hotelName,
-        "checkIn": checkIn,
-        "checkOut": checkOut
-    }));
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+    });
 }
+
+window.initMap = initMap;
 
 let logout = document.querySelector('#logout');
 logout.addEventListener('click', async e => {
