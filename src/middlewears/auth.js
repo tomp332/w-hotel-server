@@ -41,7 +41,7 @@ const webCookieValidator = async (req, res, next) => {
         jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
             if (err) {
                 console.log(`[-] Token err , ${err.message}`)
-                res.render('/login')
+                res.render('login.ejs', {})
             }
             Users.findOne({sessionKey: req.cookies.authorization}, async (err, user) => {
                 if (err) {
