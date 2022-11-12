@@ -18,7 +18,6 @@ router.get('/logout', webCookieValidator, async function (req, res) {
     }
 })
 
-
 // Home page route.
 router.post('/login', loginValidator, async function (req, res) {
     try {
@@ -34,7 +33,7 @@ router.post('/login', loginValidator, async function (req, res) {
         }, {sessionKey: token}, {})
         console.log(`[+] Authenticated user: ${username || email}`)
         res.cookie('authorization', token)
-        res.send({success: true})
+        res.send()
     } catch (err) {
         console.log(`Error updating user session key: ${err}`)
         res.sendStatus(500)
