@@ -36,16 +36,16 @@ router.post("/hotels", validCookieExists, async (req, res) => {
         res.render(`hotels/${hotel.hotelId}.ejs`, {
             hotel: hotel,
             available: hotelAvailable,
-            auth: res.auth
+            auth: res.auth,
+            checkIn: req.body.checkIn,
+            checkOut: req.body.checkOut
         });
     } catch (err) {
         console.log(`Error fetching required hotel from DB, ${err}`)
         const hotels = await Hotels.find().exec()
         res.render('home.ejs', {
             hotels: hotels,
-            auth: res.auth,
-            checkIn: req.body.checkIn,
-            checkOut: req.body.checkOut
+            auth: res.auth
         });
     }
 })
