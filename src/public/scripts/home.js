@@ -88,7 +88,7 @@ async function initMap() {
     const hotels = await getHotels()
     // Init for map
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
+        zoom: 3,
         center: {lat: 32.0853, lng: 34.7818},
     });
 
