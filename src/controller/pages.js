@@ -66,4 +66,9 @@ router.get('/hotels', async (req, res) => {
     res.render("hotels/hotels.ejs", {hotels: hotels})
 })
 
+router.get('/hotels', async (req, res) => {
+    const hotels = await Hotels.find().exec()
+    res.render("hotels/reservations.ejs", {hotels: hotels})
+})
+
 module.exports = router;
