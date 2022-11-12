@@ -13,97 +13,148 @@
 </head>
 
 <body>
-<header class="header">
-    <div class="container">
-        <nav class="nav">
-            <a href="/" class="logo">
-                <img src="/css/images/w_logo.png" alt="">
-            </a>
-            <div class="hamburger-menu">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-times"></i>
-            </div>
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/hotels" class="nav-link">Hotels</a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="/contact" class="nav-link">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/login" class="nav-link">Login/Sign up</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<section class="booking">
-    <div class="container">
-        <h5 class="section-head">
-            <span class="heading">Explore</span>
-            <span class="sub-head">Our Beautiful Hotels</span>
-        </h5>
-        <div class="input-group">
-            <form action="" class="form">
-                <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
-                <select class="options" id="hotel-choice">
-                    <option value="none">Select</option>
-                    <% for (var i = 0; i < hotels.length ; i++) { %>
-                        <option>
-                            <%= hotels[i].hotelName %>
-                        </option>
-                    <% } %>
-                </select>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="/css/images/w_logo.png" alt="">
+                </a>
+    
+                <% if(auth){ %>
+                    <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/hotels" class="nav-link">Hotels</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/reservations" class="nav-link">Reservations</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a href="/contact" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/" class="nav-link" id="logout">Logout</a>
+                        </li>
+        
+                    </ul>
+                <% } else{ %>
+                    <div class="hamburger-menu">
+                        <i class="fas fa-bars"></i>
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="hotels.ejs" class="nav-link">Hotels</a>
+                        </li>
+        
+                        <li class="nav-item">
+                            <a href="contact.ejs" class="nav-link">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="login.ejs" class="nav-link">Login/Sign up</a>
+                        </li>
+                    </ul>
+                <% } %>
+    
+                
+            </nav>
         </div>
+    </header>
+    
+
+    <section class="booking">
+        <div class="container">
+            <form id="hotels-search-form" action="hotels" method="post" class="form">
+                <div class="input-group ">
+                    <label for="destination" id="hotel-dest" lass="input-label">Hotels</label>
+                    <select name="hotelName" id="hotel-choice" class="options">
+                        <% for (var i = 0; i < hotels.length ; i++) { %>
+                            <option>
+                                <%= hotels[i].hotelName %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
 
 
-        <div class="input-group">
-            <label for="check-in" class="input-label">Check in</label>
-            <input type="date" class="input" id="check-in">
+                <div class="input-group">
+                    <label id="checkin" for="check-in" class="input-label">Check in</label>
+                    <input name="checkIn" type="date" class="input" id="check-in">
+                </div>
+                <div class="input-group">
+                    <label id="checkout" for="check-out" class="input-label">Check out</label>
+                    <input name="checkOut" type="date" class="input" id="check-out">
+                </div>
+
+                <div class="input-group">
+                    <label for="adults" class="input-label ">Adults</label>
+                    <select name="adultsChoice" class="options" id="adults-choice">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+
+                <div class="input-group">
+                    <label for="children" class="input-label">Children</label>
+                    <select name="childrenChoice" class="options" id="children-choice">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe width="194" height="216" id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=tel%20aviv&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        <a href="https://2piratebay.org"></a>
+                        <br>
+                        <style>.mapouter {
+                                position: relative;
+                                text-align: right;
+                                height: 216px;
+                                width: 194px;
+                            }</style>
+                        <a href="https://www.embedgooglemap.net">interactive google map for website</a>
+                        <style>.gmap_canvas {
+                                overflow: hidden;
+                                background: none !important;
+                                height: 216px;
+                                width: 194px;
+                            }
+                        </style>
+                    </div>
+                </div>
+
+                <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
+                    Search
+                    <span class="dots">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </span>
+                </button>
+            </form>
+
         </div>
-        <div class="input-group">
-            <label for="check-out" class="input-label">Check out</label>
-            <input type="date" class="input" id="check-out">
-        </div>
+    </section>
 
-        <div class="input-group">
-            <label for="adults" class="input-label">Adults</label>
-            <select class="options" id="adults">
-                <option value="0">0</option>
-                <option value="0">1</option>
-                <option value="0">2</option>
-                <option value="0">3</option>
-                <option value="0">4</option>
-                <option value="0">5</option>
-            </select>
-        </div>
-
-
-        <div class="input-group">
-            <label for="children" class="input-label">Children</label>
-            <select class="options" id="children">
-                <option value="0">0</option>
-                <option value="0">1</option>
-                <option value="0">2</option>
-                <option value="0">3</option>
-                <option value="0">4</option>
-                <option value="0">5</option>
-            </select>
-        </div>
-        <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
-            Search
-            <span class="dots">
-                    <i class="fas fa-ellipsis-h"></i>
-                </span>
-        </button>
-    </form>
-    </div>
-</section>
 
 <section class="hotels ">
     <div class="container ">
