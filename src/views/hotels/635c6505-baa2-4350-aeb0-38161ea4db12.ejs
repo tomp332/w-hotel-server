@@ -33,7 +33,7 @@
                         <a href="/hotels" class="nav-link">Hotels</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/reservations" class="nav-link">Resarvation</a>
+                        <a href="/reservations" class="nav-link">Reservations</a>
                     </li>
     
                     <li class="nav-item">
@@ -54,14 +54,14 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="hotels.ejs" class="nav-link">Hotels</a>
+                        <a href="/hotels" class="nav-link">Hotels</a>
                     </li>
     
                     <li class="nav-item">
-                        <a href="contact.ejs" class="nav-link">Contact</a>
+                        <a href="/contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.ejs" class="nav-link">Login/Sign up</a>
+                        <a href="/login" class="nav-link">Login/Sign up</a>
                     </li>
                 </ul>
             <% } %>
@@ -81,6 +81,7 @@
         <div class="grid-item featured-rooms">
 
             <div class="image-wrap">
+                <h1>available on dates : <%= checkIn %> -  <%= checkOut %></h1>
                 <h5 class="room-name">Luxurious Family Room</h5>
 
                 <img class="room-image" src="/css/images/room_3.jpg" alt="">

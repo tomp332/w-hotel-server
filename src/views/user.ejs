@@ -31,7 +31,7 @@
                     <a href="/hotels" class="nav-link">Hotels</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/reservations" class="nav-link">Reservation</a>
+                    <a href="/reservations" class="nav-link">Reservations</a>
                 </li>
 
                 <li class="nav-item">
@@ -49,16 +49,15 @@
     <div class="hero">
         <div class="container">
             <div class="main-heading">
-                <h1 class="title">W Hotels</h1>
-                <h2 class="subtitile">welcome
+                <h1 class="title">welcome
                     <% if(user.firstName){ %>
                         <%= user.firstName %>
                     <% } else{ %>
                         <%= user.username %>
-                    <% } %>
-                </h2>
+                    <% } %></h1>
+                <h2 class="subtitile">W Hotels</h2>
             </div>
-            <a href="/hotels/hotels.ejs" class="btn btn-gradient">Explore Now
+            <a href="/hotels" class="btn btn-gradient">Explore Now
                 <span>
                         <div class="dots"><i class="fas fa-allipsis-h"></i></div>
                     </span>

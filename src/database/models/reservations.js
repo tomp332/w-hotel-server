@@ -8,6 +8,10 @@ let ReservationSchema = new Schema({
         unique: true,
         required: true
     },
+    hotelName: {
+        type: String,
+        required: true
+    },
     reservationId: {
         type: String,
         unique: true,

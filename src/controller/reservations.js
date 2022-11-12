@@ -4,6 +4,7 @@ const router = require('express').Router()
 const {webCookieValidator} = require("../middlewears/auth")
 const Reservations = require("../database/models/reservations")
 const uuid4 = require("uuid4");
+const Hotels = require("../database/models/hotels");
 
 // Update reservation info
 router.put('/', webCookieValidator, async function (req, res) {
@@ -58,4 +59,5 @@ router.get('/', webCookieValidator, async function (req, res) {
         res.json('Error fetching current reservations in DB').status(500)
     }
 })
+
 module.exports = router;
