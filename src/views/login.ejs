@@ -22,19 +22,13 @@
                 </div>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="home.ejs" class="nav-link">Home</a>
+                        <a href="/" class="nav-link">Home</a>
+                    </li>             
+                    <li class="nav-item">   
+                        <a href="hotels.ejs" class="nav-link">Hotels</a>
                     </li>
                     <li class="nav-item">
-                        <a href="about.ejs" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/hotels.ejs" class="nav-link">Hotels</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">News</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/contact.ejs" class="nav-link">Contact</a>
+                        <a href="contact.ejs" class="nav-link">Contact</a>
                     </li>
                 </ul>
             </nav>
@@ -53,54 +47,42 @@
                 <input id="user-password" type="password" class="form__input" autofocus placeholder="password">
                 <div class="form__input-error-message"></div>
             </div>
-            <button id="btn__login" class="form__button" type="" submit>continue</button>
-            <div class="facebook-btn">
-                <div class="facebook-icon-wrapper">
-                    <img class="facebook-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
-                </div>
-                <p class="btn-text"><b>Sign in with google</b></p>
-            </div>
+            <button id="btn__login" class="form__button" type="submit">continue</button> 
+            <a href="" class="fb connect">Sign in with Facebook</a>      
             <p class="form__text">
                 <a href="#" class="form__link">Forgot your password?</a>
             </p>
             <p class="form__text">
-                <a class="form__link href=" ./ " id="linkCreateAccount " class="form__link ">Dont have an account? Create Account</a>
+                <a href="/login" id="linkCreateAccount" class="form__link">Dont have an account? Create Account</a>
             </p>
+        </div>
         </form>
-        <form class="form form--hidden " id="createAccount ">
-            <h1 class="form__title ">Create Account</h1>
-            <div class="form__message form__message--error "></div> 
-            <div class="form__input-group ">
-                <input type="text " id="signupUsername " class="form__input " autofocus placeholder="Username ">
+        <form class="form form--hidden" id="createAccount">
+            <h1 class="form__title">Create Account</h1>
+            <div class="form__message form__message--error"></div> 
+            <div class="form__input-group">
+                <input type="text" id="signupUsername" class="form__input " autofocus placeholder="Username ">
                 <div class="form__input-error-message "></div>
             </div>  
-            <div class="form__input-group ">
-                <input type="text " class="form__input " autofocus placeholder="E-mail Address ">
+            <div class="form__input-group">
+                <input type="text" class="form__input" autofocus placeholder="E-mail Address">
                 <div class="form__input-error-message "></div>
             </div>  
-            <div class="form__input-group ">
-                <input type="password " class="form__input " autofocus placeholder="password ">
+            <div class="form__input-group">
+                <input type="password" class="form__input " autofocus placeholder="password">
                 <div class="form__input-error-message "></div>
             </div>  
-            <div class="form__input-group ">
-                <input type="password " class="form__input " autofocus placeholder="Confirm password ">
+            <div class="form__input-group">
+                <input type="password" class="form__input" autofocus placeholder="Confirm password">
                 <div class="form__input-error-message "></div>
             </div>  
-            <button class="form__button " type=" "submit>continue</button>
-            <div class="google-btn ">
-                <div class="google-icon-wrapper ">
-                <div id="fb-root "></div>
-                <script async defer crossorigin="anonymous " src="https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v15.0 " nonce="28mrbGIT "></script>
-                  <img class="google-icon " src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg "/>
-                </div>
-                <div class="fb-login-button " data-width=" " data-size="large " data-button-type="continue_with " data-layout="default " data-auto-logout-link="false " data-use-continue-as="false "></div>
-              </div>
-            <p class="form__text ">
-                <a class="form__link href="./" id="linkLogin" class="form__link">Already have an account? Sign in</a>
+            <button class="form__button" type=" "submit>continue</button>
+            <p class="form__text">
+                <a class="form__link" href="/login" id="linkLogin" class="form__link">Already have an account? Sign in</a>
             </p>
         </form>
     </div>
-    <script src="/scripts/home.js"></script>
+    <script src="/scripts/login.js"></script>
     <script></script>
 </body>
 
