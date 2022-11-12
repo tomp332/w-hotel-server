@@ -64,21 +64,22 @@ function sendEmail() {
 
 
 
-function sendData() {
+function sendData(event) {
+
     const XHR = new XMLHttpRequest();
 
     XHR.addEventListener('error', (event) => {
         alert('Oops! Something went wrong.');
 
     });
-    var hotelName = document.getElementById("hotel-dest").value;
-    var checkIn = document.getElementById("checkin").value;
-    var checkOut = document.getElementById("checkout").value;
-    console.log(hotelName)
+    var hotelName = document.getElementById("hotel-choice").value;
+    var checkIn = document.getElementById("check-in").value;
+    var checkOut = document.getElementById("check-out").value;
 
     // Set up our request
     XHR.open('POST', '/hotels');
     XHR.setRequestHeader('Content-Type', 'application/json')
+    alert("Executed")
 
     // Send our FormData object; HTTP headers are set automatically
     XHR.send(JSON.stringify({
@@ -87,5 +88,3 @@ function sendData() {
         "checkOut": checkOut
     }));
 }
-
-var btn = document.getElementById("hotels-search");
