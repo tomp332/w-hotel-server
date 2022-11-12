@@ -1,1 +1,173 @@
-<h1> Hello <%=user.username %> </h1>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>W-Hotels</title>
+    <link type="image/png" href="/css/images/black_logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/home.css" type="text/css">
+</head>
+
+<body>
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="" class="logo">
+                <img src="/css/images/w_logo.png" alt="">
+            </a>
+            <div class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/hotels" class="nav-link">Hotels</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <h1><%=user.username %></h1>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<main>
+    <div class="hero">
+        <div class="container">
+            <div class="main-heading">
+                <h1 class="title">W Hotels</h1>
+                <h2 class="subtitile">Luxury Vacation</h2>
+            </div>
+            <a href="/hotels/hotels.ejs" class="btn btn-gradient">Explore Now
+                <span>
+                        <div class="dots"><i class="fas fa-allipsis-h"></i></div>
+                    </span>
+            </a>
+        </div>
+    </div>
+
+    <section class="booking">
+        <div class="container">
+            <form id="hotels-search-form" action="hotels" method="post" class="form">
+                <div class="input-group ">
+                    <label for="destination" id="hotel-dest" lass="input-label">Hotels</label>
+                    <select name="hotelName" id="hotel-choice" class="options">
+                        <% for (var i = 0; i < hotels.length ; i++) { %>
+                            <option>
+                                <%= hotels[i].hotelName %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+
+
+                <div class="input-group">
+                    <label id="checkin" for="check-in" class="input-label">Check in</label>
+                    <input name="checkIn" type="date" class="input" id="check-in">
+                </div>
+                <div class="input-group">
+                    <label id="checkout" for="check-out" class="input-label">Check out</label>
+                    <input name="checkOut" type="date" class="input" id="check-out">
+                </div>
+
+                <div class="input-group">
+                    <label for="adults" class="input-label ">Adults</label>
+                    <select name="adultsChoice" class="options" id="adults-choice">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+
+                <div class="input-group">
+                    <label for="children" class="input-label">Children</label>
+                    <select name="childrenChoice" class="options" id="children-choice">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
+                    Search
+                    <span class="dots">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </span>
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+
+    <section class="offer">
+        <div class="container">
+            <div class="offer-content">
+                <div class="discount">
+                    40% off
+                </div>
+                <h5 class="hotel-name">The Paradise</h5>
+                <div class="hotel-rating">
+                    <i class="fas fa-star rating"></i>
+                    <i class="fas fa-star rating"></i>
+                    <i class="fas fa-star rating"></i>
+                    <i class="fas fa-star-half rating"></i>
+                </div>
+                <p class="paragraph ">
+                    The most laxurious hotel in Koh-Samui Thailnd, suitable for families and couples !
+                </p>
+                <a href=" " class="btn btn-gradient ">Reedem offer
+                    <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
+                </a>
+            </div>
+
+
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-content-brand">
+                <a href="/ " class="logo">
+                    <img class="logo-image" src="/css/images/w_logo.png" alt="">
+                </a>
+                <div class="paragraph">
+                    E-mail: Whotels@gmail.com
+
+                </div>
+            </div>
+            <div class="social-media-wrap">
+                <h4 class="footer-heading">Follow Us</h4>
+                <div class="social-media">
+                    <a href="https://he-il.facebook.com/WHotels/" class="sm-link"><i
+                                class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.instagram.com/whotels/" class="sm-link"><i
+                                class="fab fa-instagram "></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="/scripts/home.js"></script>
+</body>
+
+</html>
