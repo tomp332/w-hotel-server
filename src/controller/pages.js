@@ -22,7 +22,6 @@ router.get("/", webCookieValidator, async (req, res) => {
 
 router.post("/hotels", async (req, res) => {
     try {
-        console.log(req.body)
         const hotelName = req.body.hotelName
         const checkIn = req.body.checkIn
         const checkOut = req.body.checkOut
@@ -58,5 +57,13 @@ router.get('/user', webCookieValidator, async (req, res) => {
     res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
+router.get('/contact', (req, res) => {
+    res.render("contact.ejs", {})
+})
+
+router.get('/hotels', async (req, res) => {
+    const hotels = await Hotels.find().exec()
+    res.render("hotels/hotels.ejs", {hotels: hotels})
+})
 
 module.exports = router;

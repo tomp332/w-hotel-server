@@ -88,3 +88,24 @@ function sendData(event) {
         "checkOut": checkOut
     }));
 }
+
+let logout = document.querySelector('#logout');
+logout.addEventListener('click', async e => {
+    e.preventDefault();
+    await fetch('/auth/logout', {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+    }).then(function (response) {
+        console.log(response)
+        if (response.status === 200 || response.status === 401 ) {
+            window.location.href = '/'
+        }
+    })
+});
