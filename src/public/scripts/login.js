@@ -33,11 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
 
-    loginForm.addEventListener("submit", e => {
+    loginForm.addEventListener("submit", async e => {
         e.preventDefault();
         console.log("username",e.target[0].value);
         console.log("password",e.target[1].value);
-        fetch('/auth/login')
+        await fetch('/auth/login', {
+            method: 'POST',
+            mode: 'cors',
+            cache:'no-cache',
+            credentials:'same-origin',
+            headers:'Content-type'
+        })
   .then((response) => {
     const res = response.json();
     console.log("---->res",res)
