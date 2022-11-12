@@ -2,6 +2,7 @@ const router = require('express').Router()
 const path = require('path')
 const Hotels = require("../database/models/hotels");
 const Reservations = require("../database/models/reservations");
+const bodyParser = require("body-parser");
 
 
 router.get("/403", function (_, res) {
@@ -21,37 +22,23 @@ router.get("/", async (req, res) => {
     }
 })
 
-router.get("/hotels", async (req, res) => {
+router.post("/hotels", async (req, res) => {
     try {
-        // const hotelName = req.body.hotelName
-        // const checkIn = req.body.checkIn
-        // const checkOut = req.body.checkOut
-        // const hotel = await Hotels.findOne({ 'hotelName': hotelName }).exec()
-        // const reservation = await Reservations.findOne({
-        //     'hotelId': hotel.hotelId,
-        //     'checkIn': new Date(2023, 05, 03),
-        //     'checkOut': new Date(2023, 05, 05)
-        // }) || {}
-        // let hotelAvailable = Object.keys(reservation).length > 0 ? false : true
-        // console.log(hotelAvailable)
-        // console.log(hotel.hotelId)
-
-        console.log(req.params)
-
-        // The reservation is not available 
-        res.render("login.ejs", {})
-
-
-        // res.render(`hotels/${hotel.hotelId}.ejs`, {
-        //     hote: hotel,
-        //     available: hotelAvailable
-        // }, async(err, html) => {
-        //     if (err != null) {
-        //         console.log(`Error rendering hotel page, ${err}`)
-        //         const hotels = await Hotels.find().exec()
-        //         res.render('home.ejs', { hotels: hotels });
-        //     }
-        // });
+        console.log(req.body)
+        const hotelName = req.body.hotelName
+        const checkIn = req.body.checkIn
+        const checkOut = req.body.checkOut
+        const hotel = await Hotels.findOne({ 'hotelName': hotelName }).exec()
+        const reservation = await Reservations.findOne({
+            'hotelId': hotel.hotelId,
+            'checkIn': new Date(2023, 5, 3),
+            'checkOut': new Date(2023, 5, 5)
+        }) || {}
+        let hotelAvailable = Object.keys(reservation).length <= 0
+        res.render(`hotels/${hotel.hotelId}.ejs`, {
+            hotel: hotel,
+            available: hotelAvailable
+        });
     } catch (err) {
         console.log(`Error fetching reuqired hotel from DB, ${err}`)
         const hotels = await Hotels.find().exec()
