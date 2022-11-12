@@ -5,6 +5,19 @@ const jwt = require("jsonwebtoken");
 const Users = require('../../database/models/users')
 const Hotels = require("../../database/models/hotels");
 
+// Log user out
+router.get('/logout', loginValidator, async function (req, res) {
+    const hotels = await Hotels.find().exec()
+    try {
+        const user = await Users.findOneAndUpdate({userId: res.user.userId}, {sessionKey: ""}).exec()
+        console.log(`[+] Successfully logged user out, username: ${user.username}`)
+    } catch (err) {
+        console.log(`Error logging user out: ${err}`)
+        res.render("user.ejs", {hotels: hotels})
+    }
+})
+
+
 // Home page route.
 router.post('/login', loginValidator, async function (req, res) {
     try {
