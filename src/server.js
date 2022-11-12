@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(passport.initialize({}));
 app.use(passport.session({}));
 
-app.use('/public',express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
 // Routes
 const apiRouter = require("./controller/api")
@@ -72,8 +72,3 @@ connectToDB().then(() => {
     console.log("[-] Failed to connect to data base", err)
     throw new Error(`[-] Failed to connect to database, ${err}`)
 })
-
-
-// app.get('/', (req,res)=>{
-//     res.render('home')
-// })
