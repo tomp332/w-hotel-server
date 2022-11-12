@@ -67,6 +67,7 @@ const validCookieExists = async (req, res, next) => {
 
 const webCookieValidator = async (req, res, next) => {
     const hotels = await Hotels.find().exec()
+    res.auth = false
     try {
         let token = req.cookies.authorization
         if (token == null) return res.render('home.ejs', {hotels: hotels});

@@ -50,29 +50,23 @@ router.get("/login", (req, res) => {
 
 router.get("/reservations", webCookieValidator, async (req, res) => {
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
-    res.render('hotels/reservations.ejs', {userReservations: userReservations});
+    res.render('hotels/reservations.ejs', {userReservations: userReservations, auth: req.auth});
 })
 
 router.get('/user', webCookieValidator, async (req, res) => {
     const user = await Users.find({sessionKey: req.cookies.authorization}).exec()
-    const userReservations = await Reservations.find({userId: res.user.userId}).exec()
     const hotels = await Hotels.find().exec()
-    console.log("[+] Validated user, rendering user page")
-    res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
+    console.log(`[+] Validated user, rendering user page for user: ${user[0].username}`)
+    res.render('user.ejs', {hotels: hotels, user: user[0]})
 })
 
 router.get('/contact', validCookieExists, (req, res) => {
-    res.render("contact.ejs", {})
+    res.render("contact.ejs", {auth: req.auth})
 })
 
 router.get('/hotels', validCookieExists, async (req, res) => {
     const hotels = await Hotels.find().exec()
-    res.render("hotels/hotels.ejs", {hotels: hotels})
-})
-
-router.get('/hotels', validCookieExists, async (req, res) => {
-    const hotels = await Hotels.find().exec()
-    res.render("hotels/reservations.ejs", {hotels: hotels})
+    res.render("hotels/hotels.ejs", {hotels: hotels, auth: req.auth})
 })
 
 module.exports = router;
