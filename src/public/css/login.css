@@ -1,4 +1,6 @@
-
+/*Import the fonts used*/
+@import url('https://fonts.googleapis.com/css?family=Courgette|Open+Sans:400,800&display=swap');
+/*Basic reset*/
 *::before,
 *::after {
     padding: 0;
@@ -16,7 +18,11 @@
     --gradient-color: linear-gradient(to right, var(--blue-solid), var(--purple-light));
     --gradient-color-alt: linear-gradient(to right, var(--purple-light), var(--blue-solid));
 }
+/*Global styles*/
+html {
+    font-size: 14px;
 
+}
 body {
     --color-primary: #009597;
     --color-primary-dark: #007f67;
@@ -123,6 +129,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 50px;
 }
 
 .logo img {
@@ -357,6 +364,8 @@ a.fb {
     line-height: 1;
     position: relative;
     border-radius: 5px;
+    width: 82%;
+    text-align: center;
 }
 
 .connect:before {
