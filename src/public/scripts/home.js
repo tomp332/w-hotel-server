@@ -89,3 +89,21 @@ function sendData() {
 }
 
 var btn = document.getElementById("hotels-search");
+
+
+function initialize() {
+    var mapCanvas = document.getElementById('map');
+    var myLatLng = {lat: 44.5403, lng: -78.5463};
+    var mapOptions = {
+      center: new google.maps.LatLng(myLatLng),
+      zoom: 8,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+    var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+});
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
