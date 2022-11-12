@@ -38,8 +38,9 @@
                     <a href="/contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <h1><%=user.username %></h1>
+                    <a href="/" class="nav-link">Logout</a>
                 </li>
+       
             </ul>
         </nav>
     </div>
@@ -49,7 +50,7 @@
         <div class="container">
             <div class="main-heading">
                 <h1 class="title">W Hotels</h1>
-                <h2 class="subtitile">Luxury Vacation</h2>
+                <h2 class="subtitile">welcome <%=user.username %></h2>
             </div>
             <a href="/hotels/hotels.ejs" class="btn btn-gradient">Explore Now
                 <span>
