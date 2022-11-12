@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         console.log("username",e.target[0].value);
         console.log("password",e.target[1].value);
-        fetch('localhost:3000/auth/login')
+        fetch('/auth/login')
   .then((response) => {
     const res = response.json();
     console.log("---->res",res)
