@@ -20,9 +20,8 @@ router.post('/login', loginValidator, async function (req, res) {
         }, {sessionKey: token}, {})
         console.log(`[+] Authenticated user: ${username || email}`)
         res.cookie('authorization', token)
-        const hotels = await Hotels.find().exec()
         updatedUser.isAdmin ? res.render('adminHomePage', {user: updatedUser}) :
-            res.render('home.ejs', {hotels: hotels, user: updatedUser})
+            res.render('user.ejs',  {user: updatedUser})
     } catch (err) {
         console.log(`Error updating user session key: ${err}`)
         res.sendStatus(500)

@@ -5,6 +5,7 @@ const FacebookStrategy = strategy.Strategy;
 const utils = require('../../utils')
 const jwt = require('jsonwebtoken')
 const Users = require("../../database/models/users")
+const Hotels = require("../../database/models/hotels");
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -66,7 +67,7 @@ router.get("/callback", passport.authenticate("facebook", {
     }
     console.log(`[+] Successfully initialized user authenticated from facebook`)
     res.cookie('authorization', token)
-    res.render('home', { user: req.user })
+    res.render('user.ejs', {user: req.user })
 })
 
 module.exports = router
