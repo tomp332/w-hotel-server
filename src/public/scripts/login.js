@@ -16,7 +16,7 @@ function clearInputError(inputElement) {
     inputElement.classList.remove("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
-
+let matchPasswords = true;
 //fetch login
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
@@ -58,14 +58,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = '/user'
             }
         })
-
-
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
             if (e.target.id === "signupUsername" && e.target.value.length < 6) {
                 setInputError(inputElement, "Username must be at least 6 characters");
+            }
+            if (e.target.id === "signupUsername" &&  !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
+                setInputError(inputElement, "Username must be only characters");
+            }
+            if(e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+                setInputError(inputElement, "Wrong email validation");
+            }
+            let password;
+            if(e.target.id === "password"){
+                password = e.target.value;
+            }
+            if(e.target.id === "confirm_password" && e.target.value !== password){
+                setInputError(inputElement, "Passwords do NOT match");
+                matchPasswords = false;
             }
         });
 
@@ -89,29 +101,22 @@ hamburgerMenu.addEventListener('click', function () {
 
 })
 
-//create account errors
+
+// const form = document.querySelector("#linkCreateAccount")
+// eField = form.querySelector(".email"),
+//     eInput = eField.querySelector("input"),
+//     pField = form.querySelector(".password"),
+//     pInput = pField.querySelector("input");
+
+
+
+
+
+// //create account fetch
 document.addEventListener("DOMContentLoaded", () => {
     let createAccount = document.querySelector('#linkCreateAccount');
     createAccount.addEventListener('submit', async e => {
-        e.preventDefault();
         console.log(e.target);
-        // if(e.target[0].value)
-
-        //
-        if(e.target[5].value !== e.target[6].value){
-            setFormMessage(createAccount, "error", "Passwords do not match");
-        }
-
-    });
-
-
-});
-
-
-//create account fetch
-document.addEventListener("DOMContentLoaded", () => {
-    let createAccount = document.querySelector('#linkCreateAccount');
-    createAccount.addEventListener('submit', async e => {
         await fetch('/api/user', {
             method: 'POST',
             mode: 'cors',
@@ -124,21 +129,22 @@ document.addEventListener("DOMContentLoaded", () => {
             referrerPolicy: 'no-referrer',
             body: JSON.stringify({
                 username: e.target[0].value,
-                email:e.target[1].value,
+                email: e.target[1].value,
                 firstName: e.target[2].value,
-                lastName:e.target[3].value,
+                lastName: e.target[3].value,
                 password: e.target[4].value
             })
         }).then(function (response) {
             console.log(response)
-            if (response.status !== 200) {
-                setFormMessage(loginForm, "error", "Invalid username/password provided");
+            if (response.status !== 200 ||  !matchPasswords) {
+                setFormMessage(createAccount, "error", "Invalid username/password provided");
             } else {
-                window.location.href = '/user'
+                window.location.href='/user'
             }
         })
     });
 });
+
 
 
 

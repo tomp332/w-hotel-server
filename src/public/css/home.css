@@ -212,6 +212,31 @@ section {
 
 }
 
+.reservations-class{
+    width: 100%;
+    height: 100vh;
+    background: url(./images/plane.jpg) center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 0;
+
+}
+
+.reservations-class::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    background-color: var(--purple-transparent-alt);
+    z-index: -1;
+
+}
+
 .hero::before {
     content: '';
     position: absolute;

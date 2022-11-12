@@ -12,6 +12,30 @@
     <link rel="stylesheet" href="/css/home.css">
 </head>
 
+<main>
+    <div class="reservations-class">
+        <div class="container">
+            <div class="main-heading">
+    <% if(userReservations.length >0 ){ %>
+        <h2 class="subtitile">Your Reservations</h2>
+    </div>
+
+        <% } else{ %>
+
+    
+              
+                <h2 class="subtitile">You have no reservations yet :(</h2>
+            </div>
+            <a href="/hotels" class="btn btn-gradient">Book Now
+                <span>
+                    <div class="dots"><i class="fas fa-allipsis-h"></i></div>
+                </span>
+            </a>
+            <% } %>
+        </div>
+    </div>
+    </main>
+
 <body>
 <header class="header">
     <div class="container">
