@@ -25,17 +25,17 @@
             </div>
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="home.ejs" class="nav-link">Home</a>
+                    <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="hotels.ejs" class="nav-link">Hotels</a>
+                    <a href="/hotels" class="nav-link">Hotels</a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="contact.ejs" class="nav-link">Contact</a>
+                    <a href="/contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.ejs" class="nav-link">Login/Sign up</a>
+                    <a href="/login" class="nav-link">Login/Sign up</a>
                 </li>
             </ul>
         </nav>
@@ -95,10 +95,13 @@
                 <option value="0">5</option>
             </select>
         </div>
-        <button id="hotels-search" onclick="sendData()" class=" btn form-btn btn-purple ">Search
-            <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
+        <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
+            Search
+            <span class="dots">
+                    <i class="fas fa-ellipsis-h"></i>
+                </span>
         </button>
-        </form>
+    </form>
     </div>
 </section>
 
