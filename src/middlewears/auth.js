@@ -56,7 +56,7 @@ const webCookieValidator = async (req, res, next) => {
                         res.userId = (user.isAdmin) ? req.body.userId : user.userId
                         next();
                     } else {
-                        console.log(`[-] Found no user with the token: ${token}`)
+                        console.log(`[-] Found no user with valid token`)
                         res.render('home.ejs', {hotels: hotels})
                     }
                 }
