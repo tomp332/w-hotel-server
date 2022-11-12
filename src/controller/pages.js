@@ -22,7 +22,6 @@ router.get("/", webCookieValidator, async (req, res) => {
 
 router.post("/hotels", async (req, res) => {
     try {
-        console.log(req.body)
         const hotelName = req.body.hotelName
         const checkIn = req.body.checkIn
         const checkOut = req.body.checkOut
