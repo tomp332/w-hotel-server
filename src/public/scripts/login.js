@@ -17,6 +17,7 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
+//fetch login
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
@@ -74,7 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-let header = document.querySelector('.header');
+//menu code
+// let header = document.querySelector('.header');
 let hamburgerMenu = document.querySelector('.hamburger-menu');
 
 window.addEventListener('scroll', function () {
@@ -86,3 +88,61 @@ hamburgerMenu.addEventListener('click', function () {
     header.classList.toggle('menu-open');
 
 })
+
+//create account errors
+document.addEventListener("DOMContentLoaded", () => {
+    let createAccount = document.querySelector('#linkCreateAccount');
+    createAccount.addEventListener('submit', async e => {
+        e.preventDefault();
+        console.log(e.target);
+        // if(e.target[0].value)
+
+        //
+        if(e.target[5].value !== e.target[6].value){
+            setFormMessage(createAccount, "error", "Passwords do not match");
+        }
+
+    });
+
+
+});
+
+
+//create account fetch
+document.addEventListener("DOMContentLoaded", () => {
+    let createAccount = document.querySelector('#linkCreateAccount');
+    createAccount.addEventListener('submit', async e => {
+        await fetch('/api/user', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({
+                username: e.target[0].value,
+                email:e.target[1].value,
+                firstName: e.target[2].value,
+                lastName:e.target[3].value,
+                password: e.target[4].value
+            })
+        }).then(function (response) {
+            console.log(response)
+            if (response.status !== 200) {
+                setFormMessage(loginForm, "error", "Invalid username/password provided");
+            } else {
+                window.location.href = '/user'
+            }
+        })
+    });
+});
+
+
+
+
+
+
+
