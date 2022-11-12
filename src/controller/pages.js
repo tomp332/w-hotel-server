@@ -6,6 +6,7 @@ const {webCookieValidator, validCookieExists} = require("../middlewears/auth");
 const Users = require("../database/models/users");
 
 
+
 router.get("/403", function (_, res) {
     let options = {
         root: path.join(path.resolve(__dirname, '..', 'public'))
