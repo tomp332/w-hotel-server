@@ -25,6 +25,7 @@ const HotelSchema = new Schema({
         type: Object
     },
     pricePerNight: Number,
+    pricePerSuite: Number,
     location: {
         required: true,
         type: Object,

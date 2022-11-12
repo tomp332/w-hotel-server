@@ -31,6 +31,39 @@ const loginValidator = async (req, res, next) => {
         res.sendStatus(400)
     }
 }
+const validCookieExists = async (req, res, next) => {
+    try {
+        let token = req.cookies.authorization
+        if (token == null) {
+            res.auth = false
+            next()
+        }
+        jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
+            if (err) {
+                res.auth = false
+                next()
+            }
+            Users.findOne({sessionKey: req.cookies.authorization}, async (err, user) => {
+                if (err) {
+                    res.auth = false
+                    next()
+                } else {
+                    if (user) {
+                        res.auth = true
+                        res.user = user
+                        next();
+                    } else {
+                        res.auth = false
+                        next()
+                    }
+                }
+            })
+        });
+    } catch (err) {
+        res.auth = false
+        next()
+    }
+}
 
 const webCookieValidator = async (req, res, next) => {
     const hotels = await Hotels.find().exec()
@@ -68,4 +101,4 @@ const webCookieValidator = async (req, res, next) => {
     }
 };
 
-module.exports = {webCookieValidator, loginValidator}
+module.exports = {webCookieValidator, loginValidator, validCookieExists}

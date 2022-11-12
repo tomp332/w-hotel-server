@@ -5,13 +5,6 @@ const Users = require("../database/models/users");
 const jwt = require("jsonwebtoken");
 
 
-// Logout
-router.get('/logout', webCookieValidator, async function (req, res) {
-    await Users.findOneAndUpdate({userId: res.userId}, {sessionKey: ''}, {})
-    console.log(`Signed user out, userID:  ${res.userId}`)
-    res.send();
-})
-
 // Get user information
 router.get('/', webCookieValidator, async function (req, res) {
     try {
