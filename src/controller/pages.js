@@ -14,10 +14,10 @@ router.get("/403", function (_, res) {
 })
 
 router.get("/", webCookieValidator, async (req, res) => {
-    const user = await Users.find({sessionKey: req.cookies.authorization}).exec()
+    const user = await Users.find({sessionKey: res.user.sessionKey}).exec()
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
     const hotels = await Hotels.find().exec()
-    res.render('user.ejs', {hotels: hotels, user: user, userReservations: userReservations})
+    res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
 router.post("/hotels", validCookieExists, async (req, res) => {
