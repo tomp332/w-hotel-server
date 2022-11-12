@@ -104,6 +104,18 @@
                         <option>5</option>
                     </select>
                 </div>
+                <div class="mapouter">
+                    <div class="gmap_canvas">
+                        <iframe width="194" height="216" id="gmap_canvas" src="https://maps.google.com/maps?q=tel%20aviv&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2piratebay.org"></a>
+                         <br>
+                           <style>.mapouter{position:relative;text-align:right;height:216px;width:194px;}</style>
+                             <a href="https://www.embedgooglemap.net">interactive google map for website</a>
+                            <style>.gmap_canvas {
+                              overflow:hidden;background:none!important;height:216px;width:194px;}
+                        </style>
+                    </div>
+                </div>
+            
                 <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
                     Search
                     <span class="dots">
@@ -122,7 +134,7 @@
                 <div class="discount">
                     40% off
                 </div>
-                <h5 class="hotel-name">The Paradise</h5>
+                <h5 class="hotel-name"><%= hotels[0].hotelName %></h5>
                 <div class="hotel-rating">
                     <i class="fas fa-star rating"></i>
                     <i class="fas fa-star rating"></i>
@@ -130,11 +142,11 @@
                     <i class="fas fa-star-half rating"></i>
                 </div>
                 <p class="paragraph ">
-                    The most laxurious hotel in Koh-Samui Thailnd, suitable for families and couples !
+                    The most laxurious hotel in Tel-Aviv, suitable for families and couples !
                 </p>
-                <a href=" " class="btn btn-gradient ">Reedem offer
+                <!-- <a href="/<%= hotels[0].hotelName %>" class="btn btn-gradient ">Reedem offer
                     <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
-                </a>
+                </a> -->
             </div>
 
 
