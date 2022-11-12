@@ -11,53 +11,56 @@
 </head>
 
 <body>
-    <script>
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: '689459155649652',
-                xfbml: true,
-                version: 'v15.0'
-            });
-            FB.AppEvents.logPageView();
-        };
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '689459155649652',
+            xfbml: true,
+            version: 'v15.0'
+        });
+        FB.AppEvents.logPageView();
+    };
 
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {
-                return;
-            }
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="/" class="logo">
-                    <img src="/css/images/w_logo.png" alt="">
-                </a>
-                <div class="hamburger-menu">
-                    <i class="fas fa-bars"></i>
-                    <i class="fas fa-times"></i>
-                </div>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/hotels" class="nav-link">Hotels</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/contact" class="nav-link">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
-    <div id="content" class="login_container">
+
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="/" class="logo">
+                <img src="/css/images/w_logo.png" alt="">
+            </a>
+            <div class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/hotels" class="nav-link">Hotels</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div id="content" class="login_container">
+    <form class="form" id="login">
         <h1 class="form__title">Login</h1>
         <div class="form__message form__message--error"></div>
         <div class="form__input-group">
@@ -76,53 +79,36 @@
         <p class="form__text">
             <a href="/login" id="linkCreateAccount" class="form__link">Dont have an account? Create Account</a>
         </p>
-        <form action = "/auth/login" class="form" id="login"  method="post">
-            <h1 class="form__title">Login</h1>
-            <div class="form__message form__message--error"></div>
-            <div class="form__input-group">
-                <input name="username" id="user-email" type="text" class="form__input" autofocus placeholder="Username or email">
-                <div class="form__input-error-message"></div>
-            </div>
-            <div class="form__input-group">
-                <input name="password" id="user-password" type="password" class="form__input" autofocus placeholder="password">
-                <div class="form__input-error-message"></div>
-            </div>
-            <button id="btn__login" class="form__button" type="submit">continue</button>
-            <a href="/auth/facebook" class="fb connect">Sign in with Facebook</a>      
-            <p class="form__text">
-                <a href="#" class="form__link">Forgot your password?</a>
-            </p>
-            <p class="form__text">
-                <a href="/login" id="linkCreateAccount" class="form__link">Dont have an account? Create Account</a>
-            </p>
-        </form>
-        <form class="form form--hidden" id="createAccount">
-            <h1 class="form__title">Create Account</h1>
-            <div class="form__message form__message--error"></div>
-            <div class="form__input-group">
-                <input type="text" id="signupUsername" class="form__input " autofocus placeholder="Username ">
-                <div class="form__input-error-message "></div>
-            </div>
-            <div class="form__input-group">
-                <input type="text" class="form__input" autofocus placeholder="E-mail Address">
-                <div class="form__input-error-message "></div>
-            </div>
-            <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="password">
-                <div class="form__input-error-message "></div>
-            </div>
-            <div class="form__input-group">
-                <input type="password" class="form__input" autofocus placeholder="Confirm password">
-                <div class="form__input-error-message "></div>
-            </div>
-            <button class="form__button" type=" " submit>continue</button>
-            <a href="/auth/facebook" class="fb connect">Sign up with Facebook</a>
-            <p class="form__text">
-                <a class="form__link" href="/login" id="linkLogin" class="form__link">Already have an account? Sign in</a>
-            </p>
-        </form>
-    </div>
-    <script src="/scripts/login.js"></script>
+    </form>
+
+
+    <form class="form form--hidden" id="createAccount">
+        <h1 class="form__title">Create Account</h1>
+        <div class="form__message form__message--error"></div>
+        <div class="form__input-group">
+            <input type="text" id="signupUsername" class="form__input " autofocus placeholder="Username ">
+            <div class="form__input-error-message "></div>
+        </div>
+        <div class="form__input-group">
+            <input type="text" class="form__input" autofocus placeholder="E-mail Address">
+            <div class="form__input-error-message "></div>
+        </div>
+        <div class="form__input-group">
+            <input type="password" class="form__input" autofocus placeholder="password">
+            <div class="form__input-error-message "></div>
+        </div>
+        <div class="form__input-group">
+            <input type="password" class="form__input" autofocus placeholder="Confirm password">
+            <div class="form__input-error-message "></div>
+        </div>
+        <button class="form__button" type=" " submit>continue</button>
+        <a href="/auth/facebook" class="fb connect">Sign up with Facebook</a>
+        <p class="form__text">
+            <a class="form__link" href="/login" id="linkLogin" class="form__link">Already have an account? Sign in</a>
+        </p>
+    </form>
+</div>
+<script src="/scripts/login.js"></script>
 </body>
 
 </html>

@@ -35,24 +35,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loginForm.addEventListener("submit", async e => {
         e.preventDefault();
-        console.log("username",e.target[0].value);
-        console.log("password",e.target[1].value);
         await fetch('/auth/login', {
             method: 'POST',
             mode: 'cors',
-            cache:'no-cache',
-            credentials:'same-origin',
-            headers:'Content-type'
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({
+                username: e.target[0].value,
+                password: e.target[1].value
+            })
+        }).then(function (response) {
+            console.log(response)
+            if (response.status !== 200) {
+                setFormMessage(loginForm, "error", "Invalid username/password provided");
+            } else {
+                window.location.href = '/user'
+            }
         })
-  .then((response) => {
-    const res = response.json();
-    console.log("---->res",res)
 
-  })
-  .then((data) => console.log(data));
-        // Perform your AJAX/Fetch login
 
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
     });
 
     document.querySelectorAll(".form__input").forEach(inputElement => {
@@ -71,12 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
 let header = document.querySelector('.header');
 let hamburgerMenu = document.querySelector('.hamburger-menu');
 
-window.addEventListener('scroll', function(){
+window.addEventListener('scroll', function () {
     let windowPosition = window.scrollY > 0;
-    header.classList.toggle('active', window.scrollY>0); 
+    header.classList.toggle('active', window.scrollY > 0);
 })
 
-hamburgerMenu.addEventListener('click',function() {
+hamburgerMenu.addEventListener('click', function () {
     header.classList.toggle('menu-open');
-    
+
 })
