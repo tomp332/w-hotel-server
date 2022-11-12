@@ -13,6 +13,27 @@
 </head>
 
 <body>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '689459155649652',
+            xfbml: true,
+            version: 'v15.0'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 <header class="header">
     <div class="container">
         <nav class="nav">
@@ -50,8 +71,8 @@
             </div>
             <a href="/hotels/hotels.ejs" class="btn btn-gradient">Explore Now
                 <span>
-                        <div class="dots"><i class="fas fa-allipsis-h"></i></div>
-                    </span>
+                    <div class="dots"><i class="fas fa-allipsis-h"></i></div>
+                </span>
             </a>
         </div>
     </div>
@@ -107,8 +128,8 @@
                 <button type="submit" id="hotels-search" class="btn form-btn btn-purple ">
                     Search
                     <span class="dots">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </span>
+                            <i class="fas fa-ellipsis-h"></i>
+                        </span>
                 </button>
             </form>
 
