@@ -19,25 +19,54 @@
             <a href="/" class="logo">
                 <img src="/css/images/w_logo.png" alt="">
             </a>
-            <div class="hamburger-menu">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-times"></i>
-            </div>
-            <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="hotels.ejs" class="nav-link">Hotels</a>
-                </li>
 
-                <li class="nav-item">
-                    <a href="contact.ejs" class="nav-link">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a href="login.ejs" class="nav-link">Login/Sign up</a>
-                </li>
-            </ul>
+            <% if(auth){ %>
+                <div class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/hotels" class="nav-link">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/resarvations" class="nav-link">Resarvation</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="nav-link" id="logout">Logout</a>
+                    </li>
+    
+                </ul>
+            <% } else{ %>
+                <div class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="hotels.ejs" class="nav-link">Hotels</a>
+                    </li>
+    
+                    <li class="nav-item">
+                        <a href="contact.ejs" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="login.ejs" class="nav-link">Login/Sign up</a>
+                    </li>
+                </ul>
+            <% } %>
+
+            
         </nav>
     </div>
 </header>
@@ -60,6 +89,7 @@
                 <span class="room-price">$<%= hotel.pricePerNight %><span class="per-night"> per night</span></span>
                 <p class="paragraph">
                     The biggest suite in the hotel. has flat screen TV, ocean view, queens size bed and a pourch.
+                    Avarage rating : <%= hotel.guestReviews.avgRating %>
                 </p>
                 <a href="" class="btn rooms-btn">BOOK NOW &rarr;</a>
             </div>
