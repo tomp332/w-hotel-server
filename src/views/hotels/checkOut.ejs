@@ -45,21 +45,10 @@
 <section class="booking">
     <div class="container">
         <h5 class="section-head">
-            <span class="heading">Explore</span>
-            <span class="sub-head">Our Beautiful Hotels</span>
+            <span class="heading"><%= hotels[2].hotelName %></span>
+            <span class="sub-head">Check-Out</span>
         </h5>
-        <div class="input-group">
-            <form action="" class="form">
-                <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
-                <select class="options" id="hotel-choice">
-                    <option value="none">Select</option>
-                    <% for (var i = 0; i < hotels.length ; i++) { %>
-                        <option>
-                            <%= hotels[i].hotelName %>
-                        </option>
-                    <% } %>
-                </select>
-        </div>
+        
 
 
         <div class="input-group">
