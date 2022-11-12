@@ -2,7 +2,6 @@ const router = require('express').Router()
 const path = require('path')
 const Hotels = require("../database/models/hotels");
 const Reservations = require("../database/models/reservations");
-const bodyParser = require("body-parser");
 const {webCookieValidator} = require("../middlewears/auth");
 const Users = require("../database/models/users");
 
@@ -14,14 +13,11 @@ router.get("/403", function (_, res) {
     res.sendFile('403.html', options)
 })
 
-router.get("/", async (req, res) => {
-    try {
-        const hotels = await Hotels.find().exec()
-        res.render('home.ejs', {hotels: hotels});
-    } catch (err) {
-        console.log(`Error fetching current hotels in DB, ${err}`)
-        res.render('home.ejs', {hotels: []});
-    }
+router.get("/", webCookieValidator, async (req, res) => {
+    const user = await Users.find({sessionKey: req.cookies.authorization}).exec()
+    const userReservations = await Reservations.find({userId: res.user.userId}).exec()
+    const hotels = await Hotels.find().exec()
+    res.render('user.ejs', {hotels: hotels, user: user, userReservations: userReservations})
 })
 
 router.post("/hotels", async (req, res) => {

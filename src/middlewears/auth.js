@@ -36,7 +36,7 @@ const webCookieValidator = async (req, res, next) => {
     const hotels = await Hotels.find().exec()
     try {
         let token = req.cookies.authorization
-        if (token == null) return res.redirect('/login');
+        if (token == null) return res.render('home.ejs', {hotels: hotels});
 
         jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
             if (err) {
