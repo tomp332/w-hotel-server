@@ -81,7 +81,7 @@
         <div class="grid-item featured-rooms">
 
             <div class="image-wrap">
-                <p class="paragraph">available dates: <%= checkIn %> -  <%= checkOut %></p>
+                <p class="paragraph">Available dates: <%= checkIn %> -  <%= checkOut %></p>
                 <h5 class="room-name">Luxurious Family Room</h5>
 
                 <img class="room-image" src="/css/images/room_3.jpg" alt="">
@@ -92,9 +92,19 @@
                     The biggest suite in the hotel. has flat screen TV, ocean view, queens size bed and a pourch.
                     Avarage rating : <%= hotel.guestReviews.avgRating %>
                 </p>
+                <div class="input-group">
+                    <label for="rooms" class="input-label ">how many rooms</label>
+                    <select name="adultsChoice" class="options" id="adults-choice">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+
                 <a href="/" class="btn rooms-btn">BOOK NOW &rarr;</a>
 
-               </div>
+            </div>
 
         </div>
 
@@ -110,6 +120,16 @@
                 <p class="paragraph">
                     The biggest suite in the hotel. has flat screen TV, ocean view, queens size bed and a pourch.
                 </p>
+
+                <div class="input-group">
+                    <label for="rooms" class="input-label ">how many rooms</label>
+                    <select name="adultsChoice" class="options" id="adults-choice">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
 
                 <a href="/" class="btn rooms-btn">BOOK NOW &rarr;</a>
 
