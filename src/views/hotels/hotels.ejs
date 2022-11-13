@@ -26,10 +26,10 @@
                 </a>
     
                 <% if(auth){ %>
-                    <div class="hamburger-menu">
+                    <!-- <div class="hamburger-menu">
                         <i class="fas fa-bars"></i>
                         <i class="fas fa-times"></i>
-                    </div>
+                    </div> -->
                     <ul class="nav-list">
                         <li class="nav-item">
                             <a href="/" class="nav-link">Home</a>
@@ -50,10 +50,10 @@
         
                     </ul>
                 <% } else{ %>
-                    <div class="hamburger-menu">
+                    <!-- <div class="hamburger-menu">
                         <i class="fas fa-bars"></i>
                         <i class="fas fa-times"></i>
-                    </div>
+                    </div> -->
                     <ul class="nav-list">
                         <li class="nav-item">
                             <a href="/" class="nav-link">Home</a>
@@ -82,7 +82,7 @@
         <div class="container">
             <h5 class="section-head">
                 <span class="sub-heading">.</span>
-                <span class="heading">Hotels</span>
+                <span class="heading"></span>
             </h5>
             <form id="hotels-search-form" action="hotels" method="post" class="form">
                 <div class="input-group ">
@@ -150,7 +150,7 @@
             <div class="grid-item featured-hotels ">
                 <img src="/css/images/hotel_astro_resort.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[0].hotelName %></h5>
-                <span class="hotel-price ">From $200/night</span>
+                <span class="hotel-price ">From $<%= hotels[0].pricePerNight %>/night</span>
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -168,7 +168,7 @@
             <div class="grid-item featured-hotels ">
                 <img src="/css/images/hotel_the_enchanted_garden.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[1].hotelName %></h5>
-                <span class="hotel-price ">From $300/night</span>
+                <span class="hotel-price ">From $<%= hotels[1].pricePerNight %>/night</span>
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -186,7 +186,7 @@
             <div class="grid-item featured-hotels ">
                 <img src="/css/images/hotel_the_paradise.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[2].hotelName %></h5>
-                <span class="hotel-price ">From $350/night</span>
+                <span class="hotel-price ">From $<%= hotels[2].pricePerNight %>/night</span>
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
