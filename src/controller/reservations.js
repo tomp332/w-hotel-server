@@ -35,13 +35,18 @@ router.post('/', webCookieValidatorNoRender, async function (req, res) {
         console.log(req.body)
         const checkIn = req.body.checkIn.split('-')
         const checkOut = req.body.checkOut.split('-')
+        const hotel = await Hotels.findOne({'hotelName': req.body.hotelName}).exec()
         const newReservation = new Reservations({
             'hotelName': req.body.hotelName,
             'checkIn': new Date(checkIn[0], checkIn[1], checkIn[2]),
             'checkOut': new Date(checkOut[0], checkOut[1], checkOut[2]),
             'suiteRoomAmount': req.body.suiteRoomAmount,
             'regularRoomAmount': req.body.regularRoomAmount,
-            'userId': res.user.userId
+            'userId': res.user.userId,
+            'reservationId': uuid4(),
+            'city': hotel.address.city,
+            'fullAddress': hotel.address.fullAddress,
+            'country': hotel.address.country,
         })
         await newReservation.save()
         console.log(`[+] Added new reservation to database, ID: ${newReservation.reservationId}`)
