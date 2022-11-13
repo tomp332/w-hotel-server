@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>W-Hotels</title>
-    <link rel="icon" type="image/png" href="./images/black_logo.png.png">
+    <link rel="icon" type="image/png" href="/css/images/black_logo.png.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/home.css">
 </head>
@@ -51,13 +51,17 @@
 <section class="rooms">
     <div class="container">
         <h5 class="section-head">
-            <span class="heading">Rooms</Ri:a></span>
-            <span class="sub-heading"><%= hotel.hotelName %></span>
+            <span class="heading">Rooms</span>
+            <span id="hotel-name" class="sub-heading"><%= hotel.hotelName %></span>
+            <p>
+                Avarage rating : <%= hotel.guestReviews.avgRating %>
+            </p>
+            <p class="paragraph">Available Dates: <%= checkIn %> - <%= checkOut %></p>
+
         </h5>
         <div class="grid-item featured-rooms">
 
             <div class="image-wrap">
-                <p class="paragraph">available dates: <%= checkIn %> - <%= checkOut %></p>
                 <h5 class="room-name">Luxurious Family Room</h5>
 
                 <img class="room-image" src="/css/images/room_3.jpg" alt="">
@@ -66,7 +70,6 @@
                 <span class="room-price">$<%= hotel.pricePerNight %><span class="per-night"> per night</span></span>
                 <p class="paragraph">
                     The biggest suite in the hotel. has flat screen TV, ocean view, queens size bed and a pourch.
-                    Avarage rating : <%= hotel.guestReviews.avgRating %>
                 </p>
                 <div class="input-group">
                     <label for="rooms" class="input-label ">how many rooms</label>
@@ -108,10 +111,6 @@
                 </div>
 
                 <a href="/" class="btn rooms-btn">BOOK NOW &rarr;</a>
-
-                <!-- <a href="/" class="btn btn-gradient ">Book Now
-                    <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
-                </a> -->
             </div>
 
         </div>
@@ -142,7 +141,7 @@
         </div>
     </div>
 </footer>
-<script src="/scripts/home.js"></script>
+<script src="/scripts/hotel.js"></script>
 
 </body>
 
