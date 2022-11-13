@@ -24,43 +24,26 @@
                 <a href="/" class="logo">
                     <img src="/css/images/w_logo.png" alt="">
                 </a>
-    
-                <% if(auth){ %>
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/hotels" class="nav-link">Hotels</a>
-                        </li>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/hotels" class="nav-link">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
+                <% if(auth){ %>                  
                         <li class="nav-item">
                             <a href="/reservations" class="nav-link">Reservations</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a href="/contact" class="nav-link">Contact</a>
-                        </li>
+                        </li>                     
                         <li class="nav-item">
                             <a href="/" class="nav-link" id="logout">Logout</a>
                         </li>
-        
                     </ul>
-                <% } else{ %>
-                    <!-- <div class="hamburger-menu">
-                        <i class="fas fa-bars"></i>
-                        <i class="fas fa-times"></i>
-                    </div> -->
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/hotels" class="nav-link">Hotels</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a href="/contact" class="nav-link">Contact</a>
-                        </li>
+                <% } else{ %>               
+                               
                         <li class="nav-item">
                             <a href="/login" class="nav-link">Login/Sign up</a>
                         </li>
