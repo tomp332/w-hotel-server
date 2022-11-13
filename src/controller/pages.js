@@ -45,7 +45,7 @@ router.post("/hotels", validCookieExists, async (req, res) => {
         const hotels = await Hotels.find().exec()
         res.render('home.ejs', {
             hotels: hotels,
-            auth: res.auth
+            auth: true
         });
     }
 })
