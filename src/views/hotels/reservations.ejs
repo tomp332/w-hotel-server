@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/css/images/black_logo.png.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/reservations.css">
 </head>
 
 <main>
@@ -21,24 +22,32 @@
                     <!--Reservations Table-->
                     <table class="reservations-table">
                         <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Points</th>
-                        </tr>
+                            <tr>
+                                <th>Hotel Name</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Address</th>
+                                <th>Suites</th>
+                                <th>Standard Rooms</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Dom</td>
-                            <td>6000</td>
-                        </tr>
-                        <tr class="active-row">
-                            <td>Melissa</td>
-                            <td>5150</td>
-                        </tr>
-                        <!-- and so on... -->
+                            <% for (var i = 0; i < userReservations.length ; i++) { %>
+                                <tr>
+                                    <td> <%= userReservations[i].hotelName %></td>
+                                    <td><%= userReservations[i].country %></td>
+                                    <td><%= userReservations[i].city %></td>
+                                    <td><%= userReservations[i].fullAddress %></td>
+                                    <td><%= userReservations[i].suiteRoomAmount %></td>
+                                    <td><%= userReservations[i].regularRoomAmount %></td>
+                                </tr>
+                                <tr class="active-row">
+                                    <td>Melissa</td>
+                                    <td>5150</td>
+                                </tr>
+                            <% } %>
                         </tbody>
                     </table>
-
             <% } else{ %>
                     <h2 class="subtitile">You have no reservations yet :(</h2>
                     <a href="/hotels" class="btn btn-gradient">Book Now

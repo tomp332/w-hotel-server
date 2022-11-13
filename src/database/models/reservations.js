@@ -16,10 +16,21 @@ let ReservationSchema = new Schema({
         type: String,
         unique: true,
         required: true
+    },city:{
+        type: String,
+        required: true
+    },
+    country:{
+        type: String,
+        required: true
     },
     checkIn: {
         required: true,
         type: Date
+    },
+    fullAddress:{
+        type: String,
+        required: true
     },
     checkOut: {
         required: true,
