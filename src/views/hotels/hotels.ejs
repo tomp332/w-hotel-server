@@ -24,47 +24,27 @@
                 <a href="/" class="logo">
                     <img src="/css/images/w_logo.png" alt="">
                 </a>
-    
-                <% if(auth){ %>
-                    <div class="hamburger-menu">
-                        <i class="fas fa-bars"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/hotels" class="nav-link">Hotels</a>
-                        </li>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/hotels" class="nav-link">Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
+                <% if(auth){ %>                  
                         <li class="nav-item">
                             <a href="/reservations" class="nav-link">Reservations</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a href="/contact" class="nav-link">Contact</a>
-                        </li>
+                        </li>                     
                         <li class="nav-item">
                             <a href="/" class="nav-link" id="logout">Logout</a>
                         </li>
         
                     </ul>
-                <% } else{ %>
-                    <div class="hamburger-menu">
-                        <i class="fas fa-bars"></i>
-                        <i class="fas fa-times"></i>
-                    </div>
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/hotels" class="nav-link">Hotels</a>
-                        </li>
-        
-                        <li class="nav-item">
-                            <a href="/contact" class="nav-link">Contact</a>
-                        </li>
+                <% } else{ %>               
+                               
                         <li class="nav-item">
                             <a href="/login" class="nav-link">Login/Sign up</a>
                         </li>
@@ -82,7 +62,7 @@
         <div class="container">
             <h5 class="section-head">
                 <span class="sub-heading">.</span>
-                <span class="heading">Hotels</span>
+                <span class="heading"></span>
             </h5>
             <form id="hotels-search-form" action="hotels" method="post" class="form">
                 <div class="input-group ">
@@ -99,11 +79,11 @@
 
                 <div class="input-group">
                     <label id="checkin" for="check-in" class="input-label">Check in</label>
-                    <input name="checkIn" type="date" class="input" id="check-in">
+                    <input name="checkIn" type="date" class="input" id="check-in" required>
                 </div>
                 <div class="input-group">
                     <label id="checkout" for="check-out" class="input-label">Check out</label>
-                    <input name="checkOut" type="date" class="input" id="check-out">
+                    <input name="checkOut" type="date" class="input" id="check-out" required>
                 </div>
 
                 <div class="input-group">
@@ -137,7 +117,7 @@
                         </span>
                 </button>
             </form>
-            <div id="map"></div>
+            <div id="map" style="height: 250px; width: 600px; border: 1px solid black; margin-left: 49%;"></div>
         </div>
     </section>
 
@@ -150,7 +130,7 @@
             <div class="grid-item featured-hotels ">
                 <img src="/css/images/hotel_astro_resort.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[0].hotelName %></h5>
-                <span class="hotel-price ">From $200/night</span>
+                <span class="hotel-price ">From $<%= hotels[0].pricePerNight %>/night</span>
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -168,7 +148,7 @@
             <div class="grid-item featured-hotels ">
                 <img src="/css/images/hotel_the_enchanted_garden.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[1].hotelName %></h5>
-                <span class="hotel-price ">From $300/night</span>
+                <span class="hotel-price ">From $<%= hotels[1].pricePerNight %>/night</span>
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -186,7 +166,7 @@
             <div class="grid-item featured-hotels ">
                 <img src="/css/images/hotel_the_paradise.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[2].hotelName %></h5>
-                <span class="hotel-price ">From $350/night</span>
+                <span class="hotel-price ">From $<%= hotels[2].pricePerNight %>/night</span>
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -224,5 +204,5 @@
         </div>
     </div>
 </footer>
-<script src="/scripts/home.js"></script>
+<script src="/scripts/hotels.js"></script>
 </body>

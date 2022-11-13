@@ -30,6 +30,9 @@ async function getHotels() {
         })
 }
 
+async function sendBooking(){
+    return await fetch('/api/hotels/')
+}
 
 // Generate google map
 async function initMap() {

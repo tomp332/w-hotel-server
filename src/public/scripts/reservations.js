@@ -1,3 +1,4 @@
+//Selectors
 
 let header = document.querySelector('.header');
 let hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -14,7 +15,7 @@ hamburgerMenu.addEventListener('click', function () {
 
 
 async function getHotels() {
-    return await fetch('/api/hotels', {
+    const hotels = await fetch('/api/hotels', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
@@ -28,38 +29,10 @@ async function getHotels() {
         .then((data) => {
             return data
         })
+    return hotels
+
 }
 
-
-// Generate google map
-async function initMap() {
-    const hotels = await getHotels()
-    // Init for map
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 3,
-        center: {lat: 32.0853, lng: 34.7818},
-    });
-
-    for (const hotel of hotels) {
-        const contentString = "<h3>" + hotel.hotelName + "</h3>"
-
-
-        let marker = new google.maps.Marker({
-            position: hotel.location,
-            map,
-            title: "Main marker",
-        })
-        let infoWindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-        marker.addListener('click', function () {
-            infoWindow.open(map, marker);
-        });
-
-    }
-}
-
-window.initMap = initMap;
 
 let logout = document.querySelector('#logout');
 logout.addEventListener('click', async e => {

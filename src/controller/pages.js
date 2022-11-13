@@ -33,7 +33,7 @@ router.post("/hotels", validCookieExists, async (req, res) => {
             'checkOut': new Date(checkOut[0], checkOut[1], checkOut[2])
         }) || {}
         let hotelAvailable = Object.keys(reservation).length <= 0
-        res.render(`hotels/${hotel.hotelId}.ejs`, {
+        res.render(`hotels/currentHotel.ejs`, {
             hotel: hotel,
             available: hotelAvailable,
             auth: res.auth,
@@ -45,7 +45,7 @@ router.post("/hotels", validCookieExists, async (req, res) => {
         const hotels = await Hotels.find().exec()
         res.render('home.ejs', {
             hotels: hotels,
-            auth: res.auth
+            auth: true
         });
     }
 })
