@@ -16,11 +16,19 @@ function clearInputError(inputElement) {
     inputElement.classList.remove("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
-let matchPasswords = true;
 
+// function matchPassword(){
+//     let pw1=document.getElementById("password");
+//     let pw2=document.getElementById("confirm_password");
+//     if(pw1 !== pw2)
+//     {
+//         alert("Passwords did not match");
+//     }else{
+//         alert("Password created successfully");
+//     }
+// }
 
-
-//fetch login
+let pas;
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
@@ -37,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
 
+    //fetch login
     loginForm.addEventListener("submit", async e => {
         e.preventDefault();
         await fetch('/auth/login', {
@@ -74,31 +83,59 @@ document.addEventListener("DOMContentLoaded", () => {
             if(e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
                 setInputError(inputElement, "Wrong email validation");
             }
-        });
+            if(e.target.id === "password" && e.target.value.length < 8){
+                setInputError(inputElement, "Passwords length must be atleast 8 characters");
+            }
+            if(e.target.id === "password"){
+                pas = e.target.value;
+            }
+            if(e.target.id === "confirm_password" && e.target.value !== pas){
+                setInputError(inputElement, "mismatch passwords");
+                const button = document.getElementById("signUp_btn");
+                button.disabled =true;
+            }
+            if(e.target.id === "confirm_password" && e.target.value === pas){
+                const button = document.getElementById("signUp_btn");
+                button.disabled =false;
+            }
 
+        });
         inputElement.addEventListener("input", e => {
             clearInputError(inputElement);
         });
+
+    });
+
+    //create account fetch
+    createAccountForm.addEventListener('submit', async e => {
+        console.log(e.target);
+        await fetch('/api/user', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify({
+                username: e.target[2].value,
+                email: e.target[3].value,
+                firstName: e.target[4].value,
+                lastName: e.target[5].value,
+                password: e.target[6].value
+            })
+        }).then(function (response) {
+            console.log(response)
+            if (response.status !== 200) {
+                setFormMessage(createAccountForm, "error", "Ann account with this username already exists");
+            } else {
+                window.location.href='/user'
+            }
+        })
     });
 });
-function verifyPassword(){
-    const pw = document.getElementById("password").value;
-    const pwConf = document.getElementById("confirm_password").value;
-    const input = document.querySelectorAll(".form__input").item(7);
-    const inputPas = document.querySelectorAll(".form__input").item(6);
-    if(pw === "")
-        return false;
-    if(pw.length < 8){
-        setInputError(inputPas, "Passwords length must be atleast 8 characters");
-        return false;
-    }
-    if(pw !== pwConf){
-        setInputError(input, "Passwords do NOT match");
-        return false;
-    }
-    return true;
-}
-
 
 
 //menu code
@@ -118,37 +155,7 @@ hamburgerMenu.addEventListener('click', function () {
 
 
 // //create account fetch
-document.addEventListener("DOMContentLoaded", () => {
-    let createAccount = document.querySelector('#linkCreateAccount');
-    createAccount.addEventListener('submit', async e => {
-        console.log(e.target);
-        await fetch('/api/user', {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify({
-                username: e.target[0].value,
-                email: e.target[1].value,
-                firstName: e.target[2].value,
-                lastName: e.target[3].value,
-                password: e.target[4].value
-            })
-        }).then(function (response) {
-            console.log(response)
-            if (response.status !== 200 ||  !matchPasswords) {
-                setFormMessage(createAccount, "error", "Invalid username/password provided");
-            } else {
-                window.location.href='/user'
-            }
-        })
-    });
-});
+
 
 
 
