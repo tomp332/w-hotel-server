@@ -17,10 +17,6 @@ let ReservationSchema = new Schema({
         unique: true,
         required: true
     },
-    hotelId: {
-        type: String,
-        required: true
-    },
     checkIn: {
         required: true,
         type: Date
