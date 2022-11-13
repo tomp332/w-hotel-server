@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 // Update user reservation
-const {webCookieValidator} = require("../middlewears/auth")
+const {webCookieValidator, webCookieValidatorNoRender} = require("../middlewears/auth")
 const Reservations = require("../database/models/reservations")
 const uuid4 = require("uuid4");
 const Hotels = require("../database/models/hotels");
@@ -30,14 +30,18 @@ router.put('/', webCookieValidator, async function (req, res) {
 })
 
 // Add new reservation
-router.post('/', webCookieValidator, async function (req, res) {
+router.post('/', webCookieValidatorNoRender, async function (req, res) {
     try {
+        console.log(req.body)
+        const checkIn = req.body.checkIn.split('-')
+        const checkOut = req.body.checkOut.split('-')
         const newReservation = new Reservations({
-            hotelId: req.body.hotelId,
-            userId: res.userId,
-            reservationId: uuid4(),
-            checkIn: req.body.checkIn,
-            checkOut: req.body.checkOut
+            'hotelName': req.body.hotelName,
+            'checkIn': new Date(checkIn[0], checkIn[1], checkIn[2]),
+            'checkOut': new Date(checkOut[0], checkOut[1], checkOut[2]),
+            'suiteRoomAmount': req.body.suiteRoomAmount,
+            'regularRoomAmount': req.body.regularRoomAmount,
+            'userId': res.user.userId
         })
         await newReservation.save()
         console.log(`[+] Added new reservation to database, ID: ${newReservation.reservationId}`)

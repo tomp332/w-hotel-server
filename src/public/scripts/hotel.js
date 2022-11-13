@@ -1,7 +1,10 @@
-async function addReservation(){
-    const hotelName = document.getElementById("hotel-name").value
-
-    return await fetch('/api/reservations', {
+async function addReservation() {
+    const hotelName = document.getElementById("hotel-name").textContent
+    const suiteAmountRooms = document.getElementById("suite-room-amount").value
+    const regularRoomAmount = document.getElementById("regular-room-amount").value
+    const checkIn = document.getElementById("checkIn").innerHTML
+    const checkOut = document.getElementById("checkOut").innerHTML
+    fetch('/api/reservations', {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
@@ -11,16 +14,22 @@ async function addReservation(){
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
-        body:{
+        body: JSON.stringify({
             hotelName: hotelName,
-
-        }
-    }).then((response) => response.json())
-        .then((data) => {
-            return data
+            suiteRoomAmount: suiteAmountRooms,
+            regularRoomAmount: regularRoomAmount,
+            checkIn: checkIn,
+            checkOut: checkOut
         })
+    }).then(function (response) {
+        console.log(response)
+        if (response.status !== 200) {
+            alert("You must be logged in")
+        } else {
+            window.location.href = '/reservations'
+        }
+    })
 }
-
 
 
 let header = document.querySelector('.header');
