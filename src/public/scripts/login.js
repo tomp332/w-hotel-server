@@ -17,6 +17,9 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 let matchPasswords = true;
+
+
+
 //fetch login
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
@@ -65,19 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target.id === "signupUsername" && e.target.value.length < 6) {
                 setInputError(inputElement, "Username must be at least 6 characters");
             }
-            if (e.target.id === "signupUsername" &&  !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
-                setInputError(inputElement, "Username must be only characters");
+            if ((e.target.id === "signupUsername" || e.target.id === "firstName" || e.target.id === "lastName") &&  !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
+                setInputError(inputElement, "it must be only characters");
             }
             if(e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
                 setInputError(inputElement, "Wrong email validation");
-            }
-            let password;
-            if(e.target.id === "password"){
-                password = e.target.value;
-            }
-            if(e.target.id === "confirm_password" && e.target.value !== password){
-                setInputError(inputElement, "Passwords do NOT match");
-                matchPasswords = false;
             }
         });
 
@@ -86,6 +81,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+function verifyPassword(){
+    const pw = document.getElementById("password").value;
+    const pwConf = document.getElementById("confirm_password").value;
+    const input = document.querySelectorAll(".form__input").item(7);
+    const inputPas = document.querySelectorAll(".form__input").item(6);
+    if(pw === "")
+        return false;
+    if(pw.length < 8){
+        setInputError(inputPas, "Passwords length must be atleast 8 characters");
+        return false;
+    }
+    if(pw !== pwConf){
+        setInputError(input, "Passwords do NOT match");
+        return false;
+    }
+    return true;
+}
+
+
 
 //menu code
 // let header = document.querySelector('.header');
@@ -100,15 +114,6 @@ hamburgerMenu.addEventListener('click', function () {
     header.classList.toggle('menu-open');
 
 })
-
-
-// const form = document.querySelector("#linkCreateAccount")
-// eField = form.querySelector(".email"),
-//     eInput = eField.querySelector("input"),
-//     pField = form.querySelector(".password"),
-//     pInput = pField.querySelector("input");
-
-
 
 
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css" href="https://fonts.googleapis.com/css?family=Roboto"/>
+    <link rel="stylesheet" href="/css/login.css" href="https://fonts.googleapis.com/css?family=Roboto/">
     >
     <title>Login/ Sign Up</title>
 </head>
@@ -79,7 +79,7 @@
     </form>
 
 
-    <form class="form form--hidden" id="createAccount">
+    <form class="form form--hidden" id="createAccount" onsubmit="return verifyPassword()" name="form">
         <h1 class="form__title">Create Account</h1>
         <div class="form__message form__message--error"></div>
         <div class="form__input-group">
@@ -91,11 +91,11 @@
             <div class="form__input-error-message "></div>
         </div>
         <div class="form__input-group">
-            <input type="text" class="form__input" autofocus placeholder="First Name">
+            <input id="firstName" type="text" class="form__input" autofocus placeholder="First Name">
             <div class="form__input-error-message "></div>
         </div>
         <div class="form__input-group">
-            <input type="text" class="form__input" autofocus placeholder="Last Name">
+            <input id="lastName" type="text" class="form__input" autofocus placeholder="Last Name">
             <div class="form__input-error-message "></div>
         </div>
         <div class="form__input-group">
@@ -106,10 +106,10 @@
             <input type="password" class="form__input" id="confirm_password" autofocus placeholder="Confirm password">
             <div class="form__input-error-message "></div>
         </div>
-        <button class="form__button" type="submit">Sign Up</button>
+        <button id="signUp_btn" class="form__button" type="submit">Sign Up</button>
         <a href="/auth/facebook" class="fb connect">Sign up with Facebook</a>
         <p class="form__text">
-            <a class="form__link" href="/login" id="linkLogin" class="form__link">Already have an account? Sign in</a>
+            <a href="/login" id="linkLogin" class="form__link">Already have an account? Sign in</a>
         </p>
     </form>
 </div>
