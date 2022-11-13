@@ -1,4 +1,3 @@
-//Selectors
 
 let header = document.querySelector('.header');
 let hamburgerMenu = document.querySelector('.hamburger-menu');
@@ -15,7 +14,7 @@ hamburgerMenu.addEventListener('click', function () {
 
 
 async function getHotels() {
-    const hotels = await fetch('/api/hotels', {
+    return await fetch('/api/hotels', {
         method: 'GET',
         mode: 'cors',
         cache: 'no-cache',
@@ -29,8 +28,6 @@ async function getHotels() {
         .then((data) => {
             return data
         })
-    return hotels
-
 }
 
 

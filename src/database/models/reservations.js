@@ -28,6 +28,14 @@ let ReservationSchema = new Schema({
     checkOut: {
         required: true,
         type: Date
+    },
+    suiteRoomAmount: {
+        required: false,
+        type: Number
+    },
+    regularRoomAmount: {
+        required: false,
+        type: Number
     }
 }, {versionKey: false, timestamps: true})
 
