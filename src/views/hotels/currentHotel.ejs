@@ -48,7 +48,6 @@
     </div>
 </header>
 
-
 <section class="rooms">
     <div class="container">
         <h5 class="section-head">
@@ -62,90 +61,87 @@
             </p>         
            
         </h5>
+        <div class="grid rooms-grid">
+            <div class="grid-item featured-rooms">
+                <div class="room-info-wrap">
+                    <h5 class="room-name">Luxurious Family Room</h5>
 
-        <div class="grid-item featured-rooms">
-
-            <div class="image-wrap">
-                
-                <h5 class="room-name">Luxurious Family Room</h5>
-                <img class="room-image" src="/css/images/room_3.jpg" alt="">
-            </div>
-
-
-            <div class="room-info-wrap">
-                <span class="room-price">$<%= hotel.pricePerNight %><span class="per-night"> per night</span></span>
-                <p class="paragraph">
-                    The biggest suite in the hotel. has flat screen TV, ocean view, queens size bed and a pourch.
-                </p>
-                <div class="input-group">
-                    <label for="rooms" class="input-label">How many rooms</label>
-                    <select id="regular-room-amount" name="adultsChoice" class="options">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
+                    <img class="room-image" src="/css/images/room_3.jpg" alt="">
+                    <span class="room-price">$<%= hotel.pricePerNight %><span class="pern-night">
+                        Per Night</span>
+                    </span>
+                    <p class="paragraph">
+                        The biggest suite in the hotel. has flat screen TV, ocean view,
+                         queens size bed and a pourch.
+                    </p>
+                    <div class="input-group">
+                        <label for="rooms" class="input-label">How many rooms</label>
+                        <select id="regular-room-amount" name="adultsChoice" class="options">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <a href="/reservetions" class="btn rooms-btn">Book Now</a>
                 </div>
-                <a href="/" class="btn rooms-btn">BOOK NOW &rarr;</a>
             </div>
-        </div>
 
-        <div class="grid-item featured-rooms">
 
-            <div class="image-wrap">
-                <h5 class="room-name">Ocean View Suite</h5>
-
-                <img class="room-image" src="/css/images/room_9.jpg" alt="">
-            </div>
-            <div class="room-info-wrap">
-                <span class="room-price">$<%= hotel.pricePerSuite %><span class="per-night">per night</span></span>
-                <p class="paragraph">
-                    The biggest suite in the hotel. has flat screen TV, ocean view, queens size bed and a pourch.
-                </p>
-
-                <div class="input-group">
-                    <label for="rooms" class="input-label">How many rooms</label>
-                    <select id="suite-room-amount" name="adultsChoice" class="options">
-                        <option>0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
+            <div class="grid-item featured-rooms">
+                <div class="room-info-wrap">
+                    <h5 class="room-name">Ocean View Suite</h5>
+                    <img class="room-image" src="/css/images/room_3.jpg" alt="">
+                    <span class="room-price">$<%= hotel.pricePerSuite %><span class="pern-night">
+                        Per Night</span>
+                    </span>
+                    <p class="paragraph">
+                        The biggest suite in the hotel. has flat screen TV, ocean view,
+                         queens size bed and a pourch.
+                    </p>
+                    <div class="input-group">
+                        <label for="rooms" class="input-label">How many rooms</label>
+                        <select id="regular-room-amount" name="adultsChoice" class="options">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                    <a href="/reservetions" class="btn rooms-btn">Book Now</a>
                 </div>
-
-                <a href="/" class="btn rooms-btn">BOOK NOW &rarr;</a>
             </div>
+
+
 
         </div>
     </div>
-    <a onclick="addReservation()" class="btn rooms-btn">BOOK NOW &rarr;</a>
-
 </section>
 
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-content-brand">
-                <a href="/" class="logo">
-                    <img class="logo-image" src="/css/images/w_logo.png" alt="">
+
+<footer class="footer ">
+    <div class="container ">
+        <div class="footer-content ">
+            <div class="footer-content-brand ">
+                <a href="/" class="logo ">
+                    <img class="logo-image " src="/css/images/w_logo.png " alt=" ">
                 </a>
-                <div class="paragraph">
+                <div class="paragraph ">
                     E-mail: Whotels@gmail.com
                 </div>
             </div>
-            <div class="social-media-wrap">
-                <h4 class="footer-heading">Follow Us</h4>
-                <div class="social-media">
-                    <a href="https://he-il.facebook.com/WHotels/" class="sm-link"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.instagram.com/whotels/" class="sm-link"><i class="fab fa-instagram"></i></a>
+            <div class="social-media-wrap ">
+                <h4 class="footer-heading ">Follow Us</h4>
+                <div class="social-media ">
+                    <a href="https://he-il.facebook.com/WHotels/ " class="sm-link "><i
+                                class="fab fa-facebook-square "></i></a>
+                    <a href="https://www.instagram.com/whotels/ " class="sm-link "><i
+                                class="fab fa-instagram "></i></a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-<script src="/scripts/hotel.js"></script>
-
+<script src="/scripts/reservations.js "></script>
 </body>
-
-</html>
