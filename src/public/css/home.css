@@ -257,6 +257,8 @@ section {
 
 }
 
+
+
 .main-sub-heading {
     color: rgb(220, 228, 230);
     font-size: 4rem;
@@ -267,6 +269,13 @@ section {
 
 .title {
     font-size: 4.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+}
+
+.user-title {
+    font-size: 10rem;
     text-transform: uppercase;
     letter-spacing: 3px;
 
@@ -853,8 +862,8 @@ section {
     /* The width is the width of the web page */
 }
 
-/*reservations table style*/
+/* reservations table style
 .reservations-table{
-        
-}
+
+} */
 
