@@ -130,8 +130,8 @@
                 <img src="/css/images/hotel_astro_resort.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[0].hotelName %></h5>
                 <span class="hotel-price ">From $<%= hotels[0].pricePerNight %>/night</span>
+                <span>Avarage rating : <%= hotels[0].guestReviews.avgRating %></span>
                 <div class="hotel-rating ">
-                    <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -148,8 +148,9 @@
                 <img src="/css/images/hotel_the_enchanted_garden.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[1].hotelName %></h5>
                 <span class="hotel-price ">From $<%= hotels[1].pricePerNight %>/night</span>
+                <span>Avarage rating : <%= hotels[1].guestReviews.avgRating %></span>
+
                 <div class="hotel-rating ">
-                    <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
@@ -166,13 +167,16 @@
                 <img src="/css/images/hotel_the_paradise.jpg " alt=" " class="hotel-image ">
                 <h5 class="hotel-name "><%= hotels[2].hotelName %></h5>
                 <span class="hotel-price ">From $<%= hotels[2].pricePerNight %>/night</span>
+                <span>Avarage rating : <%= hotels[2].guestReviews.avgRating %></span>
+
                 <div class="hotel-rating ">
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
-                    <i class="fas fa-star-half rating "></i>
+                    <i class="fas fa-star rating "></i>
+                    <i class="fas fa-star rating "></i>
                 </div>
-                <a href="/" class="btn btn-gradient ">Book Now
+                <a href="/currentHotel" class="btn btn-gradient ">Book Now
                     <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
                 </a>
             </div>

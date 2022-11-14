@@ -51,14 +51,10 @@
 <section class="rooms">
     <div class="container">
         <h5 class="section-head">
-            <span class="heading">Rooms</span>
-            <span id="hotel-name" class="sub-heading"><%= hotel.hotelName %></span>
+            <span id="hotel-name"  class="room-heading"><%= hotel.hotelName %></span>
+            <!-- <span class="room-sub-heading">Avarage rating : <%= hotel.guestReviews.avgRating %></span> -->
             <p class="paragraph" id="checkIn">check in: <%= checkIn %> </p>
             <p class="paragraph" id="checkOut">check out:  <%= checkOut %></p>
-            <p>
-                Avarage rating : <%= hotel.guestReviews.avgRating %>
-                
-            </p>         
            
         </h5>
         <div class="grid rooms-grid">
@@ -66,7 +62,7 @@
                 <div class="room-info-wrap">
                     <h5 class="room-name">Luxurious Family Room</h5>
 
-                    <img class="room-image" src="/css/images/room_3.jpg" alt="">
+                    <img class="room-image" src="/css/images/room_4.jpg" alt="">
                     <span class="room-price">$<%= hotel.pricePerNight %><span class="pern-night">
                         Per Night</span>
                     </span>
@@ -83,7 +79,7 @@
                             <option>3</option>
                         </select>
                     </div>
-                    <a href="/reservetions" class="btn rooms-btn">Book Now</a>
+                    <a href="/reservations" class="btn rooms-btn">Book Now</a>
                 </div>
             </div>
 
@@ -91,7 +87,7 @@
             <div class="grid-item featured-rooms">
                 <div class="room-info-wrap">
                     <h5 class="room-name">Ocean View Suite</h5>
-                    <img class="room-image" src="/css/images/room_3.jpg" alt="">
+                    <img class="room-image" src="/css/images/room_8.jpg" alt="">
                     <span class="room-price">$<%= hotel.pricePerSuite %><span class="pern-night">
                         Per Night</span>
                     </span>
@@ -108,7 +104,7 @@
                             <option>3</option>
                         </select>
                     </div>
-                    <a href="/reservetions" class="btn rooms-btn">Book Now</a>
+                    <a href="/reservations" class="btn rooms-btn">Book Now</a>
                 </div>
             </div>
 
