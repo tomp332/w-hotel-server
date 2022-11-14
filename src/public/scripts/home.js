@@ -1,4 +1,3 @@
-
 let header = document.querySelector('.header');
 let hamburgerMenu = document.querySelector('.hamburger-menu');
 
@@ -61,6 +60,7 @@ async function initMap() {
 
 window.initMap = initMap;
 
+
 let logout = document.querySelector('#logout');
 logout.addEventListener('click', async e => {
     e.preventDefault();
@@ -75,9 +75,10 @@ logout.addEventListener('click', async e => {
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
     }).then(function (response) {
-        console.log(response)
-        if (response.status === 200 || response.status === 401) {
+        if (response.status === 200) {
             window.location.href = '/'
+        } else {
+            alert("Couldn't log user out, please try again")
         }
     })
 });
