@@ -16,9 +16,8 @@
 <main>
     <div class="reservations-class">
         <div class="container">
-            <div class="main-heading">
-                <% if(userReservations.length > 0 ){ %>
-                    <h2 class="subtitile">Your Reservations</h2>
+            <% if(userReservations.length > 0 ){ %>
+                    <h2 class="main-sub-heading">Your Reservations:</h2>
                     <!--Reservations Table-->
                     <table class="reservations-table">
                         <thead>
@@ -34,7 +33,7 @@
                         <tbody>
                             <% for (var i = 0; i < userReservations.length ; i++) { %>
                                 <tr>
-                                    <td> <%= userReservations[i].hotelName %></td>
+                                    <td><%= userReservations[i].hotelName %></td>
                                     <td><%= userReservations[i].country %></td>
                                     <td><%= userReservations[i].city %></td>
                                     <td><%= userReservations[i].fullAddress %></td>
@@ -49,7 +48,7 @@
                         </tbody>
                     </table>
             <% } else{ %>
-                    <h2 class="subtitile">You have no reservations yet :(</h2>
+                    <h2 class="main-sub-heading">You have no reservations yet :(</h2>
                     <a href="/hotels" class="btn btn-gradient">Book Now
                         <span>
                         <div class="dots">
@@ -59,8 +58,7 @@
                     </a>
                 <% } %>
             </div>
-        </div>
-    </div>
+       </div>
 </main>
 
 <body>
@@ -78,19 +76,22 @@
                     <a href="/hotels" class="nav-link">Hotels</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/reservations" class="nav-link">Reservations</a>
-                </li>
-
-                <li class="nav-item">
                     <a href="/contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">Logout</a>
+                    <a href="/reservations" class="nav-link">Reservations</a>
+                </li>
+
+               
+                <li class="nav-item">
+                    <a id="logout" class="nav-link">Logout</a>
                 </li>
             </ul>
         </nav>
     </div>
 </header>
+
+
 
 <footer class="footer ">
     <div class="container ">
