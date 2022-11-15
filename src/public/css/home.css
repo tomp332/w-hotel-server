@@ -612,7 +612,6 @@ section {
 
 /*footer section styles*/
 .footer {
-    padding: 5rem 0;
     background-color: var(--purple-solid);
     color: #fff;
 
@@ -630,7 +629,8 @@ section {
 
 .footer-heading {
     text-transform: uppercase;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
+    margin-top: 50px;
 
 }
 
@@ -738,11 +738,6 @@ section {
 
     .footer .paragraph {
         margin-top: 2.5rem;
-
-    }
-
-    .footer-heading {
-        margin-bottom: 5rem;
 
     }
 

@@ -118,8 +118,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }).then(function (response) {
             console.log(response)
             if (response.status !== 200 || response.status === 500) {
+                const button = document.getElementById("signUp_btn");
+                button.disabled =true;
                 setFormMessage(createAccountForm, "error", "An account with this username already exists");
             } else {
+                button.disabled =false;
                 window.location.href='/user'
             }
         })
