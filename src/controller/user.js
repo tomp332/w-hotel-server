@@ -47,7 +47,7 @@ router.post('/', async function (req, res) {
                 console.log(`[+] Created new web user, ${newUser.username}`)
                 const hotels = await Hotels.find().exec()
                 res.cookie('authorization', token);
-                res.render('home', {user: newUser, hotels: hotels})
+                res.render('user.ejs', {user: newUser, hotels: hotels})
             }
         })
     } catch (e) {
