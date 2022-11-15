@@ -45,9 +45,8 @@ router.post('/', async function (req, res) {
                 res.status(500).send("Error adding new user or user already exists")
             } else {
                 console.log(`[+] Created new web user, ${newUser.username}`)
-                const hotels = await Hotels.find().exec()
-                res.cookie('authorization', token);
-                res.render('user.ejs', {user: newUser, hotels: hotels})
+                res.cookie('authorization', token)
+                res.send()
             }
         })
     } catch (e) {
