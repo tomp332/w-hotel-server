@@ -17,17 +17,6 @@ function clearInputError(inputElement) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
 }
 
-// function matchPassword(){
-//     let pw1=document.getElementById("password");
-//     let pw2=document.getElementById("confirm_password");
-//     if(pw1 !== pw2)
-//     {
-//         alert("Passwords did not match");
-//     }else{
-//         alert("Password created successfully");
-//     }
-// }
-
 let pas;
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
@@ -149,7 +138,6 @@ window.addEventListener('scroll', function () {
 
 hamburgerMenu.addEventListener('click', function () {
     header.classList.toggle('menu-open');
-
 })
 
 
