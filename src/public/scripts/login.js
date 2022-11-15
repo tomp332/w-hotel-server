@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 pas = e.target.value;
             }
             if(e.target.id === "confirm_password" && e.target.value !== pas){
-                setInputError(inputElement, "mismatch passwords");
+                setInputError(inputElement, "Passwords do not match");
                 const button = document.getElementById("signUp_btn");
                 button.disabled =true;
             }
@@ -109,16 +109,16 @@ document.addEventListener("DOMContentLoaded", () => {
             redirect: 'follow',
             referrerPolicy: 'no-referrer',
             body: JSON.stringify({
-                username: e.target[2].value,
-                email: e.target[3].value,
-                firstName: e.target[4].value,
-                lastName: e.target[5].value,
-                password: e.target[6].value
+                username: e.target[0].value,
+                email: e.target[1].value,
+                firstName: e.target[2].value,
+                lastName: e.target[3].value,
+                password: e.target[5].value
             })
         }).then(function (response) {
             console.log(response)
-            if (response.status !== 200) {
-                setFormMessage(createAccountForm, "error", "Ann account with this username already exists");
+            if (response.status !== 200 || response.status === 500) {
+                setFormMessage(createAccountForm, "error", "An account with this username already exists");
             } else {
                 window.location.href='/user'
             }
@@ -140,9 +140,6 @@ hamburgerMenu.addEventListener('click', function () {
     header.classList.toggle('menu-open');
 })
 
-
-
-// //create account fetch
 
 
 
