@@ -121,7 +121,7 @@ async function signUp(event) {
         })
     }).then(function (response) {
         if (response.status !== 200){
-            setFormMessage(createAccountForm, "error", "An account with this username already exists");
+            setFormMessage(createAccountForm, "error", "An account with this username/email already exists");
         } else {
             window.location.href = 'user'
         }
