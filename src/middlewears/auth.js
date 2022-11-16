@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 const Users = require("../database/models/users");
 const Hotels = require("../database/models/hotels");
-const Reservations = require("../database/models/reservations");
 
 const loginValidator = async (req, res, next) => {
     try {
@@ -31,39 +30,41 @@ const loginValidator = async (req, res, next) => {
         res.sendStatus(400)
     }
 }
-const validCookieExists = async (req, res, next) => {
+const validCookieExists = function (req, res, next) {
     try {
         let token = req.cookies.authorization
         if (token == null) {
             res.auth = false
-            next()
+            return next()
         }
         jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
             if (err) {
                 res.auth = false
-                next()
-            }
-            Users.findOne({sessionKey: req.cookies.authorization}, async (err, user) => {
-                if (err) {
-                    res.auth = false
-                    next()
-                } else {
-                    if (user) {
-                        res.auth = true
-                        res.user = user
-                        next();
-                    } else {
+                return next()
+            } else {
+                Users.findOne({sessionKey: req.cookies.authorization}, async (err, user) => {
+                    if (err) {
                         res.auth = false
-                        next()
+                        return next()
+                    } else {
+                        if (user) {
+                            res.auth = true
+                            res.user = user
+                            return next();
+                        } else {
+                            res.auth = false
+                            return next()
+                        }
                     }
-                }
-            })
+                })
+            }
         });
     } catch (err) {
         res.auth = false
-        next()
+        return next()
     }
 }
+
 
 const webCookieValidator = async (req, res, next) => {
     const hotels = await Hotels.find().exec()
