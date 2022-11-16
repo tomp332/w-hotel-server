@@ -31,6 +31,7 @@
     <div class="reservations-class">
         <div class="container">
             <% if(userReservations.length > 0 ){ %>
+                    <h2 class="main-sub-heading">.</h2>
                     <h2 class="main-sub-heading">Your Reservations:</h2>
                     <!--Reservations Table-->
                     <table class="reservations-table">
@@ -54,9 +55,12 @@
                                     <td><%= userReservations[i].suiteRoomAmount %></td>
                                     <td><%= userReservations[i].regularRoomAmount %></td>
                                     <td>
-                                        <input type="button" id="button" value="Edit" class="edit" onclick="edit_row()">
-                                        <input type="button" id="btn" value="Save" class="save" onclick="save_row()">
-                                        <input type="button" value="Delete" class="delete" onclick="delete_row()">
+                                        <input type="button" id="edit-btn" value="Edit" class="btn" onclick="edit_row()">
+                                       
+                                    </td>
+                                    <td>
+                                        <input type="button" id="save-btn" value="Save" class="btn" onclick="save_row()">
+                                        <input type="button"id="del-btn" value="Delete" class="btn" onclick="delete_row()">
                                     </td>
                                 </tr>
                                 <tr class="active-row">
