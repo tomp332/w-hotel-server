@@ -42,7 +42,7 @@ router.post('/', async function (req, res) {
         await newUser.save(async (err) =>{
             if (err) {
                 console.log(`[-] Error adding new user or user already exists: ${err}`)
-                res.status(401)
+                res.sendStatus(401)
             } else {
                 console.log(`[+] Created new web user, ${newUser.username}`)
                 res.cookie('authorization', token)
