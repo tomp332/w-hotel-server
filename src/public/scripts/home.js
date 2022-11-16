@@ -29,6 +29,9 @@ async function getHotels() {
         })
 }
 
+document.getElementById("myAnchor").addEventListener("click", function (event) {
+    event.preventDefault()
+});
 
 // Generate google map
 async function initMap() {

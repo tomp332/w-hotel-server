@@ -18,43 +18,7 @@
 </head>
 
 <body>
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '689459155649652',
-            xfbml: true,
-            version: 'v15.0'
-        });
-        FB.AppEvents.logPageView();
-    };
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-
-    //validation of the date range 
-   function checkDateRange(start, end) {
-   // Parse the entries
-   var startDate = document.getElementById("checkin");
-   var endtDate = document.getElementById("checkout");
-   // Check the date range, 86400000 is the number of milliseconds in one day
-   var difference = (endDate - startDate) / (86400000 * 7);
-   if (difference < 0) {
-       alert("The start date must come before the end date.");
-       return false;
-   }
-   
-   return true;
-}
-</script>
 <header class="header">
     <div class="container">
         <nav class="nav">
@@ -100,9 +64,9 @@
 
     <section class="booking">
         <div class="container">
-            <form id="hotels-search-form" action="hotels" method="post" class="form">
+            <form id="hotels-search-form" action="hotel" method="get" class="form">
                 <div class="input-group ">
-                    <label for="destination" id="hotel-dest" lass="input-label">Hotels</label>
+                    <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
                     <select name="hotelName" id="hotel-choice" class="options">
                         <% for (var i = 0; i < hotels.length ; i++) { %>
                             <option>
@@ -157,8 +121,6 @@
         <div id="map"></div>
     </section>
 
-
-    
 
 </main>
 
