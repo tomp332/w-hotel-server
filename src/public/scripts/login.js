@@ -1,4 +1,5 @@
 //login/sing up form function
+//login error message-
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -18,9 +19,10 @@ function clearInputError(inputElement) {
 }
 
 let pas;
+const loginForm = document.querySelector("#login");
+const createAccountForm = document.querySelector("#createAccount");
+
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
 
     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
         e.preventDefault();
@@ -33,101 +35,108 @@ document.addEventListener("DOMContentLoaded", () => {
         loginForm.classList.remove("form--hidden");
         createAccountForm.classList.add("form--hidden");
     });
-
-    //fetch login
-    loginForm.addEventListener("submit", async e => {
-        e.preventDefault();
-        await fetch('/auth/login', {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify({
-                username: e.target[0].value,
-                password: e.target[1].value
-            })
-        }).then(function (response) {
-            console.log(response)
-            if (response.status !== 200) {
-                setFormMessage(loginForm, "error", "Invalid username/password provided");
-            } else {
-                window.location.href = '/user'
-            }
-        })
-    });
-
-    document.querySelectorAll(".form__input").forEach(inputElement => {
-        inputElement.addEventListener("blur", e => {
-            if (e.target.id === "signupUsername" && e.target.value.length < 6) {
-                setInputError(inputElement, "Username must be at least 6 characters");
-            }
-            if ((e.target.id === "signupUsername" || e.target.id === "firstName" || e.target.id === "lastName") &&  !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
-                setInputError(inputElement, "it must be only characters");
-            }
-            if(e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
-                setInputError(inputElement, "Wrong email validation");
-            }
-            if(e.target.id === "password" && e.target.value.length < 8){
-                setInputError(inputElement, "Passwords length must be atleast 8 characters");
-            }
-            if(e.target.id === "password"){
-                pas = e.target.value;
-            }
-            if(e.target.id === "confirm_password" && e.target.value !== pas){
-                setInputError(inputElement, "Passwords do not match");
-                const button = document.getElementById("signUp_btn");
-                button.disabled =true;
-            }
-            if(e.target.id === "confirm_password" && e.target.value === pas){
-                const button = document.getElementById("signUp_btn");
-                button.disabled =false;
-            }
-
-        });
-        inputElement.addEventListener("input", e => {
-            clearInputError(inputElement);
-        });
-
-    });
-
-    //create account fetch
-    createAccountForm.addEventListener('submit', async e => {
-        console.log(e.target);
-        await fetch('/api/user', {
-            method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify({
-                username: e.target[0].value,
-                email: e.target[1].value,
-                firstName: e.target[2].value,
-                lastName: e.target[3].value,
-                password: e.target[5].value
-            })
-        }).then(function (response) {
-            console.log(response)
-            if (response.status !== 200 || response.status === 500) {
-                const button = document.getElementById("signUp_btn");
-                button.disabled =true;
-                setFormMessage(createAccountForm, "error", "An account with this username already exists");
-            } else {
-                button.disabled =false;
-                window.location.href='/user'
-            }
-        })
-    });
 });
+
+//fetch login
+loginForm.addEventListener("submit", async e => {
+    e.preventDefault();
+    await fetch('/auth/login', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            username: e.target[0].value,
+            password: e.target[1].value
+        })
+    }).then(function (response) {
+        console.log(response)
+        if (response.status !== 200) {
+            setFormMessage(loginForm, "error", "Invalid username/password provided");
+        } else {
+            window.location.href = '/user'
+        }
+    })
+});
+
+
+//sign up validations
+document.querySelectorAll(".form__input").forEach(inputElement => {
+    inputElement.addEventListener("blur", e => {
+        if (e.target.id === "signupUsername" && e.target.value.length < 6) {
+            setInputError(inputElement, "Username must be at least 6 characters");
+        }
+        if ((e.target.id === "signupUsername" || e.target.id === "firstName" || e.target.id === "lastName") &&  !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
+            setInputError(inputElement, "it must be only characters");
+        }
+        if(e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+            setInputError(inputElement, "Wrong email validation");
+        }
+        if(e.target.id === "password" && e.target.value.length < 8){
+            setInputError(inputElement, "Passwords length must be atleast 8 characters");
+        }
+        if(e.target.id === "password"){
+            pas = e.target.value;
+        }
+        if(e.target.id === "confirm_password" && e.target.value !== pas){
+            setInputError(inputElement, "Passwords do not match");
+            const button = document.getElementById("signUp_btn");
+            button.disabled =true;
+        }
+        if(e.target.id === "confirm_password" && e.target.value === pas){
+            const button = document.getElementById("signUp_btn");
+            button.disabled =false;
+        }
+
+    });
+    inputElement.addEventListener("input", e => {
+        clearInputError(inputElement);
+    });
+
+});
+
+//create account fetch
+createAccountForm.addEventListener('submit', async e => {
+    debugger;
+    const button = document.getElementById("signUp_btn");
+    button.disabled =true;
+    console.log(e.target);
+    await fetch('/api/user', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            username: e.target[0].value.toString,
+            email: e.target[1].value.toString,
+            firstName: e.target[2].value.toString,
+            lastName: e.target[3].value.toString,
+            password: e.target[5].value.toString
+        })
+    }).then(async function (response) {
+        const data = await response.json();
+        console.log('response from fetch: ',data)
+        debugger;
+        if (response.status !== 200 || response.status === 500) {
+            setFormMessage(createAccountForm, "error", "An account with this username already exists");
+        } else {
+            button.disabled =false;
+            window.location.href='/user'
+        }
+    })
+});
+
+
 
 
 //menu code
