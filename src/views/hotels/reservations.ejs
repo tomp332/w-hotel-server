@@ -12,11 +12,26 @@
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/reservations.css">
 </head>
+<script>
+    function edit_row(no)
+    {
+     
+    }
 
+    function save_row()
+    {
+        
+    }
+
+    function delete_row()
+    {
+    }
+</script>
 <main>
     <div class="reservations-class">
         <div class="container">
             <% if(userReservations.length > 0 ){ %>
+                    <!-- <h2 class="main-sub-heading">.</h2> -->
                     <h2 class="main-sub-heading">Your Reservations:</h2>
                     <!--Reservations Table-->
                     <table class="reservations-table">
@@ -28,6 +43,7 @@
                                 <th>Address</th>
                                 <th>Suites</th>
                                 <th>Standard Rooms</th>
+                                <th></th><th></th><th></th>      
                             </tr>
                         </thead>
                         <tbody>
@@ -39,10 +55,14 @@
                                     <td><%= userReservations[i].fullAddress %></td>
                                     <td><%= userReservations[i].suiteRoomAmount %></td>
                                     <td><%= userReservations[i].regularRoomAmount %></td>
+                                    <!-- buttons -->
+                                    <td><input type="button" id="edit-btn" value="Edit" class="button" onclick="edit_row()"></td>
+                                    <td><input type="button" id="save-btn" value="Save" class="button" onclick="save_row()"> </td>
+                                    <td><input type="button"id="del-btn" value="Delete" class="button" onclick="delete_row()"></td>
                                 </tr>
                                 <tr class="active-row">
                                     <td>Melissa</td>
-                                    <td>5150</td>
+                                    <td>5150</td>                
                                 </tr>
                             <% } %>
                         </tbody>
