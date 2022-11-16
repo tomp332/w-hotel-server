@@ -14,6 +14,7 @@ hamburgerMenu.addEventListener('click', function () {
 })
 
 
+
 let logout = document.querySelector('#logout');
 logout.addEventListener('click', async e => {
     e.preventDefault();
@@ -35,3 +36,4 @@ logout.addEventListener('click', async e => {
         }
     })
 });
+
