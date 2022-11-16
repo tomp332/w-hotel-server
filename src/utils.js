@@ -1,7 +1,5 @@
 const uuid4 = require("uuid4")
 const Users = require("./database/models/users")
-const Hotels = require("./database/models/hotels");
-const Reservations = require("./database/models/reservations");
 
 const addNewUser = async function (newUserData, token = "") {
     const userId = uuid4()
