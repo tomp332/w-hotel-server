@@ -99,38 +99,6 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
 
 });
 
-//create account fetch
-createAccountForm.addEventListener('submit', async e => {
-    const button = document.getElementById("signUp_btn");
-    button.disabled = true;
-    await fetch('/api/user', {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify({
-            username: e.target[0].value.toString,
-            email: e.target[1].value.toString,
-            firstName: e.target[2].value.toString,
-            lastName: e.target[3].value.toString,
-            password: e.target[5].value.toString
-        })
-    }).then(async function (response) {
-        const data = await response.json();
-        console.log('response from fetch: ', data)
-        if (response.status !== 200 || response.status === 500) {
-            setFormMessage(createAccountForm, "error", "An account with this username already exists");
-        } else {
-            button.disabled = false;
-            window.location.href = '/user'
-        }
-    })
-});
 
 async function signUp(event) {
     event.preventDefault()
@@ -153,7 +121,7 @@ async function signUp(event) {
         })
     }).then(function (response) {
         if (response.status !== 200){
-            setFormMessage(createAccountForm, "error", "An account with this username already exists");
+            setFormMessage(createAccountForm, "error", "An account with this username/email already exists");
         } else {
             window.location.href = 'user'
         }
