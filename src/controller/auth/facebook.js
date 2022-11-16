@@ -45,30 +45,34 @@ router.get("/callback", passport.authenticate("facebook", {
     scope: ['email'],
     failureRedirect: "/403"
 }), async function (req, res) {
-    let userJson = req.user._json
-    req.user = {
-        username: `${userJson.first_name}_${userJson.last_name}`,
-        firstName: userJson.first_name,
-        lastName: userJson.last_name,
-        email: userJson.email
+    try {
+        let userJson = req.user._json
+        req.user = {
+            username: `${userJson.first_name}_${userJson.last_name}`,
+            firstName: userJson.first_name,
+            lastName: userJson.last_name,
+            email: userJson.email
+        }
+        const payload = {
+            username: req.user.email
+        }
+        let token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'})
+        const user = await Users.findOne({email: req.user.email}).select('-_id -updatedAt').exec()
+        if (user === null) {
+            // Add new user by his facebook email
+            await utils.addNewUser(req.user, token)
+        } else {
+            // Search by user email
+            const user = await Users.findOneAndUpdate({email: req.user.email}, {sessionKey: token}, {})
+            console.log(`[+] Updated new session key for user, ${user.userId}`)
+        }
+        console.log(`[+] Successfully initialized user authenticated from facebook`)
+        const hotels = await Hotels.find().exec()
+        res.cookie('authorization', token)
+        res.render('user.ejs', {hotels: hotels, user: req.user})
+    } catch (err) {
+        res.sendStatus(401)
     }
-    const payload = {
-        username: req.user.email
-    }
-    let token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'})
-    const user = await Users.findOne({email: req.user.email}).select('-_id -updatedAt').exec()
-    if (user === null) {
-        // Add new user by his facebook email
-        await utils.addNewUser(req.user, token)
-    } else {
-        // Search by user email
-        const user = await Users.findOneAndUpdate({email: req.user.email}, {sessionKey: token}, {})
-        console.log(`[+] Updated new session key for user, ${user.userId}`)
-    }
-    console.log(`[+] Successfully initialized user authenticated from facebook`)
-    const hotels = await Hotels.find().exec()
-    res.cookie('authorization', token)
-    res.render('user.ejs', {hotels: hotels, user: req.user})
 })
 
 module.exports = router

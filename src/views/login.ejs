@@ -10,28 +10,6 @@
 </head>
 
 <body>
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '689459155649652',
-            xfbml: true,
-            version: 'v15.0'
-        });
-        FB.AppEvents.logPageView();
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
 
 <header class="header">
     <div class="container">
@@ -78,7 +56,7 @@
     </form>
 
 
-    <form class="form form--hidden" id="createAccount">
+    <form onsubmit="signUp(event)" class="form form--hidden" id="createAccount">
         <h1 class="form__title">Create Account</h1>
         <div class="form__message form__message--error"></div>
         <div class="form__input-group">
@@ -108,7 +86,7 @@
         <button id="signUp_btn" class="form__button" type="submit">Sign Up</button>
         <a href="/auth/facebook" class="fb connect">Sign up with Facebook</a>
         <p class="form__text">
-            <a href="/login" id="linkLogin" class="form__link">Already have an account? Sign in</a>
+            <a type="submit" id="linkLogin" class="form__link">Already have an account? Sign in</a>
         </p>
     </form>
 </div>

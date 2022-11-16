@@ -55,7 +55,6 @@ loginForm.addEventListener("submit", async e => {
             password: e.target[1].value
         })
     }).then(function (response) {
-        console.log(response)
         if (response.status !== 200) {
             setFormMessage(loginForm, "error", "Invalid username/password provided");
         } else {
@@ -71,26 +70,26 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
         if (e.target.id === "signupUsername" && e.target.value.length < 6) {
             setInputError(inputElement, "Username must be at least 6 characters");
         }
-        if ((e.target.id === "signupUsername" || e.target.id === "firstName" || e.target.id === "lastName") &&  !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
+        if ((e.target.id === "signupUsername" || e.target.id === "firstName" || e.target.id === "lastName") && !(/^[A-Za-z0-9]*$/.test(e.target.value))) {
             setInputError(inputElement, "it must be only characters");
         }
-        if(e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+        if (e.target.id === "email" && !e.target.value.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
             setInputError(inputElement, "Wrong email validation");
         }
-        if(e.target.id === "password" && e.target.value.length < 8){
+        if (e.target.id === "password" && e.target.value.length < 8) {
             setInputError(inputElement, "Passwords length must be atleast 8 characters");
         }
-        if(e.target.id === "password"){
+        if (e.target.id === "password") {
             pas = e.target.value;
         }
-        if(e.target.id === "confirm_password" && e.target.value !== pas){
+        if (e.target.id === "confirm_password" && e.target.value !== pas) {
             setInputError(inputElement, "Passwords do not match");
             const button = document.getElementById("signUp_btn");
-            button.disabled =true;
+            button.disabled = true;
         }
-        if(e.target.id === "confirm_password" && e.target.value === pas){
+        if (e.target.id === "confirm_password" && e.target.value === pas) {
             const button = document.getElementById("signUp_btn");
-            button.disabled =false;
+            button.disabled = false;
         }
 
     });
@@ -102,10 +101,8 @@ document.querySelectorAll(".form__input").forEach(inputElement => {
 
 //create account fetch
 createAccountForm.addEventListener('submit', async e => {
-    debugger;
     const button = document.getElementById("signUp_btn");
-    button.disabled =true;
-    console.log(e.target);
+    button.disabled = true;
     await fetch('/api/user', {
         method: 'POST',
         mode: 'cors',
@@ -125,18 +122,43 @@ createAccountForm.addEventListener('submit', async e => {
         })
     }).then(async function (response) {
         const data = await response.json();
-        console.log('response from fetch: ',data)
-        debugger;
+        console.log('response from fetch: ', data)
         if (response.status !== 200 || response.status === 500) {
             setFormMessage(createAccountForm, "error", "An account with this username already exists");
         } else {
-            button.disabled =false;
-            window.location.href='/user'
+            button.disabled = false;
+            window.location.href = '/user'
         }
     })
 });
 
-
+async function signUp(event) {
+    event.preventDefault()
+    await fetch('/api/user', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            username:document.getElementById('signupUsername').value,
+            email: document.getElementById('email').value,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            password: document.getElementById('password').value
+        })
+    }).then(function (response) {
+        if (response.status !== 200){
+            setFormMessage(createAccountForm, "error", "An account with this username already exists");
+        } else {
+            window.location.href = 'user'
+        }
+    })
+}
 
 
 //menu code

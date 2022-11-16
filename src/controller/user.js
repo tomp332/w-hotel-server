@@ -13,7 +13,7 @@ router.get('/', webCookieValidator, async function (req, res) {
         if (Object.keys(users).length > 0) {
             res.send(users)
         } else {
-            console.log("No users found for GET request")
+            console.log("[-] No users found for GET request")
             res.send("No user or users were found");
         }
     } catch (err) {
@@ -42,7 +42,7 @@ router.post('/', async function (req, res) {
         await newUser.save(async (err) =>{
             if (err) {
                 console.log(`[-] Error adding new user or user already exists: ${err}`)
-                res.status(500).send("Error adding new user or user already exists")
+                res.status(401)
             } else {
                 console.log(`[+] Created new web user, ${newUser.username}`)
                 res.cookie('authorization', token)

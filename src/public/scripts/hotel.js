@@ -22,7 +22,6 @@ async function addReservation() {
             checkOut: checkOut
         })
     }).then(function (response) {
-        console.log(response)
         if (response.status !== 200) {
             alert("You must be logged in")
         } else {

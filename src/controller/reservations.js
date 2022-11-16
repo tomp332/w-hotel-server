@@ -32,7 +32,6 @@ router.put('/', webCookieValidator, async function (req, res) {
 // Add new reservation
 router.post('/', webCookieValidatorNoRender, async function (req, res) {
     try {
-        console.log(req.body)
         const checkIn = req.body.checkIn.split('-')
         const checkOut = req.body.checkOut.split('-')
         const hotel = await Hotels.findOne({'hotelName': req.body.hotelName}).exec()
@@ -64,7 +63,7 @@ router.get('/', webCookieValidator, async function (req, res) {
         res.json(reservations)
         console.log(`[+] Fetched ${Object.keys(reservations).length} reservations, for user ID: ${res.userId}`)
     } catch (err) {
-        console.log(`Error fetching current reservations in DB, ${err}`)
+        console.log(`[-] Error fetching current reservations in DB, ${err}`)
         res.json('Error fetching current reservations in DB').status(500)
     }
 })
