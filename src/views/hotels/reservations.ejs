@@ -13,18 +13,40 @@
     <link rel="stylesheet" href="/css/reservations.css">
 </head>
 <script>
-    function edit_row(no)
+    function edit_row()
     {
-     
+        // document.getElementById("edit-btn").style.display="none";
+        // document.getElementById("save-btn").style.display="block";
+            
+        var rooms=document.getElementById("regularRoomAmount").ToString;
+        var suites = document.getElementById("suiteRoomAmount");
+        alert(rooms);
+
+        var roomData=rooms.innerHTML;
+        var suitesData = suites.innerHTML; 
+
+            
+        rooms.innerHTML="<input type='text' id='regularRoomAmount"+"' value='"+roomData+"'>";
+        suites.innerHTML="<input type='text' id='suiteRoomAmount"+"' value='"+suitesData+"'>";
+
     }
 
     function save_row()
     {
-        
+        var roomVal=document.getElementById("regularRoomAmount").value;
+        var suitesVal=document.getElementById("suiteRoomAmount").value;
+        alert(suitesVal);
+
+        document.getElementById("regularRoomAmount").innerHTML=roomVal;
+        document.getElementById("suiteRoomAmount").innerHTML=suitesVal;
+
+        document.getElementById("edit-btn"+no).style.display="block";
+        document.getElementById("save-btn"+no).style.display="none";
     }
 
     function delete_row()
     {
+        
     }
 </script>
 <main>
@@ -42,7 +64,7 @@
                                 <th>City</th>
                                 <th>Address</th>
                                 <th>Suites</th>
-                                <th>Standard Rooms</th>
+                                <th>Standard Rooms</th>                          
                                 <th></th><th></th><th></th>      
                             </tr>
                         </thead>
@@ -53,8 +75,8 @@
                                     <td><%= userReservations[i].country %></td>
                                     <td><%= userReservations[i].city %></td>
                                     <td><%= userReservations[i].fullAddress %></td>
-                                    <td><%= userReservations[i].suiteRoomAmount %></td>
-                                    <td><%= userReservations[i].regularRoomAmount %></td>
+                                    <td id="suiteRoomAmount"><%= userReservations[i].suiteRoomAmount %></td>
+                                    <td id="regularRoomAmount"><%= userReservations[i].regularRoomAmount %></td>
                                     <!-- buttons -->
                                     <td><input type="button" id="edit-btn" value="Edit" class="button" onclick="edit_row()"></td>
                                     <td><input type="button" id="save-btn" value="Save" class="button" onclick="save_row()"> </td>
