@@ -20,7 +20,7 @@ router.get("/", webCookieValidator, async (req, res) => {
     res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
-router.get('/hotel', async (req, res) => {
+router.get('/hotel', webCookieValidator,async (req, res) => {
     try {
         const hotelName = req.query.hotelName
         const checkIn = req.query.checkIn.split('-')
