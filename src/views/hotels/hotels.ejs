@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+<link rel="stylesheet" href="/css/home.css">
 
 <head>
     <meta charset="UTF-8">
@@ -63,9 +64,9 @@
                 <span class="sub-heading">.</span>
                 <span class="heading"></span>
             </h5>
-            <form id="hotels-search-form" action="hotels" method="post" class="form">
+            <form id="hotels-search-form" action="hotel" method="get" class="form">
                 <div class="input-group ">
-                    <label for="destination" id="hotel-dest" lass="input-label">Hotels</label>
+                    <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
                     <select name="hotelName" id="hotel-choice" class="options">
                         <% for (var i = 0; i < hotels.length ; i++) { %>
                             <option>
@@ -113,7 +114,7 @@
                     Search
                     <span class="dots">
                             <i class="fas fa-ellipsis-h"></i>
-                        </span>
+                    </span>
                 </button>
             </form>
             <div id="map" style="height: 250px; width: 600px; border: 1px solid black; margin-left: 49%;"></div>
@@ -137,9 +138,9 @@
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star-half rating "></i>
                 </div>
-                <a href="" class="btn btn-gradient ">Book Now
+                <!-- <a href="" class="btn btn-gradient ">Book Now
                     <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
-                </a>
+                </a> -->
             </div>
         </div>
 
@@ -156,9 +157,9 @@
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                 </div>
-                <a href="/" class="btn btn-gradient ">Book Now
+                <!-- <a href="/" class="btn btn-gradient ">Book Now
                     <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
-                </a>
+                </a> -->
             </div>
         </div>
 
@@ -176,9 +177,9 @@
                     <i class="fas fa-star rating "></i>
                     <i class="fas fa-star rating "></i>
                 </div>
-                <a href="/currentHotel" class="btn btn-gradient ">Book Now
+                <!-- <a href="/currentHotel" class="btn btn-gradient ">Book Now
                     <span class="dots "><i class="fas fa-ellipsis-h "></i></span>
-                </a>
+                </a> -->
             </div>
         </div>
     </div>

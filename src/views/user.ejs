@@ -57,7 +57,7 @@
         return true;
     }
 </script>
-<header class="header">
+<header class="header" id = "user">
     <div class="container">
         <nav class="nav">
             <a href="" class="logo">
@@ -74,12 +74,18 @@
                 <li class="nav-item">
                     <a href="/hotels" class="nav-link">Hotels</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/reservations" class="nav-link">Reservations</a>
+                </li>
 
                 <li class="nav-item">
                     <a href="/contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/login" class="nav-link">Login/Sign up</a>
+                    <a href="/reservations" class="nav-link">Reservations</a>
+                </li>                  
+                <li class="nav-item">
+                    <a class="nav-link" id="logout">Logout</a>
                 </li>
             </ul>
         </nav>
@@ -107,9 +113,9 @@
 
     <section class="booking">
         <div class="container">
-            <form id="hotels-search-form" action="hotels" method="post" class="form">
+            <form id="hotels-search-form" action="hotel" method="get" class="form">
                 <div class="input-group ">
-                    <label for="destination" id="hotel-dest" lass="input-label">Hotels</label>
+                    <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
                     <select name="hotelName" id="hotel-choice" class="options">
                         <% for (var i = 0; i < hotels.length ; i++) { %>
                             <option>
@@ -183,8 +189,8 @@
             <div class="social-media-wrap">
                 <h4 class="footer-heading">Follow Us</h4>
                 <div class="social-media">
-                    <a href="https://he-il.facebook.com/WHotels/" class="sm-link"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.instagram.com/whotels/" class="sm-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://he-il.facebook.com/WHotels/" class="sm-link"><i class="fab fa-facebook-square" target="_blank"></i></a>
+                    <a href="https://www.instagram.com/whotels/" class="sm-link"><i class="fab fa-instagram" target="_blank"></i></a>
                 </div>
             </div>
         </div>

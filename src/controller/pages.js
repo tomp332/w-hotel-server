@@ -6,7 +6,6 @@ const {webCookieValidator, validCookieExists} = require("../middlewears/auth");
 const Users = require("../database/models/users");
 
 
-
 router.get("/403", function (_, res) {
     let options = {
         root: path.join(path.resolve(__dirname, '..', 'public'))
@@ -21,11 +20,11 @@ router.get("/", webCookieValidator, async (req, res) => {
     res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
-router.post("/hotels", validCookieExists, async (req, res) => {
+router.get('/hotel', webCookieValidator,async (req, res) => {
     try {
-        const hotelName = req.body.hotelName
-        const checkIn = req.body.checkIn.split('-')
-        const checkOut = req.body.checkOut.split('-')
+        const hotelName = req.query.hotelName
+        const checkIn = req.query.checkIn.split('-')
+        const checkOut = req.query.checkOut.split('-')
         const hotel = await Hotels.findOne({'hotelName': hotelName}).exec()
         const reservation = await Reservations.findOne({
             'hotelId': hotel.hotelId,
@@ -37,11 +36,11 @@ router.post("/hotels", validCookieExists, async (req, res) => {
             hotel: hotel,
             available: hotelAvailable,
             auth: res.auth,
-            checkIn: req.body.checkIn,
-            checkOut: req.body.checkOut
+            checkIn: req.query.checkIn,
+            checkOut: req.query.checkOut
         });
     } catch (err) {
-        console.log(`Error fetching required hotel from DB, ${err}`)
+        console.log(`[-] Error fetching required hotel from DB, ${err}`)
         const hotels = await Hotels.find().exec()
         res.render('home.ejs', {
             hotels: hotels,
@@ -49,6 +48,7 @@ router.post("/hotels", validCookieExists, async (req, res) => {
         });
     }
 })
+
 
 router.get("/login", (req, res) => {
     res.render('login.ejs', {});

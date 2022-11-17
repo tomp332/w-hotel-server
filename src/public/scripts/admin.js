@@ -78,7 +78,6 @@ logout.addEventListener('click', async e => {
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
     }).then(function (response) {
-        console.log(response)
         if (response.status === 200 || response.status === 401) {
             window.location.href = '/'
         }

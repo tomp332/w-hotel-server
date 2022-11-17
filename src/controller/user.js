@@ -3,6 +3,7 @@ const uuid4 = require("uuid4")
 const {webCookieValidator} = require("../middlewears/auth");
 const Users = require("../database/models/users");
 const jwt = require("jsonwebtoken");
+const Hotels = require("../database/models/hotels");
 
 
 // Get user information
@@ -12,7 +13,7 @@ router.get('/', webCookieValidator, async function (req, res) {
         if (Object.keys(users).length > 0) {
             res.send(users)
         } else {
-            console.log("No users found for GET request")
+            console.log("[-] No users found for GET request")
             res.send("No user or users were found");
         }
     } catch (err) {
@@ -38,14 +39,14 @@ router.post('/', async function (req, res) {
         }
         let token = jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: '24h'})
         const newUser = new Users({...req.body, userId: userId, sessionKey: token})
-        await newUser.save(function (err) {
+        await newUser.save(async (err) =>{
             if (err) {
                 console.log(`[-] Error adding new user or user already exists: ${err}`)
-                res.status(500).send("Error adding new user or user already exists")
+                res.sendStatus(401)
             } else {
                 console.log(`[+] Created new web user, ${newUser.username}`)
-                res.cookie('authorization', token);
-                res.render('home', {user: newUser})
+                res.cookie('authorization', token)
+                res.send()
             }
         })
     } catch (e) {

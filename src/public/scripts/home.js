@@ -29,6 +29,9 @@ async function getHotels() {
         })
 }
 
+document.getElementById("myAnchor").addEventListener("click", function (event) {
+    event.preventDefault()
+});
 
 // Generate google map
 async function initMap() {
@@ -62,23 +65,25 @@ window.initMap = initMap;
 
 
 let logout = document.querySelector('#logout');
-logout.addEventListener('click', async e => {
-    e.preventDefault();
-    await fetch('/auth/logout', {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-    }).then(function (response) {
-        if (response.status === 200) {
-            window.location.href = '/'
-        } else {
-            alert("Couldn't log user out, please try again")
-        }
-    })
-});
+if(logout){
+    logout.addEventListener('click', async e => {
+        e.preventDefault();
+        await fetch('/auth/logout', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+        }).then(function (response) {
+            if (response.status === 200) {
+                window.location.href = '/'
+            } else {
+                alert("Couldn't log user out, please try again")
+            }
+        })
+    });
+}
