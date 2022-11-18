@@ -1,18 +1,5 @@
 //Selectors
 
-let header = document.querySelector('.header');
-let hamburgerMenu = document.querySelector('.hamburger-menu');
-
-window.addEventListener('scroll', function () {
-    let windowPosition = window.scrollY > 0;
-    header.classList.toggle('active', window.scrollY > 0);
-})
-
-hamburgerMenu.addEventListener('click', function () {
-    header.classList.toggle('menu-open');
-
-})
-
 
 async function addReservation() {
     const hotelName = document.getElementById("hotel-name").textContent
@@ -46,11 +33,41 @@ async function addReservation() {
     })
 }
 
-let logout = document.querySelector('#logout');
-logout.addEventListener('click', async e => {
-    e.preventDefault();
-    await fetch('/auth/logout', {
-        method: 'GET',
+$(document).ready(function () {
+    $("#logout").click(async e => {
+        e.preventDefault();
+        await fetch('/auth/logout', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+        }).then(function (response) {
+            if (response.status === 200) {
+                window.location.href = '/'
+            } else {
+                alert("Couldn't log user out, please try again")
+            }
+        })
+    })
+
+    $(".delete-buttons").click(async function () {
+        if (confirm("Do you really want to delete this reservation ?")) {
+            let buttonId = this.id
+            if (await delete_row(buttonId)) {
+                // Remove the reservation if success
+                $(this).parents("tr").remove();
+            }
+        }
+    });
+
+});
+
+async function delete_row(buttonId) {
+    let rowId = buttonId.split('-')[1]
+    return await fetch('/api/reservations', {
+        method: 'DELETE',
         mode: 'cors',
         cache: 'no-cache',
         credentials: 'include',
@@ -59,12 +76,15 @@ logout.addEventListener('click', async e => {
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            hotelName: document.getElementById(`hotelName-${rowId}`).textContent
+        })
     }).then(function (response) {
-        if (response.status === 200){
-            window.location.href = '/'
-        }else{
-            alert("Couldn't log user out, please try again")
+        if (response.status !== 200) {
+            alert("Error deleting reservation, please try again")
+            return false
+        } else {
+            return true
         }
     })
-});
-
+}

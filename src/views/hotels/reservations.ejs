@@ -7,100 +7,65 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>W-Hotels</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/scripts/reservations.js "></script>
     <link rel="icon" type="image/png" href="/css/images/black_logo.png.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/reservations.css">
 </head>
-<script>
-    function edit_row()
-    {
-        // document.getElementById("edit-btn").style.display="none";
-        // document.getElementById("save-btn").style.display="block";
-            
-        var rooms=document.getElementById("regularRoomAmount").ToString;
-        var suites = document.getElementById("suiteRoomAmount");
-        alert(rooms);
-
-        var roomData=rooms.innerHTML;
-        var suitesData = suites.innerHTML; 
-
-            
-        rooms.innerHTML="<input type='text' id='regularRoomAmount"+"' value='"+roomData+"'>";
-        suites.innerHTML="<input type='text' id='suiteRoomAmount"+"' value='"+suitesData+"'>";
-
-    }
-
-    function save_row()
-    {
-        var roomVal=document.getElementById("regularRoomAmount").value;
-        var suitesVal=document.getElementById("suiteRoomAmount").value;
-        alert(suitesVal);
-
-        document.getElementById("regularRoomAmount").innerHTML=roomVal;
-        document.getElementById("suiteRoomAmount").innerHTML=suitesVal;
-
-        document.getElementById("edit-btn"+no).style.display="block";
-        document.getElementById("save-btn"+no).style.display="none";
-    }
-
-    function delete_row()
-    {
-        
-    }
-</script>
 <main>
     <div class="reservations-class">
         <div class="container">
             <% if(userReservations.length > 0 ){ %>
-                    <!-- <h2 class="main-sub-heading">.</h2> -->
-                    <h2 class="main-sub-heading">Your Reservations:</h2>
-                    <!--Reservations Table-->
-                    <table class="reservations-table">
-                        <thead>
-                            <tr>
-                                <th>Hotel Name</th>
-                                <th>Country</th>
-                                <th>City</th>
-                                <th>Address</th>
-                                <th>Suites</th>
-                                <th>Standard Rooms</th>                          
-                                <th></th><th></th><th></th>      
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for (var i = 0; i < userReservations.length ; i++) { %>
-                                <tr>
-                                    <td><%= userReservations[i].hotelName %></td>
-                                    <td><%= userReservations[i].country %></td>
-                                    <td><%= userReservations[i].city %></td>
-                                    <td><%= userReservations[i].fullAddress %></td>
-                                    <td id="suiteRoomAmount"><%= userReservations[i].suiteRoomAmount %></td>
-                                    <td id="regularRoomAmount"><%= userReservations[i].regularRoomAmount %></td>
-                                    <!-- buttons -->
-                                    <td><input type="button" id="edit-btn" value="Edit" class="button" onclick="edit_row()"></td>
-                                    <td><input type="button" id="save-btn" value="Save" class="button" onclick="save_row()"> </td>
-                                    <td><input type="button"id="del-btn" value="Delete" class="button" onclick="delete_row()"></td>
-                                </tr>
-                                <tr class="active-row">
-                                    <td>Melissa</td>
-                                    <td>5150</td>                
-                                </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
+                <!-- <h2 class="main-sub-heading">.</h2> -->
+                <h2 class="main-sub-heading">Your Reservations:</h2>
+                <!--Reservations Table-->
+                <table id="reservations-table" class="reservations-table">
+                    <thead>
+                    <tr>
+                        <th>Hotel Name</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Address</th>
+                        <th>Suites</th>
+                        <th>Standard Rooms</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (var i = 0; i < userReservations.length ; i++) { %>
+                        <tr id="row-<%= i %>">
+                            <td id="hotelName-<%= i %>"><%= userReservations[i].hotelName %></td>
+                            <td id="country-<%= i %>"><%= userReservations[i].country %></td>
+                            <td id="city-<%= i %>"><%= userReservations[i].city %></td>
+                            <td id="fullAddress-<%= i %>"><%= userReservations[i].fullAddress %></td>
+                            <td id="suiteRoomAmount-<%= i %>"><%= userReservations[i].suiteRoomAmount %></td>
+                            <td id="regularRoomAmount-<%= i %>"><%= userReservations[i].regularRoomAmount %></td>
+                            <!-- buttons -->
+                            <td><input type="button" id='edit-<%= i %>' value="Edit" class="button"
+                                       onclick="edit_row()"></td>
+                            <td>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
+                            </td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
             <% } else{ %>
-                    <h2 class="main-sub-heading">You have no reservations yet :(</h2>
-                    <a href="/hotels" class="btn btn-gradient">Book Now
-                        <span>
+                <h2 class="main-sub-heading">You have no reservations yet :(</h2>
+                <a href="/hotels" class="btn btn-gradient">Book Now
+                    <span>
                         <div class="dots">
                             <i class="fas fa-allipsis-h"></i>
                         </div>
                     </span>
-                    </a>
-                <% } %>
-            </div>
-       </div>
+                </a>
+            <% } %>
+        </div>
+    </div>
 </main>
 
 <body>
@@ -124,7 +89,7 @@
                     <a href="/reservations" class="nav-link">Reservations</a>
                 </li>
 
-               
+
                 <li class="nav-item">
                     <a id="logout" class="nav-link">Logout</a>
                 </li>
@@ -132,7 +97,6 @@
         </nav>
     </div>
 </header>
-
 
 
 <footer class="footer ">
@@ -158,5 +122,5 @@
         </div>
     </div>
 </footer>
-<script src="/scripts/reservations.js "></script>
+
 </body>
