@@ -60,7 +60,7 @@ router.get('/', async function (req, res) {
 // Get all hotels in DB
 router.delete('/', webCookieValidator, async function (req, res) {
     try {
-        await Hotels.deleteOne({hotelId: req.body.hotelId})
+        await Hotels.deleteOne($or[{hotelName: req.body.hotelName}, {hotelId: req.body.hotelId}])
         console.log(`[+] Successfully removed hotel, hotelID: ${req.body.hotelId}`)
     } catch (err) {
         console.log(`[-] Failed to remove hotel, hotelID: ${req.body.hotelId}`)

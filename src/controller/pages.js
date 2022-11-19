@@ -6,19 +6,11 @@ const {webCookieValidator, validCookieExists, checkIfLoggedIn} = require("../mid
 const Users = require("../database/models/users");
 
 
-router.get("/403", function (_, res) {
+router.get("/404", function (_, res) {
     let options = {
         root: path.join(path.resolve(__dirname, '..', 'public'))
     };
     res.sendFile('403.html', options)
-})
-
-router.get("/", webCookieValidator, async (req, res) => {
-    const user = await Users.find({sessionKey: res.user.sessionKey}).exec()
-    const userReservations = await Reservations.find({userId: res.user.userId}).exec()
-    const hotels = await Hotels.find().exec()
-    console.log("[+] Is user an admin:", res.user.isAdmin)
-    res.render('user.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
 router.get('/hotel', checkIfLoggedIn, async (req, res) => {
@@ -63,15 +55,18 @@ router.get("/reservations", webCookieValidator, async (req, res) => {
 router.get('/user', webCookieValidator, async (req, res) => {
     const user = await Users.find({sessionKey: req.cookies.authorization}).exec()
     const hotels = await Hotels.find().exec()
+    const users = await Users.find().exec()
     console.log(`[+] Validated user, rendering user page for user: ${user[0].username}`)
     console.log("[+] Is user an admin:", res.user.isAdmin)
-    if(res.user.isAdmin ) {
+    if (res.user.isAdmin) {
         const allReservations = await Reservations.find().exec()
         res.render('admin.ejs', {
             hotels: hotels,
+            users: users,
             google: process.env.GOOGLE_API_KEY,
             user: user[0],
-            allReservations: allReservations})
+            allReservations: allReservations
+        })
     } else
         res.render('user.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels, user: user[0]})
 })
@@ -84,5 +79,22 @@ router.get('/hotels', validCookieExists, async (req, res) => {
     const hotels = await Hotels.find().exec()
     res.render("hotels/hotels.ejs", {google: process.env.GOOGLE_API_KEY, hotels: hotels, auth: res.auth})
 })
+
+router.get("/", webCookieValidator, async (req, res) => {
+    const user = await Users.find({sessionKey: res.user.sessionKey}).exec()
+    const userReservations = await Reservations.find({userId: res.user.userId}).exec()
+    const hotels = await Hotels.find().exec()
+    console.log("[+] Is user an admin:", res.user.isAdmin)
+    res.redirect('/user')
+    // res.render('user.ejs', {
+    //     google: process.env.GOOGLE_API_KEY,
+    //     hotels: hotels,
+    //     user: user[0],
+    //     userReservations: userReservations
+    // })
+})
+
+
+
 
 module.exports = router;

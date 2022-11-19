@@ -16,115 +16,131 @@
 <main>
     <div class="reservations-class">
         <div class="container">
-            <% if(allReservations.length > 0 ){ %>
-                <!-- <h2 class="main-sub-heading">.</h2> -->
-                <h2 class="main-sub-heading">Hello Admin</h2>
-                <h2 class="main-sub-heading">All Reservations:</h2>
-                <!--Reservations Table-->
-                <table id="reservations-table" class="reservations-table">
-                    <thead>
-                    <tr>
-                        <th>Reservation Id</th>
-                        <th>Hotel Name</th>
-                        <th>Country</th>
-                        <th>City</th>
-                        <th>Address</th>
-                        <th>Suites</th>
-                        <th>Standard Rooms</th>
-                        <th>Check In</th>
-                        <th>Check Out</th>
-                        <th></th>
-                        <th></th>
+            <h1 class="main">Admin Panel</h1>
+            <hr>
+            <!-- <h2 class="main-sub-heading">.</h2> -->
+            <h2 class="main-sub-heading">All Reservations:</h2>
+            <!--Reservations Table-->
+            <table id="reservations-table" class="reservations-table">
+                <thead>
+                <tr>
+                    <th>Reservation Id</th>
+                    <th>Hotel Name</th>
+                    <th>Country</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Suites</th>
+                    <th>Standard Rooms</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (var i = 0; i < allReservations.length ; i++) { %>
+                    <tr id="0row-<%= i %>">
+                        <td id="0reservationId-<%= i %>"><%= allReservations[i].reservationId %></td>
+                        <td id="0hotelName-<%= i %>"><%= allReservations[i].hotelName %></td>
+                        <td id="0country-<%= i %>"><%= allReservations[i].country %></td>
+                        <td id="0city-<%= i %>"><%= allReservations[i].city %></td>
+                        <td id="0fullAddress-<%= i %>"><%= allReservations[i].fullAddress %></td>
+                        <td id="0suiteRoomAmount-<%= i %>"><%= allReservations[i].suiteRoomAmount %></td>
+                        <td id="0regularRoomAmount-<%= i %>"><%= allReservations[i].regularRoomAmount %></td>
+                        <td id="0checkIn-<%= i %>"><%= allReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                        <td id="0checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                        <!-- buttons -->
+                        <td>
+                            <input type="button" id='edit-reservation-buttons-<%= i %>' value="Edit" class="button edit-reservation-buttons">
+                        </td>
+                        <td>
+                            <input type="button" id='0delete-<%= i %>' value="Delete" class="button delete-reservation-buttons"/>
+                        </td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <% for (var i = 0; i < allReservations.length ; i++) { %>
-                        <tr id="row-<%= i %>">
-                            <td id="reservationId-<%= i %>"><%= allReservations[i].reservationId %></td>
-                            <td id="hotelName-<%= i %>"><%= allReservations[i].hotelName %></td>
-                            <td id="country-<%= i %>"><%= allReservations[i].country %></td>
-                            <td id="city-<%= i %>"><%= allReservations[i].city %></td>
-                            <td id="fullAddress-<%= i %>"><%= allReservations[i].fullAddress %></td>
-                            <td id="suiteRoomAmount-<%= i %>"><%= allReservations[i].suiteRoomAmount %></td>
-                            <td id="regularRoomAmount-<%= i %>"><%= allReservations[i].regularRoomAmount %></td>
-                            <td id="checkIn-<%= i %>"><%= allReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
-                            <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
-                            <!-- buttons -->
-                            <td><input type="button" id='edit_button' value="Edit" class="button" onclick="edit_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save">
-                            </td>
-                            <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
-                            </td>
-                        </tr>
-                    <% } %>
-                    </tbody>
-                </table>
-            <% } else{ %>
-                <h2 class="main-sub-heading">You have no reservations yet :(</h2>
-                <a href="/hotels" class="btn btn-gradient">Book Now
-                    <span>
-                        <div class="dots">
-                            <i class="fas fa-allipsis-h"></i>
-                        </div>
-                    </span>
-                </a>
-            <% } %>
+                <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
 
     <div class="reservations-class">
         <div class="container">
-            <% if(hotels.length > 0 ){ %>
-                <!-- <h2 class="main-sub-heading">.</h2> -->
-                <h2 class="main-sub-heading">Hotels:</h2>
-                <!--Reservations Table-->
-                <table id="reservations-table" class="reservations-table">
-                    <thead>
-                    <tr>
-                        <th>Hotel Id</th>
-                        <th>Hotel Name</th>
-                        <th>Rating</th>
-                        <th>Address</th>
-                        <th>PricePerNight</th>
-                        <th>Location</th>
-                        <th>Guest Reviews</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% for (let i = 0; i < hotels.length ; i++) { %>
-                        <tr id="row-<%= i %>">
-                            <td id="hotelId-<%= i %>"><%= hotels[i].hotelId %></td>
-                            <td id="hotelsName-<%= i %>"><%= hotels[i].hotelName %></td>
-                            <td id="rating-<%= i %>"><%= hotels[i].rating.numStars %></td>
-                            <td id="address-<%= i %>"><%= hotels[i].address.fullAddress %></td>
-                            <td id="pricePerNight-<%= i %>"><%= hotels[i].pricePerNight %></td>
-                            <td id="location-<%= i %>"><%= hotels[i].address.city %></td>
-                            <td id="guestReviews-<%= i %>"><%= hotels[i].guestReviews.avgRating %></td>
-                            <td><input type="button" id='edit_hotel_button' value="Edit" class="button"
-                                       onclick="edit_hotel_row(<%= i %>)">
-                                <input type="button" id="save_hotel_button" value="Save" class="save" onclick='save_hotel_row("<%= i %>")'>
-                            </td>
-                            <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
-                            </td>
+            <!-- <h2 class="main-sub-heading">.</h2> -->
+            <h2 class="main-sub-heading">Hotels:</h2>
+            <!--Reservations Table-->
+            <table id="hotels-table" class="reservations-table">
+                <thead>
+                <tr>
+                    <th>Hotel Id</th>
+                    <th>Hotel Name</th>
+                    <th>Rating</th>
+                    <th>Address</th>
+                    <th>PricePerNight</th>
+                    <th>Location</th>
+                    <th>Guest Reviews</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (let i = 0; i < hotels.length ; i++) { %>
+                <tr id="1row-<%= i %>">
+                    <td id="1hotelId-<%= i %>"><%= hotels[i].hotelId %></td>
+                    <td id="1hotelName-<%= i %>"><%= hotels[i].hotelName %></td>
+                    <td id="1rating-<%= i %>"><%= hotels[i].rating.numStars %></td>
+                    <td id="1address-<%= i %>"><%= hotels[i].address.fullAddress %></td>
+                    <td id="1pricePerNight-<%= i %>"><%= hotels[i].pricePerNight %></td>
+                    <td id="1location-<%= i %>"><%= hotels[i].address.city %></td>
+                    <td id="1guestReviews-<%= i %>"><%= hotels[i].guestReviews.avgRating %></td>
+                    <td>
+                        <input type="button" id='1edit_hotel_button' value="Edit" class="button edit-hotel-buttons" >
+                    </td>
+                    <td>
+                        <input type="button" id='1delete-<%= i %>' value="Delete" class="button delete-hotel-buttons"/>
+                    </td>
                     <% } %>
-                    </tbody>
-                </table>
-                <% } else{ %>
-                    <h2 class="main-sub-heading">You have no reservations yet :(</h2>
-                    <a href="/hotels" class="btn btn-gradient">Book Now
-                        <span>
-                        <div class="dots">
-                            <i class="fas fa-allipsis-h"></i>
-                        </div>
-                    </span>
-                    </a>
-            <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <div class="reservations-class">
+        <div class="container">
+            <!-- <h2 class="main-sub-heading">.</h2> -->
+            <h2 class="main-sub-heading">All Registered Users:</h2>
+            <!--Reservations Table-->
+            <table id="users-table" class="reservations-table">
+                <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (var i = 0; i < users.length ; i++) { %>
+                    <tr id="2row-<%= i %>">
+                        <td id="2userId-<%= i %>"><%= users[i].userId %></td>
+                        <td id="2username-<%= i %>"><%= users[i].username %></td>
+                        <td id="2email-<%= i %>"><%= users[i].email %></td>
+                        <!-- buttons -->
+                        <td>
+                            <input type="button" id='1edit_hotel_button' value="Edit" class="button edit-user-buttons" >
+                        </td>
+                        <td>
+                            <input type="button" id='2delete-<%= i %>' value="Delete" class="button delete-user-buttons"/>
+                        </td>
+
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 </main>
 
 
@@ -142,9 +158,6 @@
             </div>
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" id="logout">Logout</a>
                 </li>
             </ul>
@@ -156,7 +169,7 @@
     <div class="container">
         <div class="footer-content">
             <div class="footer-content-brand">
-                <a href="/ " class="logo">
+                <a href="/" class="logo">
                     <img class="logo-image" src="/css/images/w_logo.png" alt="">
                 </a>
                 <div class="paragraph">

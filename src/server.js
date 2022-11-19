@@ -47,6 +47,11 @@ app.use('/auth', authRouter)
 // main API routes
 app.use('/api', apiRouter)
 
+// For all unkown routes
+app.get('*', function (req, res) {
+    console.log('[+] Unknown route requested, routing to home page')
+    res.redirect('/404')
+});
 
 // Web socket server
 const wss = new WebSocket.Server({port: process.env.WEBSOCKET_PORT});

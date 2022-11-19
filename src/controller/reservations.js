@@ -22,10 +22,11 @@ router.delete('/', webCookieValidator, async (req, res) => {
 // Update reservation info
 router.put('/', webCookieValidator, async function (req, res) {
     try {
+        console.log(req.body.reservationId)
         const reservationId = req.body.reservationId
-        let reservation = await Reservations.findOne({reservationId: reservationId, userId: res.userId}).exec()
+        let reservation = await Reservations.findOne({reservationId: reservationId}).exec()
         if (!reservation) {
-            res.json("No reservation found by that id").status(404)
+            res.sendStatus(404)
             return
         }
         console.log(`[+] Found reservation ${reservation.reservationId} for modifying`)
@@ -40,7 +41,7 @@ router.put('/', webCookieValidator, async function (req, res) {
         res.send()
     } catch (err) {
         console.log(`[-] Failed to change reservation information, ${err}`)
-        res.json("No reservation was found or you've entered an incorrect reservation format").status(400)
+        res.sendStatus(500)
     }
 })
 
