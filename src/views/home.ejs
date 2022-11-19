@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -67,7 +68,6 @@
         <div class="container">
             <form id="hotels-search-form" action="hotel" method="get" class="form">
                 <div class="input-group ">
-                    
                     <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
                     <select name="hotelName" id="hotel-choice" class="options">
                         <% for (var i = 0; i < hotels.length ; i++) { %>
@@ -78,7 +78,7 @@
                     </select>
                 </div>
 
-        
+
                 <div class="input-group">
                     <label id="checkin" for="check-in" class="input-label">Check in</label>
                     <input name="checkIn" type="date" class="input" id="check-in" required>
@@ -119,12 +119,13 @@
                     </span>
                 </button>
             </form>
-            <div id="map" style="height: 250px; width: 600px; border: 1px solid black; margin-left: 49%;"></div>
-         
         </div>
+        <div id="map"></div>
     </section>
 
-    
+
+
+
 </main>
 
 <footer class="footer">
@@ -141,17 +142,14 @@
             <div class="social-media-wrap">
                 <h4 class="footer-heading">Follow Us</h4>
                 <div class="social-media">
-                    <a href="https://he-il.facebook.com/WHotels/" class="sm-link"><i class="fab fa-facebook-square"
-                                                                                     target="_blank"></i></a>
-                    <a href="https://www.instagram.com/whotels/" class="sm-link"><i class="fab fa-instagram"
-                                                                                    target="_blank"></i></a>
+                    <a href="https://he-il.facebook.com/WHotels/" class="sm-link"><i class="fab fa-facebook-square" target="_blank"></i></a>
+                    <a href="https://www.instagram.com/whotels/" class="sm-link"><i class="fab fa-instagram" target="_blank"></i></a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-</body>
-<script src="scripts/contact.js"></script>
+<script src="/scripts/user.js"></script>
 </body>
 
 </html>
