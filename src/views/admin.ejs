@@ -15,7 +15,7 @@
 <main>
     <div class="reservations-class">
         <div class="container">
-            <% if(userReservations.length > 0 ){ %>
+            <% if(allReservations.length > 0 ){ %>
                 <!-- <h2 class="main-sub-heading">.</h2> -->
                 <h2 class="main-sub-heading">All Reservations:</h2>
                 <!--Reservations Table-->
@@ -39,23 +39,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (var i = 0; i < userReservations.length ; i++) { %>
+                    <% for (var i = 0; i < allReservations.length ; i++) { %>
                         <tr id="row-<%= i %>">
-                            <td id="reservationId-<%= i %>"><%= userReservations[i].reservationId %></td>
-                            <td id="hotelId-<%= i %>"><%= userReservations[i].hotelId %></td>
-                            <td id="userId-<%= i %>"><%= userReservations[i].userId %></td>
-                            <td id="hotelName-<%= i %>"><%= userReservations[i].hotelName %></td>
-                            <td id="country-<%= i %>"><%= userReservations[i].country %></td>
-                            <td id="city-<%= i %>"><%= userReservations[i].city %></td>
-                            <td id="fullAddress-<%= i %>"><%= userReservations[i].fullAddress %></td>
-                            <td id="suiteRoomAmount-<%= i %>"><%= userReservations[i].suiteRoomAmount %></td>
-                            <td id="regularRoomAmount-<%= i %>"><%= userReservations[i].regularRoomAmount %></td>
-                            <td id="checkIn-<%= i %>"><%= userReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
-                            <td id="checkOut-<%= i %>"><%= userReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                            <td id="reservationId-<%= i %>"><%= allReservations[i].reservationId %></td>
+                            <td id="hotelId-<%= i %>"><%= allReservations[i].hotelId %></td>
+                            <td id="userId-<%= i %>"><%= allReservations[i].userId %></td>
+                            <td id="hotelName-<%= i %>"><%= allReservations[i].hotelName %></td>
+                            <td id="country-<%= i %>"><%= allReservations[i].country %></td>
+                            <td id="city-<%= i %>"><%= allReservations[i].city %></td>
+                            <td id="fullAddress-<%= i %>"><%= allReservations[i].fullAddress %></td>
+                            <td id="suiteRoomAmount-<%= i %>"><%= allReservations[i].suiteRoomAmount %></td>
+                            <td id="regularRoomAmount-<%= i %>"><%= allReservations[i].regularRoomAmount %></td>
+                            <td id="checkIn-<%= i %>"><%= allReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                            <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
                             <!-- buttons -->
                             <td><input type="button" id='edit_button' value="Edit" class="button"
                                        onclick="edit_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= userReservations[i].reservationId %>")'>
+                                <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= allReservations[i].reservationId %>")'>
                             </td>
                             <td>
                                 <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>

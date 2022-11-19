@@ -15,23 +15,6 @@
     <link rel="stylesheet" href="/css/reservations.css">
 </head>
 
-<script>
-    let header = document.querySelector('.header');
-    let hamburgerMenu = document.querySelector('.hamburger-menu');
-
-
-
-    hamburgerMenu.addEventListener('click', function () {
-        header.classList.toggle('menu-open');
-
-    })
-
-    window.addEventListener('scroll', function () {
-        let windowPosition = window.scrollY > 0;
-        header.classList.toggle('active', window.scrollY > 0);
-    })
-
-</script>
 <main>
     <div class="reservations-class">
         <div class="container">
@@ -68,10 +51,11 @@
                             <!-- buttons -->
                             <td><input type="button" id='edit_button' value="Edit" class="button"
                                        onclick="edit_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= userReservations[i].reservationId %>")'>
+                                <input type="button" id="save_button" value="Save" class="save"
+                                       onclick='save_row("<%= i %>", "<%= userReservations[i].reservationId %>")'>
                             </td>
                             <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
 
                             </td>
                         </tr>

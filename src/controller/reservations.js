@@ -9,14 +9,9 @@ const Hotels = require("../database/models/hotels");
 // Delete a reservation
 router.delete('/', webCookieValidator, async (req, res) => {
     try {
-        if (res.user.isAdmin) {
-            // allow admin to remove all current user reservations
-            await Reservations.deleteMany({userId: res.body.userId})
-        } else {
-            await Reservations.deleteOne({hotelName: req.body.hotelName, userId: res.user.userId})
-            console.log(`[+] Successfully delete user reservation, username: ${res.user.username} hotelName: ${req.body.hotelName}`)
-            res.send()
-        }
+        await Reservations.deleteOne({hotelName: req.body.hotelName, userId: res.user.userId})
+        console.log(`[+] Successfully delete user reservation, username: ${res.user.username} hotelName: ${req.body.hotelName}`)
+        res.send()
     } catch (err) {
         console.log(`[-] Error deleting user reservation, ${err}`)
         res.sendStatus(500)

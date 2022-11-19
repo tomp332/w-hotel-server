@@ -17,6 +17,7 @@ router.get("/", webCookieValidator, async (req, res) => {
     const user = await Users.find({sessionKey: res.user.sessionKey}).exec()
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
     const hotels = await Hotels.find().exec()
+    console.log("Is user an admin:", res.user.isAdmin)
     res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
@@ -63,7 +64,15 @@ router.get('/user', webCookieValidator, async (req, res) => {
     const user = await Users.find({sessionKey: req.cookies.authorization}).exec()
     const hotels = await Hotels.find().exec()
     console.log(`[+] Validated user, rendering user page for user: ${user[0].username}`)
-    res.render('user.ejs', {hotels: hotels, user: user[0]})
+    console.log("[+] Is user an admin:", res.user.isAdmin)
+    if(res.user.isAdmin ) {
+        const allReservations = await Reservations.find().exec()
+        res.render('admin.ejs', {
+            hotels: hotels,
+            user: user[0],
+            allReservations: allReservations})
+    } else
+        res.render('user.ejs', {hotels: hotels, user: user[0]})
 })
 
 router.get('/contact', validCookieExists, (req, res) => {
