@@ -11,7 +11,23 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/home.css" type="text/css">
 </head>
+<script>
+    let header = document.querySelector('.header');
+    let hamburgerMenu = document.querySelector('.hamburger-menu');
 
+
+
+    hamburgerMenu.addEventListener('click', function () {
+        header.classList.toggle('menu-open');
+
+    })
+
+    window.addEventListener('scroll', function () {
+        let windowPosition = window.scrollY > 0;
+        header.classList.toggle('active', window.scrollY > 0);
+    })
+
+</script>
 <body>
 <header class="header">
     <div class="container">
@@ -80,7 +96,7 @@
                     <img class="logo-image" src="/css/images/w_logo.png" alt="">
                 </a>
                 <div class="paragraph">
-                    E-mail: Whotels@gmail.com
+                    E-mail: whotelsproject@gmail.com
 
                 </div>
             </div>
