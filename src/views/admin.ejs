@@ -55,13 +55,7 @@
                                        onclick='save_row("<%= i %>", "<%= allReservations[i].reservationId %>")'>
                             </td>
                             <td>
-<<<<<<< HEAD
                                 <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>
-=======
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"
-                                       onclick="delete_row(<%= i %>)"/>
-
->>>>>>> d43c727c960e5ac87a62255da4312523c271edff
                             </td>
                         </tr>
                     <% } %>
@@ -107,15 +101,15 @@
                     <% for (let i = 0; i < hotels.length ; i++) { %>
                         <tr id="row-<%= i %>">
                             <td id="hotelId-<%= i %>"><%= hotels[i].hotelId %></td>
-                            <td id="hotelName-<%= i %>"><%= hotels[i].hotelName %></td>
-                            <td id="rating-<%= i %>"><%= hotels[i].rating %></td>
-                            <td id="address-<%= i %>"><%= hotels[i].address %></td>
+                            <td id="hotelsName-<%= i %>"><%= hotels[i].hotelName %></td>
+                            <td id="rating-<%= i %>"><%= hotels[i].rating.numStars %></td>
+                            <td id="address-<%= i %>"><%= hotels[i].address.fullAddress %></td>
                             <td id="pricePerNight-<%= i %>"><%= hotels[i].pricePerNight %></td>
-                            <td id="location-<%= i %>"><%= hotels[i].location %></td>
-                            <td id="guestReviews-<%= i %>"><%= hotels[i].guestReviews %></td>
-                            <td><input type="button" id='edit_button' value="Edit" class="button"
+                            <td id="location-<%= i %>"><%= hotels[i].address.city %></td>
+                            <td id="guestReviews-<%= i %>"><%= hotels[i].guestReviews.avgRating %></td>
+                            <td><input type="button" id='edit_hotel_button' value="Edit" class="button"
                                        onclick="edit_hotel_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save" onclick='save_hotel_row("<%= i %>")'>
+                                <input type="button" id="save_hotel_button" value="Save" class="save" onclick='save_hotel_row("<%= i %>")'>
                             </td>
                             <td>
                                 <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_hotel_row(<%= i %>)"/>
@@ -149,9 +143,6 @@
                 <i class="fas fa-times"></i>
             </div>
             <ul class="nav-list">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Hello Admin</a>
-                </li>
                 <li class="nav-item">
                     <a href="/" class="nav-link">Home</a>
                 </li>

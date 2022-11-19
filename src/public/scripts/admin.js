@@ -236,11 +236,11 @@ async function delete_hotel_row(btnNum) {
 
 function edit_hotel_row(btnNum)
 {
-    document.getElementById("edit_button").style.display="none";
-    document.getElementById("save_button").style.display="block";
+    document.getElementById("edit_hotel_button").style.display="none";
+    document.getElementById("save_hotel_button").style.display="block";
 
     let hotelId=document.getElementById("hotelId-"+btnNum);
-    let hotelName=document.getElementById("hotelName-"+btnNum);
+    let hotelsName=document.getElementById("hotelsName-"+btnNum);
     let rating=document.getElementById("rating-"+btnNum);
     let address=document.getElementById("address-"+btnNum);
     let pricePerNight=document.getElementById("pricePerNight-"+btnNum);
@@ -249,7 +249,7 @@ function edit_hotel_row(btnNum)
 
 
     let hotelId_data=hotelId.innerHTML;
-    let hotelName_data=hotelName.innerHTML;
+    let hotelsName_data=hotelsName.innerHTML;
     let rating_data=rating.innerHTML;
     let address_data=address.innerHTML;
     let pricePerNight_data=pricePerNight.innerHTML;
@@ -257,7 +257,7 @@ function edit_hotel_row(btnNum)
     let guestReviews_data=guestReviews.innerHTML;
 
     hotelId.innerHTML="<input type='text' id='hotelId_text"+btnNum+"' value='"+hotelId_data+"'>";
-    hotelName.innerHTML="<input type='text' id='hotelName_text"+btnNum+"' value='"+hotelName_data+"'>";
+    hotelsName.innerHTML="<input type='text' id='hotelsName_text"+btnNum+"' value='"+hotelsName_data+"'>";
     rating.innerHTML="<input type='text' id='rating_text"+btnNum+"' value='"+rating_data+"'>";
     address.innerHTML="<input type='text' id='address_text"+btnNum+"' value='"+address_data+"'>";
     pricePerNight.innerHTML="<input type='text' id='pricePerNight_text"+btnNum+"' value='"+pricePerNight_data+"'>";
@@ -269,7 +269,7 @@ function edit_hotel_row(btnNum)
 async function save_hotel_row(btnNum)
 {
     let hotelId_val=document.getElementById("hotelId_text"+btnNum).value;
-    let hotelName_val=document.getElementById("hotelName_text"+btnNum).value;
+    let hotelsName_val=document.getElementById("hotelsName_text"+btnNum).value;
     let rating_val=document.getElementById("rating_text"+btnNum).value;
     let address_val=document.getElementById("address_text"+btnNum).value;
     let pricePerNight_val=document.getElementById("pricePerNight_text"+btnNum).value;
@@ -277,7 +277,7 @@ async function save_hotel_row(btnNum)
     let guestReviews_val=document.getElementById("address_text"+btnNum).value;
 
     document.getElementById("hotelId-"+btnNum).innerHTML=hotelId_val;
-    document.getElementById("hotelName-"+btnNum).innerHTML=hotelName_val;
+    document.getElementById("hotelsName-"+btnNum).innerHTML=hotelsName_val;
     document.getElementById("rating-"+btnNum).innerHTML=rating_val;
     document.getElementById("address-"+btnNum).innerHTML=address_val;
     document.getElementById("pricePerNight-"+btnNum).innerHTML=pricePerNight_val;
@@ -285,8 +285,8 @@ async function save_hotel_row(btnNum)
     document.getElementById("guestReviews-"+btnNum).innerHTML=guestReviews_val;
 
 
-    document.getElementById("edit_button").style.display="block";
-    document.getElementById("save_button").style.display="none";
+    document.getElementById("edit_hotel_button").style.display="block";
+    document.getElementById("save_hotel_button").style.display="none";
 
     return await fetch('/api/hotels', {
         method: 'PUT',
