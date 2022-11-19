@@ -1,8 +1,11 @@
+/*Import the fonts used*/
+@import url('https://fonts.googleapis.com/css?family=Courgette|Open+Sans:400,800&display=swap');
+
 .reservations-table {
+    font-family: 'Open Sans', sans-serif;
     border-collapse: collapse;
     margin-top: 45px;
     font-size: 0.9em;
-    font-family: sans-serif;
     min-width: 500px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
@@ -16,13 +19,13 @@
 
 .reservations-table th,
 .reservations-table td {
-    padding: 12px 15px;
+    padding: 15px 17px;
 
 }
 
 .reservations-table tbody tr {
     border-bottom: 1px solid #dddddd;
-    font-size: 2rem;
+    font-size: 1.7rem;
     background-color: whitesmoke;
 }
 
