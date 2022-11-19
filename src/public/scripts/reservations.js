@@ -1,6 +1,4 @@
 //Selectors
-
-<<<<<<< HEAD
 let header = document.querySelector('.header');
 let menu = document.getElementById("menu");
 
@@ -21,7 +19,6 @@ logout.addEventListener('click', async e => {
     e.preventDefault();
     await fetch('/auth/logout', {
         method: 'GET',
-=======
 
 async function addReservation() {
     const hotelName = document.getElementById("hotel-name").textContent

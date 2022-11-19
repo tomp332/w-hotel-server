@@ -1,3 +1,6 @@
+
+
+
 async function addReservation() {
     const hotelName = document.getElementById("hotel-name").textContent
     const suiteAmountRooms = document.getElementById("suite-room-amount").value
@@ -66,3 +69,4 @@ logout.addEventListener('click', async e => {
         }
     })
 });
+
