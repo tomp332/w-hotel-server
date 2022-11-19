@@ -35,7 +35,7 @@ router.post('/login', loginValidator, async function (req, res) {
         res.cookie('authorization', token)
         res.send()
     } catch (err) {
-        console.log(`Error updating user session key: ${err}`)
+        console.log(`[-] Error updating user session key: ${err}`)
         res.sendStatus(500)
     }
 })
