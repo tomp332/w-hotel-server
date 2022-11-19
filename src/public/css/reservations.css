@@ -1,6 +1,6 @@
 .reservations-table {
     border-collapse: collapse;
-    margin: 120px ;
+    margin-top: 45px;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 500px;
@@ -8,9 +8,10 @@
 }
 
 .reservations-table thead tr {
-    background-color: #5287b5;
-    color: #ffffff;
-    text-align: left;
+    background-color: #0ca3ba;
+    color: #242424;
+    text-align: center;
+    font-size: 18px;
 }
 
 .reservations-table th,
@@ -21,10 +22,8 @@
 
 .reservations-table tbody tr {
     border-bottom: 1px solid #dddddd;
-    font-weight: bold;
     font-size: 2rem;
-    color: #f3f3f3;
-
+    background-color: whitesmoke;
 }
 
 .reservations-table tbody tr:nth-of-type(even) {
@@ -33,7 +32,8 @@
 }
 
 .reservations-table tbody tr:last-of-type {
-    border-bottom: 2px solid #5287b5;
+    border-bottom: 2px solid #15a5ba;
+    padding-left: 5px;
 }
 
 .reservations-table tbody tr.active-row {

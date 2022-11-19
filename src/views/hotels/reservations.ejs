@@ -30,7 +30,8 @@
                         <th>Address</th>
                         <th>Suites</th>
                         <th>Standard Rooms</th>
-                        <th></th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -44,6 +45,8 @@
                             <td id="fullAddress-<%= i %>"><%= userReservations[i].fullAddress %></td>
                             <td id="suiteRoomAmount-<%= i %>"><%= userReservations[i].suiteRoomAmount %></td>
                             <td id="regularRoomAmount-<%= i %>"><%= userReservations[i].regularRoomAmount %></td>
+                            <td id="checkIn-<%= i %>"><%= userReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                            <td id="checkOut-<%= i %>"><%= userReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
                             <!-- buttons -->
                             <td><input type="button" id='edit-<%= i %>' value="Edit" class="button"
                                        onclick="edit_row()"></td>

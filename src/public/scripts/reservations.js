@@ -12,14 +12,6 @@ menu.addEventListener('click', function () {
 
 })
 
-
-
-let logout = document.querySelector('#logout');
-logout.addEventListener('click', async e => {
-    e.preventDefault();
-    await fetch('/auth/logout', {
-        method: 'GET',
-
 async function addReservation() {
     const hotelName = document.getElementById("hotel-name").textContent
     const suiteAmountRooms = document.getElementById("suite-room-amount").value
@@ -28,7 +20,6 @@ async function addReservation() {
     const checkOut = document.getElementById("checkOut").textContent
     fetch('/api/reservations', {
         method: 'POST',
->>>>>>> 96c55c61ba877b0fc1d3d84bfaa74e68b6594752
         mode: 'cors',
         cache: 'no-cache',
         credentials: 'include',
