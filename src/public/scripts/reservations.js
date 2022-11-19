@@ -1,4 +1,5 @@
 //Selectors
+const Hotels = require("../../database/models/hotels");
 let header = document.querySelector('.header');
 let menu = document.getElementById("menu");
 
@@ -122,7 +123,7 @@ function edit_row(btnNum)
     checkOut.innerHTML="<input type='text' id='checkOut_text"+btnNum+"' value='"+checkOut_data+"'>";
 }
 
-async function save_row(btnNum)
+async function save_row(btnNum, reservationId)
 {
     let suiteRoomAmount_val=document.getElementById("suiteRoomAmount_text"+btnNum).value;
     let regularRoomAmount_val=document.getElementById("regularRoomAmount_text"+btnNum).value;
@@ -138,8 +139,8 @@ async function save_row(btnNum)
     document.getElementById("edit_button").style.display="block";
     document.getElementById("save_button").style.display="none";
 
-    return await fetch('/api/reservations', {
-        method: 'UPDATE',
+         return await fetch('/api/reservations', {
+        method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
         credentials: 'include',
@@ -149,6 +150,7 @@ async function save_row(btnNum)
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
+            reservationId: reservationId,
             suiteRoomAmount: suiteRoomAmount_val,
             regularRoomAmount: regularRoomAmount_val,
             checkIn: checkIn_val,
