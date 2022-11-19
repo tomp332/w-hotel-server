@@ -95,7 +95,7 @@ async function delete_row(btnNum) {
             alert("Error deleting reservation, please try again")
             return false
         } else {
-            return true
+            window.location.href = '/reservations'
         }
     })
 }
