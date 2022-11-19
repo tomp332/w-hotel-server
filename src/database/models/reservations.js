@@ -5,7 +5,6 @@ let Schema = mongoose.Schema;
 let ReservationSchema = new Schema({
     userId: {
         type: String,
-        unique: true,
         required: true
     },
     hotelName: {

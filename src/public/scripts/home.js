@@ -1,5 +1,4 @@
 let header = document.querySelector('.header');
-let hamburgerMenu = document.querySelector('.hamburger-menu');
 
 window.addEventListener('scroll', function () {
     let windowPosition = window.scrollY > 0;

@@ -2,7 +2,7 @@ const router = require('express').Router()
 const path = require('path')
 const Hotels = require("../database/models/hotels");
 const Reservations = require("../database/models/reservations");
-const {webCookieValidator, validCookieExists} = require("../middlewears/auth");
+const {webCookieValidator, validCookieExists, checkIfLoggedIn} = require("../middlewears/auth");
 const Users = require("../database/models/users");
 
 
@@ -20,7 +20,7 @@ router.get("/", webCookieValidator, async (req, res) => {
     res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
-router.get('/hotel', async (req, res) => {
+router.get('/hotel', checkIfLoggedIn, async (req, res) => {
     try {
         const hotelName = req.query.hotelName
         const checkIn = req.query.checkIn.split('-')

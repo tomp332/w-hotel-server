@@ -103,8 +103,39 @@ const webCookieValidator = async (req, res, next) => {
     }
 };
 
+const checkIfLoggedIn = (req, res, next) => {
+    res.auth = false
+    let token = req.cookies.authorization
+    if (token == null) {
+        next()
+    } else {
+        jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
+            if (err) {
+                next()
+            }
+            Users.findOne({sessionKey: req.cookies.authorization}, async (err, user) => {
+                if (err) {
+                    next()
+                } else {
+                    if (user) {
+                        res.auth = true
+                        res.user = user
+                        console.log(user.isAdmin ? "[+] Authenticating an admin" : "[+] Authenticating regular user")
+                        // If this was made by an admin then it can have permissions to act as the specified user
+                        res.userId = (user.isAdmin) ? req.body.userId : user.userId
+                        next();
+                    } else {
+                        console.log(`[-] Found no user with valid token`)
+                        return res.sendStatus(401)
+                    }
+                }
+            })
+        })
+
+    }
+}
+
 const webCookieValidatorNoRender = async (req, res, next) => {
-    const hotels = await Hotels.find().exec()
     res.auth = false
     try {
         let token = req.cookies.authorization
@@ -141,4 +172,4 @@ const webCookieValidatorNoRender = async (req, res, next) => {
 };
 
 
-module.exports = {webCookieValidator, loginValidator, validCookieExists, webCookieValidatorNoRender}
+module.exports = {webCookieValidator, loginValidator, validCookieExists, webCookieValidatorNoRender, checkIfLoggedIn}
