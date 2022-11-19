@@ -17,12 +17,15 @@
         <div class="container">
             <% if(userReservations.length > 0 ){ %>
                 <!-- <h2 class="main-sub-heading">.</h2> -->
-                <h2 class="main-sub-heading">Your Reservations:</h2>
+                <h2 class="main-sub-heading">All Reservations:</h2>
                 <!--Reservations Table-->
+                <input type="text" id="admin__search" onkeyup="searchFunc()" placeholder="Search">
                 <table id="reservations-table" class="reservations-table">
                     <thead>
                     <tr>
-                        <th>reservation Id</th>
+                        <th>Reservation Id</th>
+                        <th>Hotel Id</th>
+                        <th>User Id</th>
                         <th>Hotel Name</th>
                         <th>Country</th>
                         <th>City</th>
@@ -39,6 +42,8 @@
                     <% for (var i = 0; i < userReservations.length ; i++) { %>
                         <tr id="row-<%= i %>">
                             <td id="reservationId-<%= i %>"><%= userReservations[i].reservationId %></td>
+                            <td id="hotelId-<%= i %>"><%= userReservations[i].hotelId %></td>
+                            <td id="userId-<%= i %>"><%= userReservations[i].userId %></td>
                             <td id="hotelName-<%= i %>"><%= userReservations[i].hotelName %></td>
                             <td id="country-<%= i %>"><%= userReservations[i].country %></td>
                             <td id="city-<%= i %>"><%= userReservations[i].city %></td>
