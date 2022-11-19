@@ -17,7 +17,7 @@ router.get("/", webCookieValidator, async (req, res) => {
     const user = await Users.find({sessionKey: res.user.sessionKey}).exec()
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
     const hotels = await Hotels.find().exec()
-    console.log("Is user an admin:", res.user.isAdmin)
+    console.log("[+] Is user an admin:", res.user.isAdmin)
     res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
