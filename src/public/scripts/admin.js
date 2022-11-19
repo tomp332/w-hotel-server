@@ -57,13 +57,13 @@ $(document).ready(function () {
         var checkOut = $(this).parents("tr").find("td:eq(8)").text()
 
 
-        $(this).parents("tr").find("td:eq(5)").html("<input class='input-reservation-"
+        $(this).parents("tr").find("td:eq(5)").html("<input onkeydown='return false' type='number' min='0' max='10' class='input-reservation-"
             + currentRowNumber + "'" + "id='edit-suites' name='edit_suites' value='" + suites + "'>");
-        $(this).parents("tr").find("td:eq(6)").html("<input class='input-reservation-"
+        $(this).parents("tr").find("td:eq(6)").html("<input onkeydown='return false' type='number' min='0' max='10' class='input-reservation-"
             + currentRowNumber + "'" + "id='edit-rooms' name='edit_standard_rooms' value='" + standard_rooms + "'>");
-        $(this).parents("tr").find("td:eq(7)").html("<input class='input-reservation-"
+        $(this).parents("tr").find("td:eq(7)").html("<input type='date'  type='number' min='0' class='input-reservation-"
             + currentRowNumber + "'" + "id='edit-checkIn' name='edit-checkIn' value='" + checkIn + "'>");
-        $(this).parents("tr").find("td:eq(8)").html("<input class='input-reservation-"
+        $(this).parents("tr").find("td:eq(8)").html("<input type='date' class='input-reservation-"
             + currentRowNumber + "'" + "id='edit-checkOut' name='edit-checkOut' value='" + checkOut + "'>");
 
         $(this).parents("tr").find("td:eq(9)").prepend("<input type='button' value='Save' class='button update-reservation-buttons'/>")
@@ -72,11 +72,11 @@ $(document).ready(function () {
     });
 
     $(".edit-hotel-buttons").click(async function () {
-        let buttonId = this.id
+
     });
 
     $(".edit-user-buttons").click(async function () {
-        let buttonId = this.id
+
     });
 });
 
