@@ -24,7 +24,6 @@
                     <thead>
                     <tr>
                         <th>Reservation Id</th>
-                        <th>Hotel Id</th>
                         <th>User Id</th>
                         <th>Hotel Name</th>
                         <th>Country</th>
@@ -51,8 +50,7 @@
                             <td id="suiteRoomAmount-<%= i %>"><%= allReservations[i].suiteRoomAmount %></td>
                             <td id="regularRoomAmount-<%= i %>"><%= allReservations[i].regularRoomAmount %></td>
                             <td id="checkIn-<%= i %>"><%= allReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
-                            <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
-                            <!-- buttons -->
+                            <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td><!-- buttons -->
                             <td><input type="button" id='edit_button' value="Edit" class="button"
                                        onclick="edit_row(<%= i %>)">
                                 <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= allReservations[i].reservationId %>")'>
@@ -96,7 +94,7 @@
                     <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <h1><%= user.username %></h1>
+                    <a class="nav-link" id="logout">Logout</a>
                 </li>
             </ul>
         </nav>
