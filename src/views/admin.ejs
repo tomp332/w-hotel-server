@@ -7,8 +7,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>W-Hotels</title>
-    <link type="image/png" href="/css/images/black_logo.png">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link type="image/png" href="/css/images/black_logo.png">
     <link rel="stylesheet" href="/css/home.css" type="text/css">
     <link rel="stylesheet" href="/css/reservations.css">
 </head>
@@ -49,13 +50,11 @@
                             <td id="checkIn-<%= i %>"><%= allReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
                             <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
                             <!-- buttons -->
-                            <td><input type="button" id='edit_button' value="Edit" class="button"
-                                       onclick="edit_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save"
-                                       onclick='save_row("<%= i %>", "<%= allReservations[i].reservationId %>")'>
+                            <td><input type="button" id='edit_button' value="Edit" class="button" onclick="edit_row(<%= i %>)">
+                                <input type="button" id="save_button" value="Save" class="save">
                             </td>
                             <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
                             </td>
                         </tr>
                     <% } %>
@@ -111,7 +110,7 @@
                                 <input type="button" id="save_hotel_button" value="Save" class="save" onclick='save_hotel_row("<%= i %>")'>
                             </td>
                             <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_hotel_row(<%= i %>)"/>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
                             </td>
                     <% } %>
                     </tbody>
