@@ -300,9 +300,13 @@ async function save_hotel_row(btnNum)
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
             hotelId: hotelId_val,
-            hotelName: hotelName_val,
+            hotelName: hotelsName_val,
             rating: rating_val,
             address: address_val,
+            pricePerNight :pricePerNight_val,
+            location: location_val,
+            guestReviews: guestReviews_val
+
 
         })
     }).then(function (response) {
