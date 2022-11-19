@@ -50,13 +50,16 @@
                             <td id="suiteRoomAmount-<%= i %>"><%= allReservations[i].suiteRoomAmount %></td>
                             <td id="regularRoomAmount-<%= i %>"><%= allReservations[i].regularRoomAmount %></td>
                             <td id="checkIn-<%= i %>"><%= allReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
-                            <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td><!-- buttons -->
+                            <td id="checkOut-<%= i %>"><%= allReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                            <!-- buttons -->
                             <td><input type="button" id='edit_button' value="Edit" class="button"
                                        onclick="edit_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= allReservations[i].reservationId %>")'>
+                                <input type="button" id="save_button" value="Save" class="save"
+                                       onclick='save_row("<%= i %>", "<%= allReservations[i].reservationId %>")'>
                             </td>
                             <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"
+                                       onclick="delete_row(<%= i %>)"/>
 
                             </td>
                         </tr>
