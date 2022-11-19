@@ -215,7 +215,8 @@ section {
 .reservations-class{
     width: 100%;
     height: 100vh;
-    background: url(./images/plane.jpg) center no-repeat;
+    /* background: url(./images/plane.jpg) center no-repeat; */
+    background-color: #cbd9e4;
     background-size: cover;
     display: flex;
     align-items: center;
