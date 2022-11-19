@@ -58,6 +58,7 @@ loginForm.addEventListener("submit", async e => {
         if (response.status !== 200) {
             setFormMessage(loginForm, "error", "Invalid username/password provided");
         } else {
+            console.log(response.user);
             window.location.href = '/user'
         }
     })
