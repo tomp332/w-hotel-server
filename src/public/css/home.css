@@ -854,7 +854,8 @@ section {
     /* The height is 400 pixels */
     width: 600px;
     border: 1px solid black;
-    margin-left: 49%;
+    /* margin-left: 49%; */
+    margin-left: 35%;
     /* The width is the width of the web page */
 }
 
