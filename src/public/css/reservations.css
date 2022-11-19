@@ -110,14 +110,3 @@
     box-shadow: rgba(255, 255, 255, 0.92) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
     transform: scale(1.05) rotate(-1deg);
 }
-
-#admin__search{
-    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconfinder.com%2Ficons%2F172546%2Fsearch_icon&psig=AOvVaw1wvLC1bx6QgXGBWKRNiqu4&ust=1668962807380000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCNCawIvZuvsCFQAAAAAdAAAAABAJ);
-    background-position: 10px 12px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
