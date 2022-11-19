@@ -64,11 +64,40 @@ async function initMap() {
 
 window.initMap = initMap;
 
-let logout = document.querySelector('#logout');
-logout.addEventListener('click', async e => {
-    e.preventDefault();
-    await fetch('/auth/logout', {
-        method: 'GET',
+$(document).ready(function () {
+    $("#logout").click(async e => {
+        e.preventDefault();
+        await fetch('/auth/logout', {
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'include',
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+        }).then(function (response) {
+            if (response.status === 200) {
+                window.location.href = '/'
+            } else {
+                alert("Couldn't log user out, please try again")
+            }
+        })
+    })
+
+    $(".delete-buttons").click(async function () {
+        if (confirm("Do you really want to delete this reservation ?")) {
+            let buttonId = this.id
+            if (await delete_row(buttonId)) {
+                // Remove the reservation if success
+                $(this).parents("tr").remove();
+            }
+        }
+    });
+});
+
+async function delete_row(buttonId) {
+    let rowId = buttonId.split('-')[1]
+    return await fetch('/api/reservations', {
+        method: 'DELETE',
         mode: 'cors',
         cache: 'no-cache',
         credentials: 'include',
@@ -77,9 +106,15 @@ logout.addEventListener('click', async e => {
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            hotelName: document.getElementById(`hotelName-${rowId}`).textContent
+        })
     }).then(function (response) {
-        if (response.status === 200 || response.status === 401) {
-            window.location.href = '/'
+        if (response.status !== 200) {
+            alert("Error deleting reservation, please try again")
+            return false
+        } else {
+            return true
         }
     })
-});
+}

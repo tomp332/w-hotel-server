@@ -75,8 +75,7 @@ $(document).ready(function () {
 
 });
 
-async function delete_row(buttonId) {
-    let rowId = buttonId.split('-')[1]
+async function delete_row(btnNum) {
     return await fetch('/api/reservations', {
         method: 'DELETE',
         mode: 'cors',
@@ -88,11 +87,77 @@ async function delete_row(buttonId) {
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
-            hotelName: document.getElementById(`hotelName-${rowId}`).textContent
+            hotelName: document.getElementById(`hotelName-${btnNum}`).textContent
         })
     }).then(function (response) {
         if (response.status !== 200) {
             alert("Error deleting reservation, please try again")
+            return false
+        } else {
+            return true
+        }
+    })
+}
+
+function edit_row(btnNum)
+{
+    document.getElementById("edit_button").style.display="none";
+    document.getElementById("save_button").style.display="block";
+
+    let suiteRoomAmount=document.getElementById("suiteRoomAmount-"+btnNum);
+    let regularRoomAmount=document.getElementById("regularRoomAmount-"+btnNum);
+    let checkIn=document.getElementById("checkIn-"+btnNum);
+    let checkOut=document.getElementById("checkOut-"+btnNum);
+
+
+
+    let suiteRoomAmount_data=suiteRoomAmount.innerHTML;
+    let regularRoomAmount_data=regularRoomAmount.innerHTML;
+    let checkIn_data=checkIn.innerHTML;
+    let checkOut_data=checkOut.innerHTML;
+
+    suiteRoomAmount.innerHTML="<input type='text' id='suiteRoomAmount_text"+btnNum+"' value='"+suiteRoomAmount_data+"'>";
+    regularRoomAmount.innerHTML="<input type='text' id='regularRoomAmount_text"+btnNum+"' value='"+regularRoomAmount_data+"'>";
+    checkIn.innerHTML="<input type='text' id='checkIn_text"+btnNum+"' value='"+checkIn_data+"'>";
+    checkOut.innerHTML="<input type='text' id='checkOut_text"+btnNum+"' value='"+checkOut_data+"'>";
+}
+
+async function save_row(btnNum)
+{
+    let suiteRoomAmount_val=document.getElementById("suiteRoomAmount_text"+btnNum).value;
+    let regularRoomAmount_val=document.getElementById("regularRoomAmount_text"+btnNum).value;
+    let checkIn_val=document.getElementById("checkIn_text"+btnNum).value;
+    let checkOut_val=document.getElementById("checkOut_text"+btnNum).value;
+
+    document.getElementById("suiteRoomAmount-"+btnNum).innerHTML=suiteRoomAmount_val;
+    document.getElementById("regularRoomAmount-"+btnNum).innerHTML=regularRoomAmount_val;
+    document.getElementById("checkIn-"+btnNum).innerHTML=checkIn_val;
+    document.getElementById("checkOut-"+btnNum).innerHTML=checkOut_val;
+
+
+    document.getElementById("edit_button").style.display="block";
+    document.getElementById("save_button").style.display="none";
+
+    return await fetch('/api/reservations', {
+        method: 'UPDATE',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            suiteRoomAmount: suiteRoomAmount_val,
+            regularRoomAmount: regularRoomAmount_val,
+            checkIn: checkIn_val,
+            checkOut: checkOut_val
+
+        })
+    }).then(function (response) {
+        if (response.status !== 200) {
+            alert("Error update reservation, please try again")
             return false
         } else {
             return true

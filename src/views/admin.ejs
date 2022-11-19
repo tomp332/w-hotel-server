@@ -10,22 +10,66 @@
     <link type="image/png" href="/css/images/black_logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="/css/home.css" type="text/css">
+    <link rel="stylesheet" href="/css/reservations.css">
 </head>
-<script>
-    let header = document.querySelector('.header');
-    let hamburgerMenu = document.querySelector('.hamburger-menu');
-
-
-
-    hamburgerMenu.addEventListener('click', function () {
-        header.classList.toggle('menu-open');
-
-    })
-
-    window.addEventListener('scroll', function () {
-        let windowPosition = window.scrollY > 0;
-        header.classList.toggle('active', window.scrollY > 0);
-    })
+<main>
+    <div class="reservations-class">
+        <div class="container">
+            <% if(userReservations.length > 0 ){ %>
+                <!-- <h2 class="main-sub-heading">.</h2> -->
+                <h2 class="main-sub-heading">Your Reservations:</h2>
+                <!--Reservations Table-->
+                <table id="reservations-table" class="reservations-table">
+                    <thead>
+                    <tr>
+                        <th>reservation Id</th>
+                        <th>Hotel Name</th>
+                        <th>Country</th>
+                        <th>City</th>
+                        <th>Address</th>
+                        <th>Suites</th>
+                        <th>Standard Rooms</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (var i = 0; i < userReservations.length ; i++) { %>
+                        <tr id="row-<%= i %>">
+                            <td id="reservationId-<%= i %>"><%= userReservations[i].reservationId %></td>
+                            <td id="hotelName-<%= i %>"><%= userReservations[i].hotelName %></td>
+                            <td id="country-<%= i %>"><%= userReservations[i].country %></td>
+                            <td id="city-<%= i %>"><%= userReservations[i].city %></td>
+                            <td id="fullAddress-<%= i %>"><%= userReservations[i].fullAddress %></td>
+                            <td id="suiteRoomAmount-<%= i %>"><%= userReservations[i].suiteRoomAmount %></td>
+                            <td id="regularRoomAmount-<%= i %>"><%= userReservations[i].regularRoomAmount %></td>
+                            <td id="checkIn-<%= i %>"><%= userReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                            <td id="checkOut-<%= i %>"><%= userReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
+                            <!-- buttons -->
+                            <td><input type="button" id='edit-<%= i %>' value="Edit" class="button"
+                                       onclick="edit_row()"></td>
+                            <td>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
+                            </td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            <% } else{ %>
+                <h2 class="main-sub-heading">You have no reservations yet :(</h2>
+                <a href="/hotels" class="btn btn-gradient">Book Now
+                    <span>
+                        <div class="dots">
+                            <i class="fas fa-allipsis-h"></i>
+                        </div>
+                    </span>
+                </a>
+            <% } %>
+        </div>
+    </div>
+</main>
 
 </script>
 <body>
@@ -43,11 +87,6 @@
                 <li class="nav-item">
                     <a href="/" class="nav-link">Home</a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="/hotels" class="nav-link">Hotels</a>
-                </li> -->
-
-
                 <li class="nav-item">
                     <h1><%= user.username %></h1>
                 </li>
@@ -55,38 +94,6 @@
         </nav>
     </div>
 </header>
-<main>
-    <div class="hero">
-        <div class="container">
-            <div class="main-heading">
-                <h1 class="title">W Hotels</h1>
-                <h2 class="subtitile">Luxury Vacation</h2>
-            </div>
-            <a href="/hotels" class="btn btn-gradient">Explore Now
-                <span>
-                        <div class="dots"><i class="fas fa-allipsis-h"></i></div>
-                    </span>
-            </a>
-        </div>
-    </div>
-
-    <section class="booking">
-        <div class="container">
-            <form id="hotels-search-form" action="hotel" method="get" class="form">
-                <div class="input-group ">
-                    <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
-                    <select name="hotelName" id="hotel-choice" class="options">
-                        <% for (var i = 0; i < hotels.length ; i++) { %>
-                            <option>
-                                <%= hotels[i].hotelName %>
-                            </option>
-                        <% } %>
-                    </select>
-                </div>
-            </form>
-        </div>
-    </section>
-</main>
 
 <footer class="footer">
     <div class="container">
