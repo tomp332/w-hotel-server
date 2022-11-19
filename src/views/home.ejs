@@ -58,14 +58,16 @@
                 <span>
                     <div class="dots"><i class="fas fa-allipsis-h"></i></div>
                 </span>
-            </a>
+            </a>            
         </div>
+ 
     </div>
 
     <section class="booking">
         <div class="container">
             <form id="hotels-search-form" action="hotel" method="get" class="form">
                 <div class="input-group ">
+                    
                     <label for="destination" id="hotel-dest" class="input-label">Hotels</label>
                     <select name="hotelName" id="hotel-choice" class="options">
                         <% for (var i = 0; i < hotels.length ; i++) { %>
@@ -76,7 +78,7 @@
                     </select>
                 </div>
 
-
+        
                 <div class="input-group">
                     <label id="checkin" for="check-in" class="input-label">Check in</label>
                     <input name="checkIn" type="date" class="input" id="check-in" required>
@@ -118,10 +120,11 @@
                 </button>
             </form>
             <div id="map" style="height: 250px; width: 600px; border: 1px solid black; margin-left: 49%;"></div>
+         
         </div>
     </section>
 
-
+    
 </main>
 
 <footer class="footer">
