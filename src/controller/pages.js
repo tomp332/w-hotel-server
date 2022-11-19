@@ -18,7 +18,7 @@ router.get("/", webCookieValidator, async (req, res) => {
     const userReservations = await Reservations.find({userId: res.user.userId}).exec()
     const hotels = await Hotels.find().exec()
     console.log("[+] Is user an admin:", res.user.isAdmin)
-    res.render('user.ejs', {hotels: hotels, user: user[0], userReservations: userReservations})
+    res.render('user.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels, user: user[0], userReservations: userReservations})
 })
 
 router.get('/hotel', checkIfLoggedIn, async (req, res) => {
@@ -69,10 +69,11 @@ router.get('/user', webCookieValidator, async (req, res) => {
         const allReservations = await Reservations.find().exec()
         res.render('admin.ejs', {
             hotels: hotels,
+            google: process.env.GOOGLE_API_KEY,
             user: user[0],
             allReservations: allReservations})
     } else
-        res.render('user.ejs', {hotels: hotels, user: user[0]})
+        res.render('user.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels, user: user[0]})
 })
 
 router.get('/contact', validCookieExists, (req, res) => {
@@ -81,7 +82,7 @@ router.get('/contact', validCookieExists, (req, res) => {
 
 router.get('/hotels', validCookieExists, async (req, res) => {
     const hotels = await Hotels.find().exec()
-    res.render("hotels/hotels.ejs", {hotels: hotels, auth: res.auth})
+    res.render("hotels/hotels.ejs", {google: process.env.GOOGLE_API_KEY, hotels: hotels, auth: res.auth})
 })
 
 module.exports = router;

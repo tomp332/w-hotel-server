@@ -71,7 +71,7 @@ const webCookieValidator = async (req, res, next) => {
     res.auth = false
     try {
         let token = req.cookies.authorization
-        if (token == null) return res.render('home.ejs', {hotels: hotels});
+        if (token == null) return res.render('home.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels});
 
         jwt.verify(token, process.env.JWT_SECRET.toString(), {}, (err) => {
             if (err) {
@@ -81,7 +81,7 @@ const webCookieValidator = async (req, res, next) => {
             Users.findOne({sessionKey: req.cookies.authorization}, async (err, user) => {
                 if (err) {
                     console.log(`[-] Error finding user in database, ${err}`)
-                    res.render('home.ejs', {hotels: hotels})
+                    res.render('home.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels})
                 } else {
                     if (user) {
                         res.auth = true
@@ -92,14 +92,14 @@ const webCookieValidator = async (req, res, next) => {
                         next();
                     } else {
                         console.log(`[-] Found no user with valid token`)
-                        res.render('home.ejs', {hotels: hotels})
+                        res.render('home.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels})
                     }
                 }
             })
         });
     } catch (err) {
         console.log(`[-] Client error authenticating, ${err}`)
-        res.render('home.ejs', {hotels: hotels})
+        res.render('home.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels})
     }
 };
 

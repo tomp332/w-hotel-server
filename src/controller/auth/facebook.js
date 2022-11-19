@@ -69,7 +69,7 @@ router.get("/callback", passport.authenticate("facebook", {
         console.log(`[+] Successfully initialized user authenticated from facebook`)
         const hotels = await Hotels.find().exec()
         res.cookie('authorization', token)
-        res.render('user.ejs', {hotels: hotels, user: req.user})
+        res.render('user.ejs', {google: process.env.GOOGLE_API_KEY, hotels: hotels, user: req.user})
     } catch (err) {
         res.sendStatus(401)
     }

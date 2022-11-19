@@ -14,7 +14,7 @@ router.get('/logout', webCookieValidator, async function (req, res) {
         res.send()
     } catch (err) {
         console.log(`Error logging user out: ${err}`)
-        res.render("user.ejs", {hotels: hotels})
+        res.render("user.ejs", {google: process.env.GOOGLE_API_KEY, hotels: hotels})
     }
 })
 
