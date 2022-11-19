@@ -1,5 +1,5 @@
 let header = document.querySelector('.header');
-let hamburgerMenu = document.querySelector('.hamburger-menu');
+// let hamburgerMenu = document.querySelector('.hamburger-menu');
 
 window.addEventListener('scroll', function () {
     let windowPosition = window.scrollY > 0;
@@ -29,9 +29,12 @@ async function getHotels() {
         })
 }
 
-document.getElementById("myAnchor").addEventListener("click", function (event) {
-    event.preventDefault()
-});
+<<<<<<< HEAD
+// document.getElementById("myAnchor").addEventListener("click", function (event) {
+//     event.preventDefault()
+// });
+=======
+>>>>>>> 96c55c61ba877b0fc1d3d84bfaa74e68b6594752
 
 // Generate google map
 async function initMap() {
