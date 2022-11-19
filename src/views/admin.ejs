@@ -24,7 +24,6 @@
                     <thead>
                     <tr>
                         <th>Reservation Id</th>
-                        <th>Hotel Id</th>
                         <th>User Id</th>
                         <th>Hotel Name</th>
                         <th>Country</th>
@@ -42,7 +41,6 @@
                     <% for (var i = 0; i < userReservations.length ; i++) { %>
                         <tr id="row-<%= i %>">
                             <td id="reservationId-<%= i %>"><%= userReservations[i].reservationId %></td>
-                            <td id="hotelId-<%= i %>"><%= userReservations[i].hotelId %></td>
                             <td id="userId-<%= i %>"><%= userReservations[i].userId %></td>
                             <td id="hotelName-<%= i %>"><%= userReservations[i].hotelName %></td>
                             <td id="country-<%= i %>"><%= userReservations[i].country %></td>
@@ -96,7 +94,7 @@
                     <a href="/" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <h1><%= user.username %></h1>
+                    <a class="nav-link" id="logout">Logout</a>
                 </li>
             </ul>
         </nav>
