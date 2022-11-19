@@ -36,6 +36,8 @@ router.put('/', webCookieValidator, async function (req, res) {
         console.log(`[+] Found reservation ${reservation.reservationId} for modifying`)
         reservation.hotelId = req.body.hotelId && req.body.hotelId || reservation.hotelId
         reservation.userId = req.body.userId && req.body.userId || reservation.userId
+        reservation.suiteRoomAmount = req.body.suiteRoomAmount && req.body.suiteRoomAmount || reservation.suiteRoomAmount
+        reservation.regularRoomAmount = req.body.regularRoomAmount && req.body.regularRoomAmount || reservation.regularRoomAmount
         reservation.checkIn = req.body.checkIn && req.body.checkIn || reservation.checkIn
         reservation.checkOut = req.body.checkOut && req.body.checkOut || reservation.checkOut
         await reservation.save()

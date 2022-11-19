@@ -50,7 +50,7 @@
                             <!-- buttons -->
                             <td><input type="button" id='edit_button' value="Edit" class="button"
                                        onclick="edit_row(<%= i %>)">
-                                <input type="button" id="save_button" value="Save" class="save" onclick="save_row(<%= i %>)">
+                                <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= userReservations[i].reservationId %>")'>
                             </td>
                             <td>
                                 <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>
