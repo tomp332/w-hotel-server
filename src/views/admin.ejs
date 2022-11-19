@@ -48,10 +48,13 @@
                             <td id="checkIn-<%= i %>"><%= userReservations[i].checkIn.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
                             <td id="checkOut-<%= i %>"><%= userReservations[i].checkOut.toISOString().replace('-', '/').split('T')[0].replace('-', '/') %></td>
                             <!-- buttons -->
-                            <td><input type="button" id='edit-<%= i %>' value="Edit" class="button"
-                                       onclick="edit_row()"></td>
+                            <td><input type="button" id='edit_button' value="Edit" class="button"
+                                       onclick="edit_row(<%= i %>)">
+                                <input type="button" id="save_button" value="Save" class="save" onclick='save_row("<%= i %>", "<%= userReservations[i].reservationId %>")'>
+                            </td>
                             <td>
-                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons"/>
+                                <input type="button" id='delete-<%= i %>' value="Delete" class="button delete-buttons" onclick="delete_row(<%= i %>)"/>
+
                             </td>
                         </tr>
                     <% } %>
